@@ -1,14 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RotMG_Scripts {
+    /// <summary>
+    /// A single config for rushing, stores the debuffs and other settings
+    /// </summary>
     [Serializable]
     public class RushConfig {
-        private bool[] Debuffs = new bool[19];
+        /// <summary>
+        /// List of all the debuffs and whether they are on or not for the given config
+        /// </summary>
+        private bool[] Debuffs = new bool[18];
 
+        /// <summary>
+        /// Getter and setter for the debuffs
+        /// </summary>
         public bool[] debuffs {
             get {
                 return Debuffs;
@@ -18,8 +23,14 @@ namespace RotMG_Scripts {
             }
         }
 
+        /// <summary>
+        /// List of the other settings and whether they are on or not for the given config
+        /// </summary>
         private bool[] Others = new bool[1];
 
+        /// <summary>
+        /// Getter and setter for the debuffs
+        /// </summary>
         public bool[] others {
             get {
                 return Others;

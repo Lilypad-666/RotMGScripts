@@ -1,151 +1,180 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
 namespace RotMG_Scripts {
+    /// <summary>
+    /// Template tab for a rushing layout
+    /// </summary>
     public partial class RushingUserControl : CustomUserControl {
-        RotMGHotkeys form;
+
+        //Global index, including all controls
         int globalIndex;
+
+        //Local index of just this control
         int localIndex;
+
+        //Config for this control
         RushConfig config;
 
-        public RushingUserControl(RotMGHotkeys form, int index) {
-            offset = 2;
+        /// <summary>
+        /// Contstructor, sets the offset and generates the local and global index based on those
+        /// </summary>
+        /// <param name="index"></param>
+        public RushingUserControl(int index) {
+            InitializeComponent();
 
-            this.form = form;
+            offset = 2;
 
             localIndex = index;
             globalIndex = index + offset;
 
-            InitializeComponent();
-
             Load += new EventHandler(Loaded);
         }
 
-        public void CheckboxToggle(object sender, EventArgs e) {
-            //On checkbox toggle, save to the config
-            ScreenToConfig();
-        }
-
-        public void Loaded(object sender, EventArgs e) {
-            TextBox box = Controls.Find("HotkeyBox", true)[0] as TextBox;
-
+        /// <summary>
+        /// Triggers when the form is finished loading
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Loaded(object sender, EventArgs e) {
             //Adds the index to the hotkeyboxes name and sets the text properly
-            box.Name += globalIndex;
+            HotkeyBox.Name += globalIndex;
             if (Data.hotkeys[globalIndex] != Keys.None) {
                 KeysConverter kc = new KeysConverter();
-                box.Text = kc.ConvertToString(Data.hotkeys[globalIndex]);
+                HotkeyBox.Text = kc.ConvertToString(Data.hotkeys[globalIndex]);
             }
 
-            Button hotkeyButton = Controls.Find("HotkeyButton", true)[0] as Button;
-
             //Adds the index to the button
-            hotkeyButton.Name += globalIndex;
-            hotkeyButton.Click += new System.EventHandler(HotkeyButtonClick);
+            HotkeyButton.Name += globalIndex;
 
-            Button addScriptButton = Controls.Find("AddScript", true)[0] as Button;
+            //Adds the event handler to the hotkey button
+            HotkeyButton.Click += new EventHandler(HotkeyButtonClick);
 
-            addScriptButton.Click += new EventHandler(AddScriptClick);
+            //Adds the event handler to the add script button
+            AddScript.Click += new EventHandler(AddScriptClick);
 
             //Adds Click handlers to the checkboxes to save the configs as they're being edited
-            foreach (Control c in Controls) {
-                if (c is GroupBox) {
-                    foreach (Control x in c.Controls) {
-                        if (x is CheckBox) {
-                            (x as CheckBox).Click += CheckboxToggle;
-                        }
-                    }
-                }
+            List<CheckBox> boxes = MainForm.FindControls<CheckBox>("", this);
+            foreach (CheckBox box in boxes) {
+                box.Click += CheckboxToggle;
             }
 
             //Load the config from the file to the checkboxes
             LoadConfig();
         }
 
-        public void LoadConfig() {
-            //If there's a config, load it. Otherwise generate a new one and save it.
-            if (form.rushConfigs[globalIndex - offset] != null) {
-                config = form.rushConfigs[globalIndex - offset];
-                ConfigToScreen();
-            } else {
-                config = new RushConfig();
-                form.rushConfigs[globalIndex - offset] = config;
-                ScreenToConfig();
-            }
+        /// <summary>
+        /// Triggers when a checkbox is toggled
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckboxToggle(object sender, EventArgs e) {
+            //On checkbox toggle, save to the config
+            CheckBox box = (sender as CheckBox);
+            ScreenToConfig(box);
         }
 
-        public void ConfigToScreen() {
-            //Run through each checkbox on the page
-            foreach (Control c in Controls) {
-                if (c is GroupBox) {
-                    foreach (Control x in c.Controls) {
-                        if (x is CheckBox) {
-                            CheckBox box = x as CheckBox;
-
-                            //Snag the number from the end of the String
-                            int number = int.Parse(Regex.Match(box.Name, @"\d+").Value);
-
-                            //Sort by the type of category it's in and put it onto the page
-                            if (number < config.debuffs.Length) {
-                                box.Checked = config.debuffs[number];
-                            } else if (number < config.debuffs.Length + config.others.Length) {
-                                box.Checked = config.others[number - config.debuffs.Length];
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        public void ScreenToConfig() {
-            //Run through each checkbox on the page
-            foreach (Control c in Controls) {
-                if (c is GroupBox) {
-                    foreach (Control x in c.Controls) {
-                        if (x is CheckBox) {
-                            CheckBox box = x as CheckBox;
-
-                            //Get the number from the end of the string
-                            int number = int.Parse(Regex.Match(box.Name, @"\d+").Value);
-
-                            //Sort by the type of category it's in and store it into the config
-                            if (number < config.debuffs.Length) {
-                                config.debuffs[number] = box.Checked;
-                            } else if (number < config.debuffs.Length + config.others.Length) {
-                                config.others[number - config.debuffs.Length] = box.Checked;
-                            }
-                        }
-                    }
-                }
-            }
-
-            //Just in case it's not there yet, put it into the rushConfigs
-            form.rushConfigs[globalIndex - offset] = config;
-
-            //Re-write RushConfigs to the file
-            RotMGHotkeys.WriteToBinaryFile("rushconfigs.dat", form.rushConfigs);
-        }
-
+        /// <summary>
+        /// Adds a new script tab with the same UserControl as this class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddScriptClick(object sender, EventArgs e) {
             //When you click to add a new tab, create it and add it to the correct tabControl
-            form.CreateTab("rushingTabControl", new RushingUserControl(form, localIndex + 1), localIndex + 1);
+            MainForm.CreateTab("rushingTabControl", new RushingUserControl(localIndex + 1), localIndex + 1);
 
             //Disable the add tab button on this page
             Button button = (Button)sender;
             button.Enabled = false;
         }
 
+        /// <summary>
+        /// Triggers when the change hotkey button is pressed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HotkeyButtonClick(object sender, EventArgs e) {
             Button button = (Button)sender;
             button.Text = "Press Any Key...";
-            form.SetHotkey(globalIndex);
+
+            //Get the index from the regex \d+, which grabs the number at the end of the string
+            Data.form.SetHotkey(globalIndex);
+        }
+
+        /// <summary>
+        /// Loads the config from the rushConfigs if it exists
+        /// </summary>
+        private void LoadConfig() {
+            //If the config exists
+            if (Data.rushConfigs[globalIndex - offset] != null) {
+                //Set the config and refresh the screen
+                config = Data.rushConfigs[globalIndex - offset];
+                ConfigToScreen();
+            } else {
+                //Create a new config
+                config = new RushConfig();
+                Data.rushConfigs[globalIndex - offset] = config;
+                //Store the default values to the new config
+                ScreenToConfig();
+            }
+        }
+
+        /// <summary>
+        /// Checks the boxes relative to the config
+        /// </summary>
+        private void ConfigToScreen() {
+            //Run through each checkbox on the page
+            List<CheckBox> boxes = MainForm.FindControls<CheckBox>("", this);
+            foreach (CheckBox box in boxes) {
+
+                //Snag the number from the end of the String
+                int number = int.Parse(Regex.Match(box.Name, @"\d+").Value);
+
+                //Sort by the type of category it's in and put it onto the page
+                if (number < config.debuffs.Length) {
+                    box.Checked = config.debuffs[number];
+                } else if (number < config.debuffs.Length + config.others.Length) {
+                    box.Checked = config.others[number - config.debuffs.Length];
+                }
+            }
+        }
+
+        /// <summary>
+        /// Save the screen to the config and then write to the file
+        /// </summary>
+        /// <param name="box">The checkbox that was updated</param>
+        private void ScreenToConfig(CheckBox box = null) {
+            if (box == null) {
+                //Run through each checkbox on the page
+                List<CheckBox> boxes = MainForm.FindControls<CheckBox>("", this);
+                foreach (CheckBox c in boxes) {
+                    int number = int.Parse(Regex.Match(c.Name, @"\d+").Value);
+
+                    //Sort by the type of category it's in and store it into the config
+                    if (number < config.debuffs.Length) {
+                        config.debuffs[number] = c.Checked;
+                    } else if (number < config.debuffs.Length + config.others.Length) {
+                        config.others[number - config.debuffs.Length] = c.Checked;
+                    }
+                }
+            } else {
+                int number = int.Parse(Regex.Match(box.Name, @"\d+").Value);
+
+                //Sort by the type of category it's in and store it into the config
+                if (number < config.debuffs.Length) {
+                    config.debuffs[number] = box.Checked;
+                } else if (number < config.debuffs.Length + config.others.Length) {
+                    config.others[number - config.debuffs.Length] = box.Checked;
+                }
+            }
+
+            //Just in case it's not there yet, put it into the rushConfigs
+            Data.rushConfigs[globalIndex - offset] = config;
+
+            //Re-write RushConfigs to the file
+            Data.Save("rushconfigs.dat", Data.rushConfigs);
         }
     }
 }

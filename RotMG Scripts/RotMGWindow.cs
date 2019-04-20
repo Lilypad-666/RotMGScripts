@@ -2,25 +2,28 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace RotMG_Scripts {
-    class RotMGWindow {
+    /// <summary>
+    /// The window that RotMG is running on
+    /// </summary>
+    public class RotMGWindow {
 
+        /// <summary>
+        /// Gets the rectangle from the given handle
+        /// </summary>
+        /// <param name="hWnd">Handle to get rect of</param>
+        /// <param name="lpRect">Out: RECT to get back out</param>
+        /// <returns></returns>
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
 
-        [DllImport("user32.dll")]
-        private static extern bool SetForegroundWindow(IntPtr hWnd);
-
+        /// <summary>
+        /// Rectangle to temproraily use for GetWindowRect
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public struct RECT {
             public int Left;        // x position of upper-left corner
@@ -29,27 +32,39 @@ namespace RotMG_Scripts {
             public int Bottom;      // y position of lower-right corner
         }
 
+        //Process of the flashplayer
         private Process flashplayerProcess = null;
+
+        //Handle of the window of the flashplayer
         private IntPtr flashplayerHandle;
+
+        //Rectangle of the window of the flashplayer
         private Rectangle flashplayerRect;
 
+        //Name of the flashplayer
         private string flashplayerName = "";
 
-        public RotMGWindow() {
-        }
-
-        public void clear() {
+        /// <summary>
+        /// Resets everything back to default
+        /// </summary>
+        public void Clear() {
             flashplayerProcess = null;
             flashplayerHandle = IntPtr.Zero;
             flashplayerRect = new Rectangle();
             flashplayerName = "";
         }
 
+        /// <summary>
+        /// Returns whether the current flashplayer process is valid
+        /// </summary>
+        /// <returns></returns>
         public bool ValidflashplayerProcess() {
+            //If the flashplayer process is null or has exited
             if (flashplayerProcess == null || flashplayerProcess.HasExited) {
                 return false;
             }
 
+            //Or if the name is empty
             if (flashplayerName == "") {
                 return false;
             }
@@ -57,6 +72,10 @@ namespace RotMG_Scripts {
             return true;
         }
 
+        /// <summary>
+        /// Attempts to locate the flashplayer running RotMG
+        /// </summary>
+        /// <returns></returns>
         public bool FindflashplayerProcess() {
             //Force the process name to be something
             if (Data.settings[0].Length < 1) {
@@ -65,8 +84,10 @@ namespace RotMG_Scripts {
 
             //Get all matching processes
             IEnumerable<Process> processes = Process.GetProcesses().Where(x => x.ProcessName.ToLower().StartsWith(Data.settings[0]));
+
             //Force the process to have something to do with flash or realm
             processes = processes.Where(x => x.ProcessName.ToLower().Contains("flashplayer") || x.ProcessName.ToLower().Contains("rotmg") || x.ProcessName.ToLower().Contains("realm"));
+
             //Verify that the process isn't this program
             flashplayerProcess = processes.Where(x => !x.ProcessName.Equals(Process.GetCurrentProcess().ProcessName)).FirstOrDefault();
 
@@ -75,107 +96,82 @@ namespace RotMG_Scripts {
                 return false;
             }
             
+            //Process found, so get the main window handle from that process
             flashplayerHandle = flashplayerProcess.MainWindowHandle;
+
+            //Get the name from the main window as well
             flashplayerName = flashplayerProcess.MainWindowTitle;
 
-            UpdateWindowLoc();
+            //Update the flashplayer rectangle with the newly found window's info
+            flashplayerRect = GetWindowRect(flashplayerHandle);
 
             return true;
 
         }
 
-        public void UpdateWindowLoc() {
+        /// <summary>
+        /// A way for other classes to tell the window to verify that the coordinates are correct
+        /// </summary>
+        public void UpdateWindowRect() {
+            flashplayerRect = GetWindowRect(flashplayerHandle);
+        }
+
+        /// <summary>
+        /// Returns a rectangle of the given handle's window
+        /// </summary>
+        private Rectangle GetWindowRect(IntPtr handle) {
             RECT rct;
 
-            GetWindowRect(flashplayerHandle, out rct);
+            GetWindowRect(handle, out rct);
 
-            flashplayerRect.X = rct.Left;
-            flashplayerRect.Y = rct.Top;
-            flashplayerRect.Width = rct.Right - rct.Left;
-            flashplayerRect.Height = rct.Bottom - rct.Top;
+            Rectangle rect = new Rectangle();
+
+            rect.X = rct.Left;
+            rect.Y = rct.Top;
+            rect.Width = rct.Right - rct.Left;
+            rect.Height = rct.Bottom - rct.Top;
+
+            return rect;
         }
 
-        public void SendKeystroke(Keys key) {
-
-        }
-
-        public void UpdateWindowName() {
-            flashplayerName = flashplayerProcess.MainWindowTitle;
-        }
-
+        /// <summary>
+        /// Returns the X coordinate of the window
+        /// </summary>
+        /// <returns></returns>
         public int GetX() {
             return flashplayerRect.X;
         }
 
+        /// <summary>
+        /// Returns the Y coordinate of the window
+        /// </summary>
+        /// <returns></returns>
         public int GetY() {
             return flashplayerRect.Y;
         }
 
+        /// <summary>
+        /// Returns the Width of the window
+        /// </summary>
+        /// <returns></returns>
         public int GetWidth() {
             return flashplayerRect.Width;
         }
 
+        /// <summary>
+        /// Returns the Height of the window
+        /// </summary>
+        /// <returns></returns>
         public int GetHeight() {
             return flashplayerRect.Height;
         }
 
+        /// <summary>
+        /// Returns the name of the window
+        /// </summary>
+        /// <returns></returns>
         public string GetWindowName() {
             return flashplayerName;
-        }
-
-        public static string KeyConverter(Keys key) {
-            switch (key) {
-                case Keys.F1:
-                    return "{F1}";
-                case Keys.F2:
-                    return "{F2}";
-                case Keys.F3:
-                    return "{F3}";
-                case Keys.F4:
-                    return "{F4}";
-                case Keys.F5:
-                    return "{F5}";
-                case Keys.F6:
-                    return "{F6}";
-                case Keys.F7:
-                    return "{F7}";
-                case Keys.F8:
-                    return "{F8}";
-                case Keys.F9:
-                    return "{F9}";
-                case Keys.F10:
-                    return "{F10}";
-                case Keys.F11:
-                    return "{F11}";
-                case Keys.F12:
-                    return "{F12}";
-                case Keys.F13:
-                    return "{F13}";
-                case Keys.F14:
-                    return "{F14}";
-                case Keys.F15:
-                    return "{F15}";
-                case Keys.F16:
-                    return "{F16}";
-                case Keys.F17:
-                    return "{F17}";
-                case Keys.F18:
-                    return "{F18}";
-                case Keys.F19:
-                    return "{F19}";
-                case Keys.F20:
-                    return "{F20}";
-                case Keys.F21:
-                    return "{F21}";
-                case Keys.F22:
-                    return "{F22}";
-                case Keys.F23:
-                    return "{F23}";
-                case Keys.F24:
-                    return "{F24}";
-                default:
-                    return key.ToString().ToLower();
-            }
         }
     }
 }
