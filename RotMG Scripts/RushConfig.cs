@@ -9,12 +9,12 @@ namespace RotMG_Scripts {
         /// <summary>
         /// List of all the debuffs and whether they are on or not for the given config
         /// </summary>
-        private bool[] Debuffs = new bool[18];
+        private int[] Debuffs = new int[Info.debuffsCount];
 
         /// <summary>
         /// Getter and setter for the debuffs
         /// </summary>
-        public bool[] debuffs {
+        public int[] debuffs {
             get {
                 return Debuffs;
             }
@@ -26,12 +26,12 @@ namespace RotMG_Scripts {
         /// <summary>
         /// List of the other settings and whether they are on or not for the given config
         /// </summary>
-        private bool[] Others = new bool[1];
+        private int[] Others = new int[Info.othersCount];
 
         /// <summary>
         /// Getter and setter for the debuffs
         /// </summary>
-        public bool[] others {
+        public int[] others {
             get {
                 return Others;
             }

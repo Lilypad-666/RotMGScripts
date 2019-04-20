@@ -134,8 +134,9 @@
             // 
             // MobInfo18
             // 
-            this.MobInfo18.AutoCheck = false;
             this.MobInfo18.AutoSize = true;
+            this.MobInfo18.Checked = true;
+            this.MobInfo18.CheckState = System.Windows.Forms.CheckState.Checked;
             this.MobInfo18.Location = new System.Drawing.Point(7, 19);
             this.MobInfo18.Name = "MobInfo18";
             this.MobInfo18.Size = new System.Drawing.Size(98, 17);
@@ -160,8 +161,9 @@
             // 
             // Darkness17
             // 
-            this.Darkness17.AutoCheck = false;
             this.Darkness17.AutoSize = true;
+            this.Darkness17.Checked = true;
+            this.Darkness17.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Darkness17.Location = new System.Drawing.Point(181, 42);
             this.Darkness17.Name = "Darkness17";
             this.Darkness17.Size = new System.Drawing.Size(71, 17);
@@ -171,8 +173,9 @@
             // 
             // Confused16
             // 
-            this.Confused16.AutoCheck = false;
             this.Confused16.AutoSize = true;
+            this.Confused16.Checked = true;
+            this.Confused16.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Confused16.Location = new System.Drawing.Point(181, 19);
             this.Confused16.Name = "Confused16";
             this.Confused16.Size = new System.Drawing.Size(71, 17);
@@ -182,8 +185,9 @@
             // 
             // Hallucinating15
             // 
-            this.Hallucinating15.AutoCheck = false;
             this.Hallucinating15.AutoSize = true;
+            this.Hallucinating15.Checked = true;
+            this.Hallucinating15.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Hallucinating15.Location = new System.Drawing.Point(84, 42);
             this.Hallucinating15.Name = "Hallucinating15";
             this.Hallucinating15.Size = new System.Drawing.Size(87, 17);
@@ -193,7 +197,6 @@
             // 
             // Unstable8
             // 
-            this.Unstable8.AutoCheck = false;
             this.Unstable8.AutoSize = true;
             this.Unstable8.Location = new System.Drawing.Point(84, 19);
             this.Unstable8.Name = "Unstable8";
@@ -204,8 +207,9 @@
             // 
             // Drunk7
             // 
-            this.Drunk7.AutoCheck = false;
             this.Drunk7.AutoSize = true;
+            this.Drunk7.Checked = true;
+            this.Drunk7.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Drunk7.Location = new System.Drawing.Point(6, 42);
             this.Drunk7.Name = "Drunk7";
             this.Drunk7.Size = new System.Drawing.Size(55, 17);
@@ -215,8 +219,9 @@
             // 
             // Blind6
             // 
-            this.Blind6.AutoCheck = false;
             this.Blind6.AutoSize = true;
+            this.Blind6.Checked = true;
+            this.Blind6.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Blind6.Location = new System.Drawing.Point(6, 19);
             this.Blind6.Name = "Blind6";
             this.Blind6.Size = new System.Drawing.Size(49, 17);
@@ -247,7 +252,6 @@
             // 
             // Silence14
             // 
-            this.Silence14.AutoCheck = false;
             this.Silence14.AutoSize = true;
             this.Silence14.Location = new System.Drawing.Point(181, 91);
             this.Silence14.Name = "Silence14";
@@ -258,7 +262,6 @@
             // 
             // PetStasis13
             // 
-            this.PetStasis13.AutoCheck = false;
             this.PetStasis13.AutoSize = true;
             this.PetStasis13.Location = new System.Drawing.Point(181, 67);
             this.PetStasis13.Name = "PetStasis13";
@@ -269,7 +272,6 @@
             // 
             // Bleeding12
             // 
-            this.Bleeding12.AutoCheck = false;
             this.Bleeding12.AutoSize = true;
             this.Bleeding12.Location = new System.Drawing.Point(181, 43);
             this.Bleeding12.Name = "Bleeding12";
@@ -280,7 +282,6 @@
             // 
             // Stunned11
             // 
-            this.Stunned11.AutoCheck = false;
             this.Stunned11.AutoSize = true;
             this.Stunned11.Location = new System.Drawing.Point(181, 19);
             this.Stunned11.Name = "Stunned11";
@@ -291,7 +292,6 @@
             // 
             // Weak9
             // 
-            this.Weak9.AutoCheck = false;
             this.Weak9.AutoSize = true;
             this.Weak9.Location = new System.Drawing.Point(84, 65);
             this.Weak9.Name = "Weak9";
@@ -302,7 +302,6 @@
             // 
             // Sick10
             // 
-            this.Sick10.AutoCheck = false;
             this.Sick10.AutoSize = true;
             this.Sick10.Location = new System.Drawing.Point(84, 89);
             this.Sick10.Name = "Sick10";
@@ -313,8 +312,9 @@
             // 
             // Petrified5
             // 
-            this.Petrified5.AutoCheck = false;
             this.Petrified5.AutoSize = true;
+            this.Petrified5.Checked = true;
+            this.Petrified5.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Petrified5.Location = new System.Drawing.Point(84, 42);
             this.Petrified5.Name = "Petrified5";
             this.Petrified5.Size = new System.Drawing.Size(64, 17);
@@ -324,8 +324,9 @@
             // 
             // ArmorBroken4
             // 
-            this.ArmorBroken4.AutoCheck = false;
             this.ArmorBroken4.AutoSize = true;
+            this.ArmorBroken4.Checked = true;
+            this.ArmorBroken4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ArmorBroken4.Location = new System.Drawing.Point(84, 19);
             this.ArmorBroken4.Name = "ArmorBroken4";
             this.ArmorBroken4.Size = new System.Drawing.Size(90, 17);
@@ -335,8 +336,9 @@
             // 
             // Paralyzed3
             // 
-            this.Paralyzed3.AutoCheck = false;
             this.Paralyzed3.AutoSize = true;
+            this.Paralyzed3.Checked = true;
+            this.Paralyzed3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Paralyzed3.Location = new System.Drawing.Point(6, 89);
             this.Paralyzed3.Name = "Paralyzed3";
             this.Paralyzed3.Size = new System.Drawing.Size(72, 17);
@@ -346,7 +348,6 @@
             // 
             // Dazed2
             // 
-            this.Dazed2.AutoCheck = false;
             this.Dazed2.AutoSize = true;
             this.Dazed2.Location = new System.Drawing.Point(6, 65);
             this.Dazed2.Name = "Dazed2";
@@ -357,8 +358,9 @@
             // 
             // Slowed1
             // 
-            this.Slowed1.AutoCheck = false;
             this.Slowed1.AutoSize = true;
+            this.Slowed1.Checked = true;
+            this.Slowed1.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Slowed1.Location = new System.Drawing.Point(6, 42);
             this.Slowed1.Name = "Slowed1";
             this.Slowed1.Size = new System.Drawing.Size(61, 17);
@@ -368,8 +370,9 @@
             // 
             // Quiet0
             // 
-            this.Quiet0.AutoCheck = false;
             this.Quiet0.AutoSize = true;
+            this.Quiet0.Checked = true;
+            this.Quiet0.CheckState = System.Windows.Forms.CheckState.Checked;
             this.Quiet0.Location = new System.Drawing.Point(6, 19);
             this.Quiet0.Name = "Quiet0";
             this.Quiet0.Size = new System.Drawing.Size(51, 17);

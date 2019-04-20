@@ -16,7 +16,7 @@ namespace RotMG_Scripts {
         int localIndex;
 
         //Config for this control
-        RushConfig config;
+        public RushConfig config;
 
         /// <summary>
         /// Contstructor, sets the offset and generates the local and global index based on those
@@ -107,6 +107,7 @@ namespace RotMG_Scripts {
         /// Loads the config from the rushConfigs if it exists
         /// </summary>
         private void LoadConfig() {
+
             //If the config exists
             if (Data.rushConfigs[globalIndex - offset] != null) {
                 //Set the config and refresh the screen
@@ -134,9 +135,17 @@ namespace RotMG_Scripts {
 
                 //Sort by the type of category it's in and put it onto the page
                 if (number < config.debuffs.Length) {
-                    box.Checked = config.debuffs[number];
+                    if (config.debuffs[number] == 1) {
+                        box.Checked = true;
+                    } else {
+                        box.Checked = false;
+                    }
                 } else if (number < config.debuffs.Length + config.others.Length) {
-                    box.Checked = config.others[number - config.debuffs.Length];
+                    if (config.others[number - config.debuffs.Length] == 1) {
+                        box.Checked = true;
+                    } else {
+                        box.Checked = false;
+                    }
                 }
             }
         }
@@ -154,9 +163,9 @@ namespace RotMG_Scripts {
 
                     //Sort by the type of category it's in and store it into the config
                     if (number < config.debuffs.Length) {
-                        config.debuffs[number] = c.Checked;
+                        config.debuffs[number] = c.Checked ? 1 : -1;
                     } else if (number < config.debuffs.Length + config.others.Length) {
-                        config.others[number - config.debuffs.Length] = c.Checked;
+                        config.others[number - config.debuffs.Length] = c.Checked ? 1 : -1;
                     }
                 }
             } else {
@@ -164,9 +173,9 @@ namespace RotMG_Scripts {
 
                 //Sort by the type of category it's in and store it into the config
                 if (number < config.debuffs.Length) {
-                    config.debuffs[number] = box.Checked;
+                    config.debuffs[number] = box.Checked ? 1 : -1;
                 } else if (number < config.debuffs.Length + config.others.Length) {
-                    config.others[number - config.debuffs.Length] = box.Checked;
+                    config.others[number - config.debuffs.Length] = box.Checked ? 1 : -1;
                 }
             }
 

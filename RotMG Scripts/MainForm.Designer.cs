@@ -29,6 +29,8 @@
             this.ConsoleTab = new System.Windows.Forms.TabPage();
             this.ConsolePanel = new System.Windows.Forms.Panel();
             this.RichConsoleText = new System.Windows.Forms.RichTextBox();
+            this.ConsoleSend = new System.Windows.Forms.Button();
+            this.ConsoleInput = new System.Windows.Forms.TextBox();
             this.ProgramInfoTab = new System.Windows.Forms.TabPage();
             this.GitHubLink = new System.Windows.Forms.LinkLabel();
             this.VersionLabel = new System.Windows.Forms.Label();
@@ -44,7 +46,6 @@
             this.SeachDelayLabel = new System.Windows.Forms.Label();
             this.ProcessName = new System.Windows.Forms.TextBox();
             this.RotMGProcess = new System.Windows.Forms.TextBox();
-            this.OptionsPanel = new System.Windows.Forms.Panel();
             this.UpdateDelayInput = new System.Windows.Forms.NumericUpDown();
             this.OptionsWarningLabel2 = new System.Windows.Forms.Label();
             this.UpdateDelayLabel = new System.Windows.Forms.Label();
@@ -53,7 +54,7 @@
             this.HotkeyBox0 = new System.Windows.Forms.TextBox();
             this.OptionsLabel = new System.Windows.Forms.Label();
             this.RotMGFound = new System.Windows.Forms.Label();
-            this.mainTabControl = new System.Windows.Forms.TabControl();
+            this.MainTabControl = new System.Windows.Forms.TabControl();
             this.GameInfoTab = new System.Windows.Forms.TabPage();
             this.GameInfoPanel = new System.Windows.Forms.Panel();
             this.GameInfoOther = new System.Windows.Forms.GroupBox();
@@ -87,8 +88,11 @@
             this.WindowYLabel = new System.Windows.Forms.Label();
             this.WindowXLabel = new System.Windows.Forms.Label();
             this.WindowInfoLabel = new System.Windows.Forms.Label();
-            this.ConsoleInput = new System.Windows.Forms.TextBox();
-            this.ConsoleSend = new System.Windows.Forms.Button();
+            this.AspectRatioGroup = new System.Windows.Forms.GroupBox();
+            this.AspectFourByThree = new System.Windows.Forms.CheckBox();
+            this.AspectSixteenNine = new System.Windows.Forms.CheckBox();
+            this.AspectOneOne = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.DebuggingTab.SuspendLayout();
             this.DebuggingTabControl.SuspendLayout();
             this.ConsoleTab.SuspendLayout();
@@ -97,14 +101,14 @@
             this.RushingTab.SuspendLayout();
             this.MainTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchDelayInput)).BeginInit();
-            this.OptionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateDelayInput)).BeginInit();
-            this.mainTabControl.SuspendLayout();
+            this.MainTabControl.SuspendLayout();
             this.GameInfoTab.SuspendLayout();
             this.GameInfoPanel.SuspendLayout();
             this.GameInfoOther.SuspendLayout();
             this.GameInfoClient.SuspendLayout();
             this.GameInfoServer.SuspendLayout();
+            this.AspectRatioGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // DebuggingTab
@@ -161,6 +165,32 @@
             this.RichConsoleText.TabIndex = 3;
             this.RichConsoleText.Text = "";
             // 
+            // ConsoleSend
+            // 
+            this.ConsoleSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.ConsoleSend.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.ConsoleSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ConsoleSend.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConsoleSend.ForeColor = System.Drawing.Color.Aqua;
+            this.ConsoleSend.Location = new System.Drawing.Point(350, 340);
+            this.ConsoleSend.Name = "ConsoleSend";
+            this.ConsoleSend.Size = new System.Drawing.Size(65, 21);
+            this.ConsoleSend.TabIndex = 2;
+            this.ConsoleSend.TabStop = false;
+            this.ConsoleSend.Text = "Send";
+            this.ConsoleSend.UseVisualStyleBackColor = false;
+            this.ConsoleSend.Click += new System.EventHandler(this.ConsoleSendClick);
+            // 
+            // ConsoleInput
+            // 
+            this.ConsoleInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.ConsoleInput.Font = new System.Drawing.Font("Arial", 10.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConsoleInput.ForeColor = System.Drawing.Color.Aqua;
+            this.ConsoleInput.Location = new System.Drawing.Point(3, 339);
+            this.ConsoleInput.Name = "ConsoleInput";
+            this.ConsoleInput.Size = new System.Drawing.Size(346, 23);
+            this.ConsoleInput.TabIndex = 1;
+            // 
             // ProgramInfoTab
             // 
             this.ProgramInfoTab.Controls.Add(this.GitHubLink);
@@ -203,7 +233,7 @@
             // 
             this.WarningLabel2.AutoSize = true;
             this.WarningLabel2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WarningLabel2.Location = new System.Drawing.Point(68, 26);
+            this.WarningLabel2.Location = new System.Drawing.Point(67, 26);
             this.WarningLabel2.Name = "WarningLabel2";
             this.WarningLabel2.Size = new System.Drawing.Size(291, 17);
             this.WarningLabel2.TabIndex = 8;
@@ -213,7 +243,7 @@
             // 
             this.WarningLabel1.AutoSize = true;
             this.WarningLabel1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WarningLabel1.Location = new System.Drawing.Point(9, 9);
+            this.WarningLabel1.Location = new System.Drawing.Point(8, 9);
             this.WarningLabel1.Name = "WarningLabel1";
             this.WarningLabel1.Size = new System.Drawing.Size(404, 17);
             this.WarningLabel1.TabIndex = 7;
@@ -260,13 +290,20 @@
             // 
             // MainTab
             // 
+            this.MainTab.Controls.Add(this.AspectRatioGroup);
             this.MainTab.Controls.Add(this.SearchDelayInput);
+            this.MainTab.Controls.Add(this.UpdateDelayInput);
             this.MainTab.Controls.Add(this.ProcessNameLabel);
+            this.MainTab.Controls.Add(this.OptionsWarningLabel2);
             this.MainTab.Controls.Add(this.SeachDelayLabel);
+            this.MainTab.Controls.Add(this.UpdateDelayLabel);
             this.MainTab.Controls.Add(this.ProcessName);
+            this.MainTab.Controls.Add(this.OptionsWarningLabel1);
             this.MainTab.Controls.Add(this.RotMGProcess);
-            this.MainTab.Controls.Add(this.OptionsPanel);
+            this.MainTab.Controls.Add(this.HotkeyButton0);
+            this.MainTab.Controls.Add(this.HotkeyBox0);
             this.MainTab.Controls.Add(this.RotMGFound);
+            this.MainTab.Controls.Add(this.OptionsLabel);
             this.MainTab.Location = new System.Drawing.Point(4, 22);
             this.MainTab.Name = "MainTab";
             this.MainTab.Padding = new System.Windows.Forms.Padding(3);
@@ -283,7 +320,7 @@
             0,
             0,
             0});
-            this.SearchDelayInput.Location = new System.Drawing.Point(224, 42);
+            this.SearchDelayInput.Location = new System.Drawing.Point(149, 76);
             this.SearchDelayInput.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -315,7 +352,7 @@
             // SeachDelayLabel
             // 
             this.SeachDelayLabel.AutoSize = true;
-            this.SeachDelayLabel.Location = new System.Drawing.Point(77, 44);
+            this.SeachDelayLabel.Location = new System.Drawing.Point(6, 78);
             this.SeachDelayLabel.Name = "SeachDelayLabel";
             this.SeachDelayLabel.Size = new System.Drawing.Size(137, 13);
             this.SeachDelayLabel.TabIndex = 21;
@@ -338,21 +375,6 @@
             this.RotMGProcess.TabIndex = 1;
             this.RotMGProcess.Text = "Not Found...";
             // 
-            // OptionsPanel
-            // 
-            this.OptionsPanel.Controls.Add(this.UpdateDelayInput);
-            this.OptionsPanel.Controls.Add(this.OptionsWarningLabel2);
-            this.OptionsPanel.Controls.Add(this.UpdateDelayLabel);
-            this.OptionsPanel.Controls.Add(this.OptionsWarningLabel1);
-            this.OptionsPanel.Controls.Add(this.HotkeyButton0);
-            this.OptionsPanel.Controls.Add(this.HotkeyBox0);
-            this.OptionsPanel.Controls.Add(this.OptionsLabel);
-            this.OptionsPanel.Enabled = false;
-            this.OptionsPanel.Location = new System.Drawing.Point(-4, 72);
-            this.OptionsPanel.Name = "OptionsPanel";
-            this.OptionsPanel.Size = new System.Drawing.Size(444, 332);
-            this.OptionsPanel.TabIndex = 3;
-            // 
             // UpdateDelayInput
             // 
             this.UpdateDelayInput.BackColor = System.Drawing.SystemColors.Control;
@@ -361,7 +383,7 @@
             0,
             0,
             0});
-            this.UpdateDelayInput.Location = new System.Drawing.Point(228, 55);
+            this.UpdateDelayInput.Location = new System.Drawing.Point(149, 106);
             this.UpdateDelayInput.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -385,7 +407,7 @@
             // 
             this.OptionsWarningLabel2.AutoSize = true;
             this.OptionsWarningLabel2.ForeColor = System.Drawing.Color.Black;
-            this.OptionsWarningLabel2.Location = new System.Drawing.Point(351, 26);
+            this.OptionsWarningLabel2.Location = new System.Drawing.Point(347, 52);
             this.OptionsWarningLabel2.Name = "OptionsWarningLabel2";
             this.OptionsWarningLabel2.Size = new System.Drawing.Size(78, 13);
             this.OptionsWarningLabel2.TabIndex = 20;
@@ -394,7 +416,7 @@
             // UpdateDelayLabel
             // 
             this.UpdateDelayLabel.AutoSize = true;
-            this.UpdateDelayLabel.Location = new System.Drawing.Point(104, 57);
+            this.UpdateDelayLabel.Location = new System.Drawing.Point(6, 108);
             this.UpdateDelayLabel.Name = "UpdateDelayLabel";
             this.UpdateDelayLabel.Size = new System.Drawing.Size(97, 13);
             this.UpdateDelayLabel.TabIndex = 23;
@@ -404,7 +426,7 @@
             // 
             this.OptionsWarningLabel1.AutoSize = true;
             this.OptionsWarningLabel1.ForeColor = System.Drawing.Color.Black;
-            this.OptionsWarningLabel1.Location = new System.Drawing.Point(363, 8);
+            this.OptionsWarningLabel1.Location = new System.Drawing.Point(362, 34);
             this.OptionsWarningLabel1.Name = "OptionsWarningLabel1";
             this.OptionsWarningLabel1.Size = new System.Drawing.Size(48, 13);
             this.OptionsWarningLabel1.TabIndex = 19;
@@ -412,7 +434,7 @@
             // 
             // HotkeyButton0
             // 
-            this.HotkeyButton0.Location = new System.Drawing.Point(242, 15);
+            this.HotkeyButton0.Location = new System.Drawing.Point(238, 42);
             this.HotkeyButton0.Name = "HotkeyButton0";
             this.HotkeyButton0.Size = new System.Drawing.Size(92, 21);
             this.HotkeyButton0.TabIndex = 18;
@@ -422,7 +444,7 @@
             // HotkeyBox0
             // 
             this.HotkeyBox0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HotkeyBox0.Location = new System.Drawing.Point(88, 16);
+            this.HotkeyBox0.Location = new System.Drawing.Point(84, 42);
             this.HotkeyBox0.Name = "HotkeyBox0";
             this.HotkeyBox0.ReadOnly = true;
             this.HotkeyBox0.Size = new System.Drawing.Size(137, 20);
@@ -433,7 +455,7 @@
             // OptionsLabel
             // 
             this.OptionsLabel.AutoSize = true;
-            this.OptionsLabel.Location = new System.Drawing.Point(10, 19);
+            this.OptionsLabel.Location = new System.Drawing.Point(6, 45);
             this.OptionsLabel.Name = "OptionsLabel";
             this.OptionsLabel.Size = new System.Drawing.Size(67, 13);
             this.OptionsLabel.TabIndex = 9;
@@ -448,17 +470,17 @@
             this.RotMGFound.TabIndex = 0;
             this.RotMGFound.Text = "RotMG Found:";
             // 
-            // mainTabControl
+            // MainTabControl
             // 
-            this.mainTabControl.Controls.Add(this.MainTab);
-            this.mainTabControl.Controls.Add(this.RushingTab);
-            this.mainTabControl.Controls.Add(this.GameInfoTab);
-            this.mainTabControl.Controls.Add(this.DebuggingTab);
-            this.mainTabControl.Location = new System.Drawing.Point(12, 12);
-            this.mainTabControl.Name = "mainTabControl";
-            this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(444, 426);
-            this.mainTabControl.TabIndex = 0;
+            this.MainTabControl.Controls.Add(this.MainTab);
+            this.MainTabControl.Controls.Add(this.RushingTab);
+            this.MainTabControl.Controls.Add(this.GameInfoTab);
+            this.MainTabControl.Controls.Add(this.DebuggingTab);
+            this.MainTabControl.Location = new System.Drawing.Point(12, 12);
+            this.MainTabControl.Name = "MainTabControl";
+            this.MainTabControl.SelectedIndex = 0;
+            this.MainTabControl.Size = new System.Drawing.Size(444, 426);
+            this.MainTabControl.TabIndex = 0;
             // 
             // GameInfoTab
             // 
@@ -829,38 +851,67 @@
             this.WindowInfoLabel.TabIndex = 0;
             this.WindowInfoLabel.Text = "Game Window Info:";
             // 
-            // ConsoleInput
+            // AspectRatioGroup
             // 
-            this.ConsoleInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.ConsoleInput.Font = new System.Drawing.Font("Arial", 10.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsoleInput.ForeColor = System.Drawing.Color.Aqua;
-            this.ConsoleInput.Location = new System.Drawing.Point(3, 339);
-            this.ConsoleInput.Name = "ConsoleInput";
-            this.ConsoleInput.Size = new System.Drawing.Size(346, 23);
-            this.ConsoleInput.TabIndex = 1;
+            this.AspectRatioGroup.Controls.Add(this.checkBox1);
+            this.AspectRatioGroup.Controls.Add(this.AspectOneOne);
+            this.AspectRatioGroup.Controls.Add(this.AspectSixteenNine);
+            this.AspectRatioGroup.Controls.Add(this.AspectFourByThree);
+            this.AspectRatioGroup.Location = new System.Drawing.Point(10, 145);
+            this.AspectRatioGroup.Name = "AspectRatioGroup";
+            this.AspectRatioGroup.Size = new System.Drawing.Size(164, 67);
+            this.AspectRatioGroup.TabIndex = 26;
+            this.AspectRatioGroup.TabStop = false;
+            this.AspectRatioGroup.Text = "Lock Game To Aspect Ratio";
             // 
-            // ConsoleSend
+            // AspectFourByThree
             // 
-            this.ConsoleSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.ConsoleSend.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.ConsoleSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ConsoleSend.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsoleSend.ForeColor = System.Drawing.Color.Aqua;
-            this.ConsoleSend.Location = new System.Drawing.Point(350, 340);
-            this.ConsoleSend.Name = "ConsoleSend";
-            this.ConsoleSend.Size = new System.Drawing.Size(65, 21);
-            this.ConsoleSend.TabIndex = 2;
-            this.ConsoleSend.TabStop = false;
-            this.ConsoleSend.Text = "Send";
-            this.ConsoleSend.UseVisualStyleBackColor = false;
-            this.ConsoleSend.Click += new System.EventHandler(this.ConsoleSendClick);
+            this.AspectFourByThree.AutoSize = true;
+            this.AspectFourByThree.Checked = true;
+            this.AspectFourByThree.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AspectFourByThree.Location = new System.Drawing.Point(6, 19);
+            this.AspectFourByThree.Name = "AspectFourByThree";
+            this.AspectFourByThree.Size = new System.Drawing.Size(41, 17);
+            this.AspectFourByThree.TabIndex = 0;
+            this.AspectFourByThree.Text = "4:3";
+            this.AspectFourByThree.UseVisualStyleBackColor = true;
+            // 
+            // AspectSixteenNine
+            // 
+            this.AspectSixteenNine.AutoSize = true;
+            this.AspectSixteenNine.Location = new System.Drawing.Point(6, 43);
+            this.AspectSixteenNine.Name = "AspectSixteenNine";
+            this.AspectSixteenNine.Size = new System.Drawing.Size(47, 17);
+            this.AspectSixteenNine.TabIndex = 1;
+            this.AspectSixteenNine.Text = "16:9";
+            this.AspectSixteenNine.UseVisualStyleBackColor = true;
+            // 
+            // AspectOneOne
+            // 
+            this.AspectOneOne.AutoSize = true;
+            this.AspectOneOne.Location = new System.Drawing.Point(85, 19);
+            this.AspectOneOne.Name = "AspectOneOne";
+            this.AspectOneOne.Size = new System.Drawing.Size(41, 17);
+            this.AspectOneOne.TabIndex = 2;
+            this.AspectOneOne.Text = "1:1";
+            this.AspectOneOne.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(85, 42);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(52, 17);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "None";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(468, 450);
-            this.Controls.Add(this.mainTabControl);
+            this.Controls.Add(this.MainTabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
@@ -876,10 +927,8 @@
             this.MainTab.ResumeLayout(false);
             this.MainTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchDelayInput)).EndInit();
-            this.OptionsPanel.ResumeLayout(false);
-            this.OptionsPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateDelayInput)).EndInit();
-            this.mainTabControl.ResumeLayout(false);
+            this.MainTabControl.ResumeLayout(false);
             this.GameInfoTab.ResumeLayout(false);
             this.GameInfoPanel.ResumeLayout(false);
             this.GameInfoPanel.PerformLayout();
@@ -889,6 +938,8 @@
             this.GameInfoClient.PerformLayout();
             this.GameInfoServer.ResumeLayout(false);
             this.GameInfoServer.PerformLayout();
+            this.AspectRatioGroup.ResumeLayout(false);
+            this.AspectRatioGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -911,14 +962,13 @@
         public System.Windows.Forms.Label ProcessNameLabel;
         public System.Windows.Forms.TextBox ProcessName;
         public System.Windows.Forms.TextBox RotMGProcess;
-        public System.Windows.Forms.Panel OptionsPanel;
         public System.Windows.Forms.Label OptionsWarningLabel2;
         public System.Windows.Forms.Label OptionsWarningLabel1;
         public System.Windows.Forms.Button HotkeyButton0;
         public System.Windows.Forms.TextBox HotkeyBox0;
         public System.Windows.Forms.Label OptionsLabel;
         public System.Windows.Forms.Label RotMGFound;
-        public System.Windows.Forms.TabControl mainTabControl;
+        public System.Windows.Forms.TabControl MainTabControl;
         public System.Windows.Forms.TabPage GameInfoTab;
         public System.Windows.Forms.Panel GameInfoPanel;
         public System.Windows.Forms.TextBox WindowYBox;
@@ -960,6 +1010,11 @@
         public System.Windows.Forms.RichTextBox RichConsoleText;
         public System.Windows.Forms.Button ConsoleSend;
         public System.Windows.Forms.TextBox ConsoleInput;
+        private System.Windows.Forms.GroupBox AspectRatioGroup;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox AspectOneOne;
+        private System.Windows.Forms.CheckBox AspectSixteenNine;
+        private System.Windows.Forms.CheckBox AspectFourByThree;
     }
 }
 

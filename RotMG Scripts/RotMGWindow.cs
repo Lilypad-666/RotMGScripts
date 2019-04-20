@@ -5,6 +5,8 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Windows.Forms;
+
 namespace RotMG_Scripts {
     /// <summary>
     /// The window that RotMG is running on
@@ -20,10 +22,12 @@ namespace RotMG_Scripts {
         //Rectangle of the window of the flashplayer
         private Rectangle flashplayerRect;
 
-        private uint processHandle;
-
         //Name of the flashplayer
         private string flashplayerName = "";
+
+        const int WM_KEYDOWN = 0x100;
+        const int WM_KEYUP = 0x101;
+        const int WM_CHAR = 0x105;
 
         /// <summary>
         /// Resets everything back to default
@@ -88,12 +92,12 @@ namespace RotMG_Scripts {
         /// <returns></returns>
         public bool FindflashplayerProcess() {
             //Force the process name to be something
-            if (Data.settings[0].Length < 1) {
+            if (((string)Data.settings[0]).Length < 1) {
                 return false;
             }
 
             //Get all matching processes
-            IEnumerable<Process> processes = Process.GetProcesses().Where(x => x.ProcessName.ToLower().StartsWith(Data.settings[0]));
+            IEnumerable<Process> processes = Process.GetProcesses().Where(x => x.ProcessName.ToLower().StartsWith((string)Data.settings[0]));
 
             //Force the process to have something to do with flash or realm
             processes = processes.Where(x => x.ProcessName.ToLower().Contains("flashplayer") || x.ProcessName.ToLower().Contains("rotmg") || x.ProcessName.ToLower().Contains("realm"));
@@ -105,7 +109,7 @@ namespace RotMG_Scripts {
             if (flashplayerProcess == null) {
                 return false;
             }
-            
+
             //Process found, so get the main window handle from that process
             flashplayerHandle = flashplayerProcess.MainWindowHandle;
 
@@ -113,7 +117,7 @@ namespace RotMG_Scripts {
             flashplayerName = flashplayerProcess.MainWindowTitle;
 
             //Update the flashplayer rectangle with the newly found window's info
-            flashplayerRect = GetWindowRect(flashplayerHandle);
+            GetWindowSize();
 
             return true;
 
@@ -123,25 +127,134 @@ namespace RotMG_Scripts {
         /// A way for other classes to tell the window to verify that the coordinates are correct
         /// </summary>
         public void UpdateWindowRect() {
-            flashplayerRect = GetWindowRect(flashplayerHandle);
+            bool mouseIsDown = GetAsyncKeyState(VK_LBUTTON) < 0;
+            if (!mouseIsDown) {
+                GetWindowSize();
+            }
         }
 
         /// <summary>
-        /// Returns a rectangle of the given handle's window
+        /// Gets the window's rect and stores it
         /// </summary>
-        private Rectangle GetWindowRect(IntPtr handle) {
+        private void GetWindowSize() {
             RECT rct;
 
-            GetWindowRect(handle, out rct);
+            GetClientRect(flashplayerHandle, out rct);
 
-            Rectangle rect = new Rectangle();
+            flashplayerRect.Width = rct.Right;
+            flashplayerRect.Height = rct.Bottom;
 
-            rect.X = rct.Left;
-            rect.Y = rct.Top;
-            rect.Width = rct.Right - rct.Left;
-            rect.Height = rct.Bottom - rct.Top;
+            GetWindowRect(flashplayerHandle, ref rct);
 
-            return rect;
+            flashplayerRect.X = rct.Left + 9;
+            flashplayerRect.Y = rct.Top + 1;
+
+            if (flashplayerName != "" && (bool)Data.settings[3]) {
+                bool validResize = true;
+                foreach (Screen s in Screen.AllScreens) {
+                    if (flashplayerRect.Width == s.Bounds.Width && flashplayerRect.Height == s.Bounds.Height) {
+                        validResize = false;
+                    }
+                }
+
+                if (validResize) {
+                    ResizeWindow();
+                }
+            }
+        }
+
+        public void ResizeWindow() {
+            bool validResize = false;
+            WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
+            GetWindowPlacement(flashplayerHandle, ref placement);
+            validResize = placement.showCmd.Equals(1);
+
+            if (validResize) {
+                float idealWidth = flashplayerRect.Height * (4f / 3f);
+
+                if (Math.Abs(idealWidth - flashplayerRect.Width) > 5) {
+                    MoveWindow(flashplayerHandle, flashplayerRect.X, flashplayerRect.Y, (int)idealWidth, flashplayerRect.Height + 50, true);
+                    flashplayerRect.Width = (int)idealWidth;
+                }
+            }
+        }
+
+        public void OpenSettings() {
+            //Send the settings key
+            SendMessage(flashplayerHandle, WM_KEYDOWN, Convert.ToInt32(Data.hotkeys[0]), 0);
+            SendMessage(flashplayerHandle, WM_KEYUP, Convert.ToInt32(Data.hotkeys[0]), 0);
+        }
+
+        public void SettingsTab(Info.headerNames location) {
+            switch (location) {
+                case Info.headerNames.Debuffs:
+                    ClickMouse(Info.headerPoints[0]);
+                    break;
+                case Info.headerNames.Visual:
+                    ClickMouse(Info.headerPoints[1]);
+                    break;
+            }
+        }
+
+        public void CloseSettings() {
+            //Close the settings if they're open
+            ClickMouse(Info.closeOptions);
+        }
+
+        public void ClickMouse(float xPercent, float yPercent) {
+            Point absolute = RelativeToAbsolute(xPercent, yPercent);
+
+            MouseOperations.LeftMouseClick(flashplayerHandle, absolute);
+        }
+
+        public void ClickMouse(Info.PercentPoint pointPercent) {
+            Point absolute = RelativeToAbsolute(pointPercent.X, pointPercent.Y);
+
+            MouseOperations.LeftMouseClick(flashplayerHandle, absolute);
+        }
+
+        public void MoveMouse(float xPercent, float yPercent) {
+            Point absolute = RelativeToAbsolute(xPercent, yPercent);
+
+            MouseOperations.SetCursorPosition(flashplayerHandle, absolute);
+        }
+
+        public void MoveMouse(Info.PercentPoint pointPercent) {
+            Point absolute = RelativeToAbsolute(pointPercent.X, pointPercent.Y);
+
+            MouseOperations.SetCursorPosition(flashplayerHandle, absolute);
+        }
+
+        public void ClickDebuff(int index) {
+            Point absolute = RelativeToAbsolute(Info.debuffPoints[index]);
+
+            MouseOperations.LeftMouseClick(flashplayerHandle, absolute);
+        }
+
+        public void ClickOther(int index) {
+            Point absolute = RelativeToAbsolute(Info.otherPoints[index]);
+
+            MouseOperations.LeftMouseClick(flashplayerHandle, absolute);
+        }
+
+        public Point RelativeToAbsolute(Info.PercentPoint percentPoint) {
+            return RelativeToAbsolute(percentPoint.X, percentPoint.Y);
+        }
+
+        public Point RelativeToAbsolute(float x, float y) {
+            float percentX = x / 100f;
+            float percentY = y / 100f;
+
+            float startingX = flashplayerRect.X;
+            float startingY = flashplayerRect.Y + 50;
+
+            float width = flashplayerRect.Width;
+            float height = flashplayerRect.Height;
+
+            int totalX = (int)(startingX + (width * percentX));
+            int totalY = (int)(startingY + (height * percentY));
+
+            return new Point(totalX, totalY);
         }
 
         /// <summary>
@@ -184,15 +297,32 @@ namespace RotMG_Scripts {
             return flashplayerName;
         }
 
-        /// <summary>
-        /// Gets the rectangle from the given handle
-        /// </summary>
-        /// <param name="hWnd">Handle to get rect of</param>
-        /// <param name="lpRect">Out: RECT to get back out</param>
-        /// <returns></returns>
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+        static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
+
+        private struct WINDOWPLACEMENT {
+            public int length;
+            public int flags;
+            public int showCmd;
+            public Point ptMinPosition;
+            public Point ptMaxPosition;
+            public Rectangle rcNormalPosition;
+        }
+
+        [DllImport("user32.dll")]
+        static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
+
+        [DllImport("user32.dll")]
+        public static extern bool GetWindowRect(IntPtr hwnd, ref RECT rectangle);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT {
+            public int Left;        // x position of upper-left corner
+            public int Top;         // y position of upper-left corner
+            public int Right;       // x position of lower-right corner
+            public int Bottom;      // y position of lower-right corner
+        }
 
         /// <summary>
         /// Gets the current focused window
@@ -211,19 +341,18 @@ namespace RotMG_Scripts {
         [DllImport("user32.dll")]
         static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
-        // When you don't want the ProcessId, use this overload and pass IntPtr.Zero for the second parameter
-        [System.Runtime.InteropServices.DllImport("user32.dll")]
-        static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+        [DllImport("user32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
 
-        /// <summary>
-        /// Rectangle to temproraily use for GetWindowRect
-        /// </summary>
-        [StructLayout(LayoutKind.Sequential)]
-        public struct RECT {
-            public int Left;        // x position of upper-left corner
-            public int Top;         // y position of upper-left corner
-            public int Right;       // x position of lower-right corner
-            public int Bottom;      // y position of lower-right corner
-        }
+        [DllImport("user32.dll")]
+        static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
+
+        [DllImport("user32.dll")]
+        static extern short GetAsyncKeyState(int vKey);
+
+        public const int VK_LBUTTON = 0x01;
     }
 }

@@ -21,7 +21,8 @@ namespace RotMG_Scripts {
         //0 - Process Name
         //1 - Process Search Delay
         //2 - Update Delay
-        public static string[] settings = new string[3];
+        //3 - Auto resize
+        public static object[] settings = new object[4];
 
         //The 8 rushing configs to save/load from file
         public static RushConfig[] rushConfigs = new RushConfig[8];
@@ -36,14 +37,17 @@ namespace RotMG_Scripts {
         //Window of RotMG
         public static RotMGWindow window = null;
 
+        //Stopwatch to not allow hotkeys too cose to eachother
+        public static Stopwatch hotkeyDelay = new Stopwatch();
+
         //Location of the RotMG save
         public static string saveLocation = "";
 
         //List of debuffs in their current state
-        public static int[] debuffSettings = new int[18];
+        public static int[] debuffSettings = new int[Info.debuffsCount];
 
         //List of other settings in their current state
-        public static int[] otherSettings = new int[1];
+        public static int[] otherSettings = new int[Info.othersCount];
 
         //A reference to the main form
         public static MainForm form = null;
@@ -215,19 +219,22 @@ namespace RotMG_Scripts {
 
             //Other settings
             if (File.Exists("Data/settings.dat")) {
-                settings = Load<string[]>("settings.dat");
-                form.ProcessName.Text = settings[0];
-                Info.searchDelay = int.Parse(settings[1]);
-                Info.updateDelay = int.Parse(settings[2]);
+                settings = Load<object[]>("settings.dat");
+                form.ProcessName.Text =(string)settings[0];
+                Info.searchDelay = (int)settings[1];
+                Info.updateDelay = (int)settings[2];
 
                 form.SearchDelayInput.Value = Info.searchDelay;
                 form.UpdateDelayInput.Value = Info.updateDelay;
 
+                form.AutoResizeCheckBox.Checked = (bool)settings[3];
+
                 form.UpdateTimerDelay();
             } else {
                 settings[0] = "flashplayer";
-                settings[1] = Info.searchDelay.ToString();
-                settings[2] = Info.updateDelay.ToString();
+                settings[1] = Info.searchDelay;
+                settings[2] = Info.updateDelay;
+                settings[3] = true;
             }
         }
 

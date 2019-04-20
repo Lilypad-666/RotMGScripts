@@ -48,6 +48,30 @@ namespace RotMG_Scripts {
             //Write the command to the log
             WriteLine(text, logTypes.CMD);
 
+            string[] tokens = text.Split(' ');
+
+            if (tokens.Length == 1) {
+
+
+                if (text.ToUpper().Equals("HOOK") || text.ToUpper().Equals("REHOOK")) {
+                    KeyboardHook.StartHook();
+                }
+
+                if (text.ToUpper().Equals("UNHOOK")) {
+                    KeyboardHook.StopHook();
+                }
+            }
+
+            if (tokens.Length == 5) {
+                if (tokens[0].ToUpper().Equals("WINDOW")) {
+                    //Data.window.SetWindowLocAndSize(int.Parse(tokens[1]), int.Parse(tokens[2]), int.Parse(tokens[3]), int.Parse(tokens[4]));
+                }
+            }
+
+            if (tokens[0].ToUpper().Equals("MOUSE")) {
+                Data.window.MoveMouse(float.Parse(tokens[1]), float.Parse(tokens[2]));
+            }
+
             for (int i = 0; i < Info.debuffNames.Length; i++) {
                 if (text.ToUpper().Contains(Info.debuffNames[i].ToUpper())) {
                     if (text.Substring(0, 8).ToUpper().Equals("GAMEINFO")) {
@@ -130,10 +154,10 @@ namespace RotMG_Scripts {
             //Create the output with formatting
             string output = "[" + time + "] " + "[" + typeText + "] " + text + Environment.NewLine;
 
-            Data.form.RichConsoleText.SelectionColor = LogTypeToColor(type);
-
             //If the form's loaded yet, append the text to the console
             if (Data.form != null) {
+                Data.form.RichConsoleText.SelectionColor = LogTypeToColor(type);
+
                 Data.form.RichConsoleText.AppendText(output);
 
                 SendMessage(Data.form.RichConsoleText.Handle, WM_VSCROLL, (IntPtr)SB_BOTTOM, IntPtr.Zero);
@@ -196,7 +220,7 @@ namespace RotMG_Scripts {
                 case logTypes.ERROR:
                     return Color.Orange;
                 case logTypes.FATAL:
-                    return Color.OrangeRed;
+                    return Color.Red;
                 default:
                     return Color.Lime;
             }

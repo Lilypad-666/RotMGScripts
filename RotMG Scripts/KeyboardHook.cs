@@ -13,14 +13,29 @@ namespace RotMG_Scripts {
         /// Starts the keyboard hook
         /// </summary>
         public static void StartHook() {
+            Console.WriteLine("Hooking.");
+
             Info.hookId = SetHook(Info.proc);
+
+            if (Info.hookId == IntPtr.Zero) {
+                Console.WriteLine("Hook Failed.", Console.logTypes.WARN);
+            } else {
+                Console.WriteLine("Hook Succeeded: " + Info.hookId);
+            }
         }
 
         /// <summary>
         /// Stops the keyboard hook
         /// </summary>
         public static void StopHook() {
-            UnhookWindowsHookEx(Info.hookId);
+            Console.WriteLine("Unhooking.");
+
+            if (UnhookWindowsHookEx(Info.hookId)) {
+                Console.WriteLine("Unhooked.");
+            } else {
+                Console.WriteLine("Unhook Failed.", Console.logTypes.WARN);
+            }
+
             Info.hookId = IntPtr.Zero;
         }
 

@@ -7,13 +7,11 @@ using System.Windows.Forms;
 
 namespace RotMG_Scripts {
     static class Program {
-
         
-
         [STAThread]
         static void Main() {
             //If not debugging
-            if (Path.GetDirectoryName(Application.ExecutablePath).EndsWith(@"\RotMG Scripts\bin\Debug1")) {
+            if (Path.GetDirectoryName(Application.ExecutablePath).EndsWith(@"\RotMG Scripts\bin\Debug")) {
                 Info.debug = true;
             } else {
                 Info.debug = false;
@@ -30,11 +28,7 @@ namespace RotMG_Scripts {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            KeyboardHook.StartHook();
-
             Application.Run(new MainForm());
         }
-
-        
     }
 }
