@@ -1,15 +1,19 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
     static class Program {
+
         
+
         [STAThread]
         static void Main() {
             //If not debugging
-            if (Path.GetDirectoryName(Application.ExecutablePath).EndsWith(@"\RotMG Scripts\bin\Debug")) {
+            if (Path.GetDirectoryName(Application.ExecutablePath).EndsWith(@"\RotMG Scripts\bin\Debug1")) {
                 Info.debug = true;
             } else {
                 Info.debug = false;
@@ -25,7 +29,12 @@ namespace RotMG_Scripts {
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            KeyboardHook.StartHook();
+
             Application.Run(new MainForm());
         }
+
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -18,14 +19,6 @@ namespace RotMG_Scripts {
 
         //Timer that runs to ensure that the game is still running and valid
         private Timer updateTimer;
-
-        /// <summary>
-        /// Creates the console if we're in debug mode
-        /// </summary>
-        /// <returns></returns>
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
 
         public MainForm() {
             InitializeComponent();
@@ -68,7 +61,7 @@ namespace RotMG_Scripts {
             Load += new EventHandler(FormLoaded);
             KeyDown += new KeyEventHandler(KeyPressed);
 
-            Data.loadAllData();
+            Data.LoadAllData();
         }
 
         /// <summary>
@@ -82,14 +75,22 @@ namespace RotMG_Scripts {
             InitTimer();
 
             //Create a rushing tab
-            TabPage firstRushingTab = CreateTab("rushingTabControl", new RushingUserControl(0), 0);
+            TabPage firstRushingTab = CreateTab(RushingTabControl, new RushingUserControl(0), 0);
 
             //If there are more rushing tabs that should be created, create them
             for (int i = 1; i < Data.rushConfigs.Length; i++) {
                 if (Data.rushConfigs[i] != null) {
-                    CreateTab("rushingTabControl", new RushingUserControl(i), i);
+                    CreateTab(RushingTabControl, new RushingUserControl(i), i);
                 }
             }
+
+            List<TabPage> rushingPages = FindControls<TabPage>("Script", RushingTabControl);
+
+            foreach (TabPage tp in rushingPages) {
+                FindControl<Button>("AddScript", tp).Enabled = false;
+            }
+
+            FindControl<Button>("AddScript", rushingPages[rushingPages.Count - 1]).Enabled = true;
 
             //Apply the link to the LinkLabels
             GitHubLink.Links.Add(0, 0, "https://github.com/Lilypad-666/RotMGScripts");
@@ -99,7 +100,7 @@ namespace RotMG_Scripts {
             VersionLabel.Text += Info.version;
 
             //Set the current tab as the first one
-            rushingTabControl.SelectedTab = firstRushingTab;
+            RushingTabControl.SelectedTab = firstRushingTab;
 
             //Add event handlers for when you click hotkey buttons
             HotkeyButton0.Click += new EventHandler(HotkeyButtonClick);
@@ -112,6 +113,33 @@ namespace RotMG_Scripts {
 
             //Call event when a key is pressed in the console input to check for an Enter or Arrow key
             ConsoleInput.KeyDown += new KeyEventHandler(ConsoleInputKeyDown);
+
+            //Update the two delays
+            SearchDelayInput.ValueChanged += new EventHandler(DelayInputValueChanged);
+            UpdateDelayInput.ValueChanged += new EventHandler(DelayInputValueChanged);
+        }
+
+        /// <summary>
+        /// Triggers when the vaule of either delay inputs are changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void DelayInputValueChanged(object sender, EventArgs e) {
+            NumericUpDown input = sender as NumericUpDown;
+
+            if (input.Name.Contains("Search")) {
+                Info.searchDelay = decimal.ToInt32(input.Value);
+
+                Data.settings[1] = Info.searchDelay.ToString();
+            }
+
+            if (input.Name.Contains("Update")) {
+                Info.updateDelay = decimal.ToInt32(input.Value);
+                Data.settings[2] = Info.updateDelay.ToString();
+            }
+
+            Data.Save("settings.dat", Data.settings);
+            UpdateTimerDelay();
         }
 
         /// <summary>
@@ -122,7 +150,7 @@ namespace RotMG_Scripts {
         private void LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             LinkLabel link = sender as LinkLabel;
 
-            System.Diagnostics.Process.Start(link.Links[0].LinkData.ToString());
+            Process.Start(link.Links[0].LinkData.ToString());
         }
 
         /// <summary>
@@ -145,7 +173,11 @@ namespace RotMG_Scripts {
             //Clear the current window and reset everything
             Data.window.Clear();
             RestoreWindowInfoDefault();
-            Data.foundGame = false;
+            Info.foundGame = false;
+            Info.isFocusedWindow = false;
+
+            UpdateTimerDelay();
+
             ToggleTabs();
         }
 
@@ -171,14 +203,18 @@ namespace RotMG_Scripts {
             UpdateRotMGWindow();
 
             //If we need to toggle the tabs, do so
-            if (Data.toggleTabs) {
+            if (Info.toggleTabs) {
                 ToggleTabs();
-                Data.toggleTabs = false;
+                Info.toggleTabs = false;
             }
+
+            Data.LoadRotMGData();
+
+            Info.isFocusedWindow = Data.window.IsFocusedWindow();
         }
 
         /// <summary>
-        /// Handles both updating hotkeys as well as activating hotkeys
+        /// Handles updating hotkeys
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -186,9 +222,9 @@ namespace RotMG_Scripts {
             //If we're updating a hotkey
             if (updatingHotkey >= 0) {
                 KeysConverter kc = new KeysConverter();
+                string key = kc.ConvertToString(e.KeyCode);
                 //If we're changing the Options key
                 if (updatingHotkey == 0) {
-                    string key = kc.ConvertToString(e.KeyCode);
                     //Verify that the key can only be set to A-Z, 0-9, and F1-F24
                     Regex regex = new Regex(@"^[0-9]+$");
                     if (key.Length > 1) {
@@ -200,6 +236,8 @@ namespace RotMG_Scripts {
                             //Reset the button to edit
                             Button btn = FindControl<Button>("HotkeyButton" + updatingHotkey);
                             btn.Text = "Edit...";
+
+                            Console.WriteLine("Invalid Options key selected: " + key + ".", Console.logTypes.WARN);
 
                             //No longer updating hotkeys
                             updatingHotkey = -1;
@@ -239,7 +277,7 @@ namespace RotMG_Scripts {
                 Data.hotkeys[updatingHotkey] = e.KeyCode;
 
                 //Change the text of the hotkey box
-                FindControl<TextBox>("HotkeyBox" + updatingHotkey).Text = kc.ConvertToString(e.KeyCode);
+                FindControl<TextBox>("HotkeyBox" + updatingHotkey).Text = key;
 
                 //Reset the button back to edit
                 FindControl<Button>("HotkeyButton" + updatingHotkey).Text = "Edit...";
@@ -247,6 +285,8 @@ namespace RotMG_Scripts {
                 //Verify that the options labels are back to black
                 OptionsWarningLabel1.ForeColor = Color.Black;
                 OptionsWarningLabel2.ForeColor = Color.Black;
+
+                Console.WriteLine("Successfully set hotkey number " + updatingHotkey + " as " + key + ".");
 
                 //Reset updating hotkey
                 updatingHotkey = -1;
@@ -256,10 +296,28 @@ namespace RotMG_Scripts {
 
                 //Re-enable the form
                 mainTabControl.Enabled = true;
-            } else {
-                //We're checking for hotkeys pressed here
-
             }
+        }
+
+        public static void HotkeyPressed(Keys key) {
+            /*/We're checking for hotkeys pressed here
+            int index = Array.IndexOf(Data.hotkeys, e.KeyCode);
+
+            Console.WriteLine("INDEX: " + index);
+
+            //If it's a valid index
+            if (index >= 0) {
+                //Rush hotkey
+                if (index >= 1 && index <= 8) {
+                    List<RushingUserControl> rushControls = FindControls<RushingUserControl>("");
+
+                    foreach (RushingUserControl c in rushControls) {
+                        Console.WriteLine(c.Name);
+                    }
+                }
+            }*/
+
+            Console.WriteLine(key.ToString());
         }
 
         /// <summary>
@@ -335,13 +393,47 @@ namespace RotMG_Scripts {
         }
 
         /// <summary>
+        /// Updates the timer to the correct delay
+        /// </summary>
+        public void UpdateTimerDelay() {
+            if (updateTimer != null) {
+                //If we are in the game
+                if (Info.foundGame) {
+                    //Verify that the current delay is the update delay
+                    if (Info.currentDelay != Info.updateDelay) {
+                        //If it isn't set the interval to be the update delay
+                        Info.currentDelay = Info.updateDelay;
+                        updateTimer.Stop();
+                        updateTimer.Interval = Info.updateDelay;
+                        updateTimer.Start();
+
+                        //Print out that we changed the delay
+                        Console.WriteLine("Changed current delay to " + Info.currentDelay + "ms.");
+                    }
+                } else {
+                    //Verify that the current delay is the search delay
+                    if (Info.currentDelay != Info.searchDelay) {
+                        //If it isn't, set the interval to be the search delay
+                        Info.currentDelay = Info.searchDelay;
+                        updateTimer.Stop();
+                        updateTimer.Interval = Info.searchDelay;
+                        updateTimer.Start();
+
+                        //Print out that we changed the delay
+                        Console.WriteLine("Changed current delay to " + Info.currentDelay + "ms.");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Starts the timer for the update
         /// </summary>
         private void InitTimer() {
             //Creates a timer on a x ms interval
             updateTimer = new Timer();
             updateTimer.Tick += new EventHandler(UpdateTimerTick);
-            updateTimer.Interval = Data.timerDelay;
+            updateTimer.Interval = Info.searchDelay;
             updateTimer.Start();
         }
 
@@ -355,13 +447,13 @@ namespace RotMG_Scripts {
             }
 
             //Toggle the options hotkey panel
-            OptionsPanel.Enabled = Data.foundGame;
+            OptionsPanel.Enabled = Info.foundGame;
 
             //Run through each tab and set it to Data.foundGame unless it's the Main or Debugging tab,
             //As those are always active
             foreach (TabPage tab in mainTabControl.TabPages) {
                 if (tab != MainTab && tab != DebuggingTab) {
-                    tab.Enabled = Data.foundGame;
+                    tab.Enabled = Info.foundGame;
                 }
             }
         }
@@ -400,16 +492,27 @@ namespace RotMG_Scripts {
 
                     //If the process is found but the window handle isn't, don't enable anything
                     if (Data.window.GetWindowName() == "") {
+                        Info.foundGame = false;
+                        Info.isFocusedWindow = false;
                         return;
                     }
 
                     //If found, set the text and enable the panels and tabs
                     RotMGProcess.Text = Data.window.GetWindowName();
 
-                    Data.foundGame = true;
-                    Data.toggleTabs = true;
+                    Info.foundGame = true;
+                    Info.toggleTabs = true;
+
+                    //Verify that the delay is at the updateDelay speed
+                    UpdateTimerDelay();
                 } else {
                     RestoreWindowInfoDefault();
+
+                    Info.foundGame = false;
+                    Info.isFocusedWindow = false;
+
+                    //Verify that the delay is at the searchDelay speed
+                    UpdateTimerDelay();
                 }
             } else {
                 //The window is still a valid process, so verify that the Data.window's dimensions are correct
@@ -432,7 +535,7 @@ namespace RotMG_Scripts {
         /// <param name="uc">Template to copy over to the new tab</param>
         /// <param name="index">Index of the new tab</param>
         /// <returns></returns>
-        public static TabPage CreateTab(string tabControl, CustomUserControl template, int index) {
+        public static TabPage CreateTab(TabControl tc, CustomUserControl template, int index) {
             //Creates an "adjusted index" based on the index (0-8) and the offset
             int adjustedIndex = index + template.offset;
 
@@ -441,12 +544,9 @@ namespace RotMG_Scripts {
             //Copy all the data from the template to the new tab
             tp.Controls.Add(template);
 
-            //Get the tabControl from the given name
-            TabControl tc = FindControl<TabControl>(tabControl);
-
             //Sets the text and name
             tp.Text = "Script " + (index + 1);
-            tp.Name = "RushingScript" + adjustedIndex;
+            tp.Name = "Script" + adjustedIndex;
 
             //Allows 8 tabs (0-7) of any given type
             if (index >= 7) {
@@ -461,7 +561,37 @@ namespace RotMG_Scripts {
             //Sets the tab as the currently active tab
             tc.SelectedTab = tp;
 
+            Console.WriteLine("Successfully created tab index " + adjustedIndex);
+
             return tp;
+        }
+
+        /// <summary>
+        /// Converts the data from Data.debuffSettings and Data.otherSettings to check boxes on the screen
+        /// </summary>
+        public static void RotMGDataToScreen() {
+            //Run through each checkbox on the page
+            List<CheckBox> boxes = FindControls<CheckBox>("", Data.form.GameInfoPanel);
+
+            foreach (CheckBox box in boxes) {
+                //Snag the number from the end of the String
+                int number = int.Parse(Regex.Match(box.Name, @"\d+").Value);
+
+                //Sort by the type of category it's in and put it onto the page
+                if (number < Data.debuffSettings.Length) {
+                    if (Data.debuffSettings[number] == 1) {
+                        box.Checked = true;
+                    } else {
+                        box.Checked = false;
+                    }
+                } else if (number < Data.debuffSettings.Length + Data.otherSettings.Length) {
+                    if (Data.otherSettings[number - Data.debuffSettings.Length] == 1) {
+                        box.Checked = true;
+                    } else {
+                        box.Checked = false;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -535,5 +665,13 @@ namespace RotMG_Scripts {
 
             return list;
         }
+
+        /// <summary>
+        /// Creates the console if we're in debug mode
+        /// </summary>
+        /// <returns></returns>
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
     }
 }

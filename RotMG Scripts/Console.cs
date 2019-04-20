@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -14,6 +15,7 @@ namespace RotMG_Scripts {
         public enum logTypes {
             INFO,
             CMD,
+            WARN,
             ERROR,
             FATAL
         }
@@ -43,10 +45,62 @@ namespace RotMG_Scripts {
         /// </summary>
         /// <param name="text"></param>
         public static void SendCommand(string text) {
+            //Write the command to the log
             WriteLine(text, logTypes.CMD);
 
-            if (text.ToUpper().Equals("PING")) {
-                WriteLine("PONG", logTypes.INFO);
+            for (int i = 0; i < Info.debuffNames.Length; i++) {
+                if (text.ToUpper().Contains(Info.debuffNames[i].ToUpper())) {
+                    if (text.Substring(0, 8).ToUpper().Equals("GAMEINFO")) {
+                        string info = settingToString(Data.debuffSettings[i]);
+
+                        WriteLine(Info.debuffNames[i] + ": " + info, logTypes.INFO);
+                    }
+
+                    if (text.Substring(0, 8).ToUpper().Equals("RUSHINFO")) {
+                        //1-9
+                        int index = 0;
+
+                        if (int.TryParse(text.Substring(9, 1), out index)) {
+                            string info = settingToString(Data.rushConfigs[index].debuffs[i]);
+
+                            WriteLine(Info.debuffNames[i] + ": " + info, logTypes.INFO);
+                        } else {
+                            Console.WriteLine("Invalid format");
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Simple int to string converter
+        /// </summary>
+        /// <param name="setting"></param>
+        /// <returns></returns>
+        private static string settingToString(int setting) {
+            switch (setting) {
+                case 1:
+                    return "On";
+                case -1:
+                    return "Off";
+                default:
+                    return "Unknown";
+            }
+        }
+
+        /// <summary>
+        /// Simple int to string converter
+        /// </summary>
+        /// <param name="setting"></param>
+        /// <returns></returns>
+        private static string settingToString(bool setting) {
+            switch (setting) {
+                case true:
+                    return "On";
+                case false:
+                    return "Off";
+                default:
+                    return "Unknown";
             }
         }
 
@@ -76,9 +130,13 @@ namespace RotMG_Scripts {
             //Create the output with formatting
             string output = "[" + time + "] " + "[" + typeText + "] " + text + Environment.NewLine;
 
+            Data.form.RichConsoleText.SelectionColor = LogTypeToColor(type);
+
             //If the form's loaded yet, append the text to the console
             if (Data.form != null) {
-                Data.form.ConsoleText.AppendText(output);
+                Data.form.RichConsoleText.AppendText(output);
+
+                SendMessage(Data.form.RichConsoleText.Handle, WM_VSCROLL, (IntPtr)SB_BOTTOM, IntPtr.Zero);
             }
 
             //If we're in debug, write to the actual console
@@ -128,5 +186,26 @@ namespace RotMG_Scripts {
                 }
             }
         }
+
+        private static Color LogTypeToColor(logTypes type) {
+            switch (type) {
+                case logTypes.CMD:
+                    return Color.Aqua;
+                case logTypes.WARN:
+                    return Color.Yellow;
+                case logTypes.ERROR:
+                    return Color.Orange;
+                case logTypes.FATAL:
+                    return Color.OrangeRed;
+                default:
+                    return Color.Lime;
+            }
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern int SendMessage(IntPtr hWnd, int wMsg, IntPtr wParam, IntPtr lParam);
+
+        private const int WM_VSCROLL = 0x115;
+        private const int SB_BOTTOM = 7;
     }
 }

@@ -25,7 +25,7 @@ namespace RotMG_Scripts {
         public RushingUserControl(int index) {
             InitializeComponent();
 
-            offset = 2;
+            offset = Info.controlOffsets[0];
 
             localIndex = index;
             globalIndex = index + offset;
@@ -83,7 +83,7 @@ namespace RotMG_Scripts {
         /// <param name="e"></param>
         private void AddScriptClick(object sender, EventArgs e) {
             //When you click to add a new tab, create it and add it to the correct tabControl
-            MainForm.CreateTab("rushingTabControl", new RushingUserControl(localIndex + 1), localIndex + 1);
+            MainForm.CreateTab(Data.form.RushingTabControl, new RushingUserControl(localIndex + 1), localIndex + 1);
 
             //Disable the add tab button on this page
             Button button = (Button)sender;

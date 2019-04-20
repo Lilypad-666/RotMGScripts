@@ -72,6 +72,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Data.cs" />
+    <Compile Include="KeyboardHook.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
