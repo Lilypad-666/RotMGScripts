@@ -31,6 +31,10 @@
             this.HotkeyBox = new System.Windows.Forms.TextBox();
             this.OptionsLabel = new System.Windows.Forms.Label();
             this.GameInfoOther = new System.Windows.Forms.GroupBox();
+            this.OffsetVoidBow22 = new System.Windows.Forms.CheckBox();
+            this.OffsetCultistStaff21 = new System.Windows.Forms.CheckBox();
+            this.OffsetColo20 = new System.Windows.Forms.CheckBox();
+            this.OffsetEtherite19 = new System.Windows.Forms.CheckBox();
             this.MobInfo18 = new System.Windows.Forms.CheckBox();
             this.GameInfoClient = new System.Windows.Forms.GroupBox();
             this.Darkness17 = new System.Windows.Forms.CheckBox();
@@ -87,6 +91,7 @@
             // CheckedDescription
             // 
             this.CheckedDescription.AutoSize = true;
+            this.CheckedDescription.ForeColor = System.Drawing.Color.White;
             this.CheckedDescription.Location = new System.Drawing.Point(47, 40);
             this.CheckedDescription.Name = "CheckedDescription";
             this.CheckedDescription.Size = new System.Drawing.Size(150, 13);
@@ -116,6 +121,7 @@
             // OptionsLabel
             // 
             this.OptionsLabel.AutoSize = true;
+            this.OptionsLabel.ForeColor = System.Drawing.Color.White;
             this.OptionsLabel.Location = new System.Drawing.Point(9, 12);
             this.OptionsLabel.Name = "OptionsLabel";
             this.OptionsLabel.Size = new System.Drawing.Size(44, 13);
@@ -124,7 +130,12 @@
             // 
             // GameInfoOther
             // 
+            this.GameInfoOther.Controls.Add(this.OffsetVoidBow22);
+            this.GameInfoOther.Controls.Add(this.OffsetCultistStaff21);
+            this.GameInfoOther.Controls.Add(this.OffsetColo20);
+            this.GameInfoOther.Controls.Add(this.OffsetEtherite19);
             this.GameInfoOther.Controls.Add(this.MobInfo18);
+            this.GameInfoOther.ForeColor = System.Drawing.Color.White;
             this.GameInfoOther.Location = new System.Drawing.Point(264, 71);
             this.GameInfoOther.Name = "GameInfoOther";
             this.GameInfoOther.Size = new System.Drawing.Size(150, 222);
@@ -132,11 +143,56 @@
             this.GameInfoOther.TabStop = false;
             this.GameInfoOther.Text = "Other Settings";
             // 
+            // OffsetVoidBow22
+            // 
+            this.OffsetVoidBow22.AutoSize = true;
+            this.OffsetVoidBow22.ForeColor = System.Drawing.Color.White;
+            this.OffsetVoidBow22.Location = new System.Drawing.Point(7, 114);
+            this.OffsetVoidBow22.Name = "OffsetVoidBow22";
+            this.OffsetVoidBow22.Size = new System.Drawing.Size(102, 17);
+            this.OffsetVoidBow22.TabIndex = 4;
+            this.OffsetVoidBow22.Text = "Offset Void Bow";
+            this.OffsetVoidBow22.UseVisualStyleBackColor = true;
+            // 
+            // OffsetCultistStaff21
+            // 
+            this.OffsetCultistStaff21.AutoSize = true;
+            this.OffsetCultistStaff21.ForeColor = System.Drawing.Color.White;
+            this.OffsetCultistStaff21.Location = new System.Drawing.Point(7, 91);
+            this.OffsetCultistStaff21.Name = "OffsetCultistStaff21";
+            this.OffsetCultistStaff21.Size = new System.Drawing.Size(110, 17);
+            this.OffsetCultistStaff21.TabIndex = 3;
+            this.OffsetCultistStaff21.Text = "Offset Cultist Staff";
+            this.OffsetCultistStaff21.UseVisualStyleBackColor = true;
+            // 
+            // OffsetColo20
+            // 
+            this.OffsetColo20.AutoSize = true;
+            this.OffsetColo20.ForeColor = System.Drawing.Color.White;
+            this.OffsetColo20.Location = new System.Drawing.Point(7, 67);
+            this.OffsetColo20.Name = "OffsetColo20";
+            this.OffsetColo20.Size = new System.Drawing.Size(132, 17);
+            this.OffsetColo20.TabIndex = 2;
+            this.OffsetColo20.Text = "Offset Colossus Sword";
+            this.OffsetColo20.UseVisualStyleBackColor = true;
+            // 
+            // OffsetEtherite19
+            // 
+            this.OffsetEtherite19.AutoSize = true;
+            this.OffsetEtherite19.ForeColor = System.Drawing.Color.White;
+            this.OffsetEtherite19.Location = new System.Drawing.Point(7, 43);
+            this.OffsetEtherite19.Name = "OffsetEtherite19";
+            this.OffsetEtherite19.Size = new System.Drawing.Size(93, 17);
+            this.OffsetEtherite19.TabIndex = 1;
+            this.OffsetEtherite19.Text = "Offset Etherite";
+            this.OffsetEtherite19.UseVisualStyleBackColor = true;
+            // 
             // MobInfo18
             // 
             this.MobInfo18.AutoSize = true;
             this.MobInfo18.Checked = true;
             this.MobInfo18.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.MobInfo18.ForeColor = System.Drawing.Color.White;
             this.MobInfo18.Location = new System.Drawing.Point(7, 19);
             this.MobInfo18.Name = "MobInfo18";
             this.MobInfo18.Size = new System.Drawing.Size(98, 17);
@@ -152,6 +208,7 @@
             this.GameInfoClient.Controls.Add(this.Unstable8);
             this.GameInfoClient.Controls.Add(this.Drunk7);
             this.GameInfoClient.Controls.Add(this.Blind6);
+            this.GameInfoClient.ForeColor = System.Drawing.Color.White;
             this.GameInfoClient.Location = new System.Drawing.Point(3, 193);
             this.GameInfoClient.Name = "GameInfoClient";
             this.GameInfoClient.Size = new System.Drawing.Size(254, 100);
@@ -164,6 +221,7 @@
             this.Darkness17.AutoSize = true;
             this.Darkness17.Checked = true;
             this.Darkness17.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Darkness17.ForeColor = System.Drawing.Color.White;
             this.Darkness17.Location = new System.Drawing.Point(181, 42);
             this.Darkness17.Name = "Darkness17";
             this.Darkness17.Size = new System.Drawing.Size(71, 17);
@@ -176,6 +234,7 @@
             this.Confused16.AutoSize = true;
             this.Confused16.Checked = true;
             this.Confused16.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Confused16.ForeColor = System.Drawing.Color.White;
             this.Confused16.Location = new System.Drawing.Point(181, 19);
             this.Confused16.Name = "Confused16";
             this.Confused16.Size = new System.Drawing.Size(71, 17);
@@ -188,6 +247,7 @@
             this.Hallucinating15.AutoSize = true;
             this.Hallucinating15.Checked = true;
             this.Hallucinating15.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Hallucinating15.ForeColor = System.Drawing.Color.White;
             this.Hallucinating15.Location = new System.Drawing.Point(84, 42);
             this.Hallucinating15.Name = "Hallucinating15";
             this.Hallucinating15.Size = new System.Drawing.Size(87, 17);
@@ -198,6 +258,7 @@
             // Unstable8
             // 
             this.Unstable8.AutoSize = true;
+            this.Unstable8.ForeColor = System.Drawing.Color.White;
             this.Unstable8.Location = new System.Drawing.Point(84, 19);
             this.Unstable8.Name = "Unstable8";
             this.Unstable8.Size = new System.Drawing.Size(68, 17);
@@ -210,6 +271,7 @@
             this.Drunk7.AutoSize = true;
             this.Drunk7.Checked = true;
             this.Drunk7.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Drunk7.ForeColor = System.Drawing.Color.White;
             this.Drunk7.Location = new System.Drawing.Point(6, 42);
             this.Drunk7.Name = "Drunk7";
             this.Drunk7.Size = new System.Drawing.Size(55, 17);
@@ -222,6 +284,7 @@
             this.Blind6.AutoSize = true;
             this.Blind6.Checked = true;
             this.Blind6.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Blind6.ForeColor = System.Drawing.Color.White;
             this.Blind6.Location = new System.Drawing.Point(6, 19);
             this.Blind6.Name = "Blind6";
             this.Blind6.Size = new System.Drawing.Size(49, 17);
@@ -243,6 +306,7 @@
             this.GameInfoServer.Controls.Add(this.Dazed2);
             this.GameInfoServer.Controls.Add(this.Slowed1);
             this.GameInfoServer.Controls.Add(this.Quiet0);
+            this.GameInfoServer.ForeColor = System.Drawing.Color.White;
             this.GameInfoServer.Location = new System.Drawing.Point(3, 71);
             this.GameInfoServer.Name = "GameInfoServer";
             this.GameInfoServer.Size = new System.Drawing.Size(255, 116);
@@ -253,6 +317,7 @@
             // Silence14
             // 
             this.Silence14.AutoSize = true;
+            this.Silence14.ForeColor = System.Drawing.Color.White;
             this.Silence14.Location = new System.Drawing.Point(181, 91);
             this.Silence14.Name = "Silence14";
             this.Silence14.Size = new System.Drawing.Size(61, 17);
@@ -263,6 +328,7 @@
             // PetStasis13
             // 
             this.PetStasis13.AutoSize = true;
+            this.PetStasis13.ForeColor = System.Drawing.Color.White;
             this.PetStasis13.Location = new System.Drawing.Point(181, 67);
             this.PetStasis13.Name = "PetStasis13";
             this.PetStasis13.Size = new System.Drawing.Size(73, 17);
@@ -273,6 +339,7 @@
             // Bleeding12
             // 
             this.Bleeding12.AutoSize = true;
+            this.Bleeding12.ForeColor = System.Drawing.Color.White;
             this.Bleeding12.Location = new System.Drawing.Point(181, 43);
             this.Bleeding12.Name = "Bleeding12";
             this.Bleeding12.Size = new System.Drawing.Size(67, 17);
@@ -283,6 +350,7 @@
             // Stunned11
             // 
             this.Stunned11.AutoSize = true;
+            this.Stunned11.ForeColor = System.Drawing.Color.White;
             this.Stunned11.Location = new System.Drawing.Point(181, 19);
             this.Stunned11.Name = "Stunned11";
             this.Stunned11.Size = new System.Drawing.Size(66, 17);
@@ -293,6 +361,7 @@
             // Weak9
             // 
             this.Weak9.AutoSize = true;
+            this.Weak9.ForeColor = System.Drawing.Color.White;
             this.Weak9.Location = new System.Drawing.Point(84, 65);
             this.Weak9.Name = "Weak9";
             this.Weak9.Size = new System.Drawing.Size(55, 17);
@@ -303,6 +372,7 @@
             // Sick10
             // 
             this.Sick10.AutoSize = true;
+            this.Sick10.ForeColor = System.Drawing.Color.White;
             this.Sick10.Location = new System.Drawing.Point(84, 89);
             this.Sick10.Name = "Sick10";
             this.Sick10.Size = new System.Drawing.Size(47, 17);
@@ -315,6 +385,7 @@
             this.Petrified5.AutoSize = true;
             this.Petrified5.Checked = true;
             this.Petrified5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Petrified5.ForeColor = System.Drawing.Color.White;
             this.Petrified5.Location = new System.Drawing.Point(84, 42);
             this.Petrified5.Name = "Petrified5";
             this.Petrified5.Size = new System.Drawing.Size(64, 17);
@@ -327,6 +398,7 @@
             this.ArmorBroken4.AutoSize = true;
             this.ArmorBroken4.Checked = true;
             this.ArmorBroken4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ArmorBroken4.ForeColor = System.Drawing.Color.White;
             this.ArmorBroken4.Location = new System.Drawing.Point(84, 19);
             this.ArmorBroken4.Name = "ArmorBroken4";
             this.ArmorBroken4.Size = new System.Drawing.Size(90, 17);
@@ -339,6 +411,7 @@
             this.Paralyzed3.AutoSize = true;
             this.Paralyzed3.Checked = true;
             this.Paralyzed3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Paralyzed3.ForeColor = System.Drawing.Color.White;
             this.Paralyzed3.Location = new System.Drawing.Point(6, 89);
             this.Paralyzed3.Name = "Paralyzed3";
             this.Paralyzed3.Size = new System.Drawing.Size(72, 17);
@@ -349,6 +422,7 @@
             // Dazed2
             // 
             this.Dazed2.AutoSize = true;
+            this.Dazed2.ForeColor = System.Drawing.Color.White;
             this.Dazed2.Location = new System.Drawing.Point(6, 65);
             this.Dazed2.Name = "Dazed2";
             this.Dazed2.Size = new System.Drawing.Size(57, 17);
@@ -361,6 +435,7 @@
             this.Slowed1.AutoSize = true;
             this.Slowed1.Checked = true;
             this.Slowed1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Slowed1.ForeColor = System.Drawing.Color.White;
             this.Slowed1.Location = new System.Drawing.Point(6, 42);
             this.Slowed1.Name = "Slowed1";
             this.Slowed1.Size = new System.Drawing.Size(61, 17);
@@ -373,6 +448,7 @@
             this.Quiet0.AutoSize = true;
             this.Quiet0.Checked = true;
             this.Quiet0.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Quiet0.ForeColor = System.Drawing.Color.White;
             this.Quiet0.Location = new System.Drawing.Point(6, 19);
             this.Quiet0.Name = "Quiet0";
             this.Quiet0.Size = new System.Drawing.Size(51, 17);
@@ -384,6 +460,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.Controls.Add(this.GameInfoOther);
             this.Controls.Add(this.GameInfoClient);
             this.Controls.Add(this.GameInfoServer);
@@ -438,5 +515,9 @@
         public System.Windows.Forms.CheckBox Dazed2;
         public System.Windows.Forms.CheckBox Slowed1;
         public System.Windows.Forms.CheckBox Quiet0;
+        public System.Windows.Forms.CheckBox OffsetVoidBow22;
+        public System.Windows.Forms.CheckBox OffsetCultistStaff21;
+        public System.Windows.Forms.CheckBox OffsetColo20;
+        public System.Windows.Forms.CheckBox OffsetEtherite19;
     }
 }

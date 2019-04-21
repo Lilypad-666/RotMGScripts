@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace RotMG_Scripts {
     /// <summary>
-    /// The main form
+    /// The main form!
     /// </summary>
     public partial class MainForm : Form {
 
@@ -31,8 +32,8 @@ namespace RotMG_Scripts {
             Directory.CreateDirectory("Logs");
 
             //Doesn't allow resizing or maximizing of the window
-            FormBorderStyle = FormBorderStyle.FixedSingle;
-            MaximizeBox = false;
+            //FormBorderStyle = FormBorderStyle.FixedSingle;
+            //MaximizeBox = false;
 
             //Lets the program see keys even when it's not focused (for hotkeys)
             KeyPreview = true;
@@ -64,7 +65,7 @@ namespace RotMG_Scripts {
         private void FormLoaded(object sender, EventArgs e) {
 
             //Start the timer once the form is loaded
-            InitTimer();
+            InitTimer(); 
 
             MainTabControl.SelectedTab = RushingTab;
 
@@ -115,10 +116,19 @@ namespace RotMG_Scripts {
 
             //Add event handlers for checking the auto resize box
             foreach (CheckBox box in FindControls<CheckBox>("", AspectRatioGroup)) {
-                box.CheckedChanged += new EventHandler(AspectBoxChanged);
+                box.MouseClick += new MouseEventHandler(AspectBoxChanged);
             }
 
+            TitleBarPanel.MouseDown += TitleBar;
+
             KeyboardHook.StartHook();
+        }
+
+        private void TitleBar(object sender, MouseEventArgs e) {
+            if (e.Button == MouseButtons.Left) {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
 
         /// <summary>
@@ -127,12 +137,31 @@ namespace RotMG_Scripts {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void AspectBoxChanged(object sender, EventArgs e) {
-            CheckBox box = sender as CheckBox;
+            CheckBox thisBox = sender as CheckBox;
 
-            if (box.Name.Equals("AutoResizeCheckBox")) {
-                Data.settings[3] = box.Checked;
-                Data.Save("settings.dat", Data.settings);
+            foreach (CheckBox box in FindControls<CheckBox>("", AspectRatioGroup)) {
+                box.Checked = false;
             }
+
+            thisBox.Checked = true;
+
+            switch (thisBox.Name) {
+                case "AspectFourThree":
+                    Data.settings[3] = 0;
+                    break;
+                case "AspectSixteenNine":
+                    Data.settings[3] = 1;
+                    break;
+                case "AspectOneOne":
+                    Data.settings[3] = 2;
+                    break;
+                case "AspectNone":
+                    Data.settings[3] = 3;
+                    break;
+            }
+
+            Data.Save("settings.dat", Data.settings);
+
         }
 
         /// <summary>
@@ -245,10 +274,6 @@ namespace RotMG_Scripts {
                     Regex regex = new Regex(@"^[0-9]+$");
                     if (key.Length > 1) {
                         if (key.Length > 3 || !key.Substring(0, 1).Equals("F") || !regex.IsMatch(key.Substring(1, key.Length - 1))) {
-                            //If it doesn't meet those specifications, set the labels to red
-                            OptionsWarningLabel1.ForeColor = Color.DarkRed;
-                            OptionsWarningLabel2.ForeColor = Color.DarkRed;
-
                             //Reset the button to edit
                             Button btn = FindControl<Button>("HotkeyButton" + updatingHotkey);
                             btn.Text = "Edit...";
@@ -297,10 +322,6 @@ namespace RotMG_Scripts {
 
                 //Reset the button back to edit
                 FindControl<Button>("HotkeyButton" + updatingHotkey).Text = "Edit...";
-
-                //Verify that the options labels are back to black
-                OptionsWarningLabel1.ForeColor = Color.Black;
-                OptionsWarningLabel2.ForeColor = Color.Black;
 
                 Console.WriteLine("Successfully set hotkey number " + updatingHotkey + " as " + key + ".");
 
@@ -435,7 +456,7 @@ namespace RotMG_Scripts {
                 if (index >= 1 && index <= 8) {
                     if (!Data.hotkeyDelay.IsRunning || Data.hotkeyDelay.ElapsedMilliseconds > 1000) {
                         Data.hotkeyDelay.Restart();
-                        RushingUserControl control = Data.form.RushingTabControl.TabPages[index-1].Controls[0] as RushingUserControl;
+                        RushingUserControl control = Data.form.RushingTabControl.TabPages[index - 1].Controls[0] as RushingUserControl;
                         Console.WriteLine("Toggling Settings!");
                         FlipSettings(control.config);
                     }
@@ -445,7 +466,8 @@ namespace RotMG_Scripts {
 
         private static void FlipSettings(RushConfig config, int depth = 0) {
             if (depth >= 3) {
-                Console.WriteLine("Unable to flip settings properly.", Console.logTypes.ERROR);
+                Console.WriteLine("Unable to flip settings properly, check your options key.", Console.logTypes.ERROR);
+                return;
             }
 
             bool settingsOpen = false;
@@ -474,9 +496,16 @@ namespace RotMG_Scripts {
                         Data.window.OpenSettings();
                     }
 
-                    if (currentTab != 1) {
-                        currentTab = 1;
-                        Data.window.SettingsTab(Info.headerNames.Visual);
+                    if (Array.IndexOf(new int[1] { 0 }, i) != -1) {
+                        if (currentTab != 1) {
+                            currentTab = 1;
+                            Data.window.SettingsTab(Info.headerNames.Visual);
+                        }
+                    } else if (Array.IndexOf(new int[4] { 1, 2, 3, 4 }, i) != -1) {
+                        if (currentTab != 2) {
+                            currentTab = 2;
+                            Data.window.SettingsTab(Info.headerNames.World);
+                        }
                     }
 
                     Data.window.ClickOther(i);
@@ -491,7 +520,8 @@ namespace RotMG_Scripts {
 
             if (missedCount > 0) {
                 Console.WriteLine("Missed " + missedCount + " flips, retrying!", Console.logTypes.WARN);
-                FlipSettings(config, depth+1);
+                FlipSettings(config, depth + 1);
+                return;
             }
         }
 
@@ -755,5 +785,13 @@ namespace RotMG_Scripts {
 
             return list;
         }
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
     }
 }

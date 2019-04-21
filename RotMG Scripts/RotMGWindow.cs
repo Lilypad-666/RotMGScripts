@@ -147,9 +147,9 @@ namespace RotMG_Scripts {
             GetWindowRect(flashplayerHandle, ref rct);
 
             flashplayerRect.X = rct.Left + 9;
-            flashplayerRect.Y = rct.Top + 1;
+            flashplayerRect.Y = rct.Top + 2;
 
-            if (flashplayerName != "" && (bool)Data.settings[3]) {
+            if (flashplayerName != "" && (int)Data.settings[3] != 3) {
                 bool validResize = true;
                 foreach (Screen s in Screen.AllScreens) {
                     if (flashplayerRect.Width == s.Bounds.Width && flashplayerRect.Height == s.Bounds.Height) {
@@ -158,24 +158,71 @@ namespace RotMG_Scripts {
                 }
 
                 if (validResize) {
-                    ResizeWindow();
+                    ResizeWindow((int)Data.settings[3]);
                 }
             }
         }
 
-        public void ResizeWindow() {
+        /// <summary>
+        /// Resizes the window to the requested aspect ratio
+        /// </summary>
+        /// <param name="ratio"></param>
+        public void ResizeWindow(int ratio) {
             bool validResize = false;
+            //Get the window's placement to tell if maximized or minimized
             WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
             GetWindowPlacement(flashplayerHandle, ref placement);
+            //If not minizimed or maximized
             validResize = placement.showCmd.Equals(1);
 
             if (validResize) {
-                float idealWidth = flashplayerRect.Height * (4f / 3f);
+                float idealWidth = 0;
 
-                if (Math.Abs(idealWidth - flashplayerRect.Width) > 5) {
+                //4:3
+                if (ratio == 0) {
+                    idealWidth = flashplayerRect.Height * (4f / 3f);
+
+                    if (idealWidth < 300) {
+                        idealWidth = 300;
+                        flashplayerRect.Height = (int)(idealWidth * (3f / 4f));
+
+                        flashplayerRect.Y -= 2;
+                        flashplayerRect.X -= 9;
+                    }
+                }
+
+                //16:9
+                if (ratio == 1) {
+                    idealWidth = flashplayerRect.Height * (16f / 9f);
+
+                    if (idealWidth < 300) {
+                        idealWidth = 300;
+                        flashplayerRect.Height = (int)(idealWidth * (9f / 16f));
+
+                        flashplayerRect.Y -= 2;
+                        flashplayerRect.X -= 9;
+                    }
+                }
+
+                //1:1
+                if (ratio == 2) {
+                    idealWidth = flashplayerRect.Height * (1f / 1f);
+
+                    if (idealWidth < 300) {
+                        idealWidth = 300;
+                        flashplayerRect.Height = 300;
+
+                        flashplayerRect.Y -= 2;
+                        flashplayerRect.X -= 9;
+                    }
+                }
+
+                if (Math.Abs(idealWidth - flashplayerRect.Width) > 10) {
+                    idealWidth += 4;
                     MoveWindow(flashplayerHandle, flashplayerRect.X, flashplayerRect.Y, (int)idealWidth, flashplayerRect.Height + 50, true);
                     flashplayerRect.Width = (int)idealWidth;
                 }
+
             }
         }
 
@@ -186,14 +233,7 @@ namespace RotMG_Scripts {
         }
 
         public void SettingsTab(Info.headerNames location) {
-            switch (location) {
-                case Info.headerNames.Debuffs:
-                    ClickMouse(Info.headerPoints[0]);
-                    break;
-                case Info.headerNames.Visual:
-                    ClickMouse(Info.headerPoints[1]);
-                    break;
-            }
+            ClickMouse(Info.headerPoints[(int)location-1]);
         }
 
         public void CloseSettings() {

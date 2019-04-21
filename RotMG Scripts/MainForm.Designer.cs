@@ -24,40 +24,34 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            this.DebuggingTab = new System.Windows.Forms.TabPage();
-            this.DebuggingTabControl = new System.Windows.Forms.TabControl();
-            this.ConsoleTab = new System.Windows.Forms.TabPage();
-            this.ConsolePanel = new System.Windows.Forms.Panel();
-            this.RichConsoleText = new System.Windows.Forms.RichTextBox();
-            this.ConsoleSend = new System.Windows.Forms.Button();
-            this.ConsoleInput = new System.Windows.Forms.TextBox();
-            this.ProgramInfoTab = new System.Windows.Forms.TabPage();
-            this.GitHubLink = new System.Windows.Forms.LinkLabel();
-            this.VersionLabel = new System.Windows.Forms.Label();
-            this.WarningLabel2 = new System.Windows.Forms.Label();
-            this.WarningLabel1 = new System.Windows.Forms.Label();
-            this.GithubLabel = new System.Windows.Forms.Label();
-            this.AuthorLabel = new System.Windows.Forms.Label();
-            this.RushingTab = new System.Windows.Forms.TabPage();
-            this.RushingTabControl = new System.Windows.Forms.TabControl();
+            this.TitleBarPanel = new System.Windows.Forms.Panel();
+            this.MainTabControl = new RotMG_Scripts.CustomTabControl();
             this.MainTab = new System.Windows.Forms.TabPage();
+            this.AspectRatioGroup = new System.Windows.Forms.GroupBox();
+            this.AspectNone = new System.Windows.Forms.CheckBox();
+            this.AspectOneOne = new System.Windows.Forms.CheckBox();
+            this.AspectSixteenNine = new System.Windows.Forms.CheckBox();
+            this.AspectFourThree = new System.Windows.Forms.CheckBox();
             this.SearchDelayInput = new System.Windows.Forms.NumericUpDown();
+            this.UpdateDelayInput = new System.Windows.Forms.NumericUpDown();
             this.ProcessNameLabel = new System.Windows.Forms.Label();
             this.SeachDelayLabel = new System.Windows.Forms.Label();
+            this.UpdateDelayLabel = new System.Windows.Forms.Label();
             this.ProcessName = new System.Windows.Forms.TextBox();
             this.RotMGProcess = new System.Windows.Forms.TextBox();
-            this.UpdateDelayInput = new System.Windows.Forms.NumericUpDown();
-            this.OptionsWarningLabel2 = new System.Windows.Forms.Label();
-            this.UpdateDelayLabel = new System.Windows.Forms.Label();
-            this.OptionsWarningLabel1 = new System.Windows.Forms.Label();
             this.HotkeyButton0 = new System.Windows.Forms.Button();
             this.HotkeyBox0 = new System.Windows.Forms.TextBox();
-            this.OptionsLabel = new System.Windows.Forms.Label();
             this.RotMGFound = new System.Windows.Forms.Label();
-            this.MainTabControl = new System.Windows.Forms.TabControl();
+            this.OptionsLabel = new System.Windows.Forms.Label();
+            this.RushingTab = new System.Windows.Forms.TabPage();
+            this.RushingTabControl = new System.Windows.Forms.TabControl();
             this.GameInfoTab = new System.Windows.Forms.TabPage();
             this.GameInfoPanel = new System.Windows.Forms.Panel();
             this.GameInfoOther = new System.Windows.Forms.GroupBox();
+            this.OffsetVoidBow22 = new System.Windows.Forms.CheckBox();
+            this.OffsetCultistStaff21 = new System.Windows.Forms.CheckBox();
+            this.OffsetColo20 = new System.Windows.Forms.CheckBox();
+            this.OffsetEtherite19 = new System.Windows.Forms.CheckBox();
             this.MobInfo18 = new System.Windows.Forms.CheckBox();
             this.GameInfoClient = new System.Windows.Forms.GroupBox();
             this.Darkness17 = new System.Windows.Forms.CheckBox();
@@ -88,194 +82,323 @@
             this.WindowYLabel = new System.Windows.Forms.Label();
             this.WindowXLabel = new System.Windows.Forms.Label();
             this.WindowInfoLabel = new System.Windows.Forms.Label();
-            this.AspectRatioGroup = new System.Windows.Forms.GroupBox();
-            this.AspectFourByThree = new System.Windows.Forms.CheckBox();
-            this.AspectSixteenNine = new System.Windows.Forms.CheckBox();
-            this.AspectOneOne = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.DebuggingTab.SuspendLayout();
-            this.DebuggingTabControl.SuspendLayout();
-            this.ConsoleTab.SuspendLayout();
-            this.ConsolePanel.SuspendLayout();
-            this.ProgramInfoTab.SuspendLayout();
-            this.RushingTab.SuspendLayout();
+            this.DebuggingTab = new System.Windows.Forms.TabPage();
+            this.DebuggingTabControl = new System.Windows.Forms.TabControl();
+            this.ConsoleTab = new System.Windows.Forms.TabPage();
+            this.ConsolePanel = new System.Windows.Forms.Panel();
+            this.RichConsoleText = new System.Windows.Forms.RichTextBox();
+            this.ConsoleSend = new System.Windows.Forms.Button();
+            this.ConsoleInput = new System.Windows.Forms.TextBox();
+            this.ProgramInfoTab = new System.Windows.Forms.TabPage();
+            this.GitHubLink = new System.Windows.Forms.LinkLabel();
+            this.VersionLabel = new System.Windows.Forms.Label();
+            this.WarningLabel2 = new System.Windows.Forms.Label();
+            this.WarningLabel1 = new System.Windows.Forms.Label();
+            this.GithubLabel = new System.Windows.Forms.Label();
+            this.AuthorLabel = new System.Windows.Forms.Label();
+            this.MainTabControl.SuspendLayout();
             this.MainTab.SuspendLayout();
+            this.AspectRatioGroup.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchDelayInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateDelayInput)).BeginInit();
-            this.MainTabControl.SuspendLayout();
+            this.RushingTab.SuspendLayout();
             this.GameInfoTab.SuspendLayout();
             this.GameInfoPanel.SuspendLayout();
             this.GameInfoOther.SuspendLayout();
             this.GameInfoClient.SuspendLayout();
             this.GameInfoServer.SuspendLayout();
-            this.AspectRatioGroup.SuspendLayout();
+            this.DebuggingTab.SuspendLayout();
+            this.DebuggingTabControl.SuspendLayout();
+            this.ConsoleTab.SuspendLayout();
+            this.ConsolePanel.SuspendLayout();
+            this.ProgramInfoTab.SuspendLayout();
             this.SuspendLayout();
             // 
-            // DebuggingTab
+            // TitleBarPanel
             // 
-            this.DebuggingTab.Controls.Add(this.DebuggingTabControl);
-            this.DebuggingTab.Location = new System.Drawing.Point(4, 22);
-            this.DebuggingTab.Name = "DebuggingTab";
-            this.DebuggingTab.Size = new System.Drawing.Size(436, 400);
-            this.DebuggingTab.TabIndex = 5;
-            this.DebuggingTab.Text = "Debugging";
-            this.DebuggingTab.UseVisualStyleBackColor = true;
+            this.TitleBarPanel.Location = new System.Drawing.Point(-4, -4);
+            this.TitleBarPanel.Name = "TitleBarPanel";
+            this.TitleBarPanel.Size = new System.Drawing.Size(416, 36);
+            this.TitleBarPanel.TabIndex = 27;
             // 
-            // DebuggingTabControl
+            // MainTabControl
             // 
-            this.DebuggingTabControl.Controls.Add(this.ConsoleTab);
-            this.DebuggingTabControl.Controls.Add(this.ProgramInfoTab);
-            this.DebuggingTabControl.Location = new System.Drawing.Point(4, 4);
-            this.DebuggingTabControl.Name = "DebuggingTabControl";
-            this.DebuggingTabControl.SelectedIndex = 0;
-            this.DebuggingTabControl.Size = new System.Drawing.Size(432, 396);
-            this.DebuggingTabControl.TabIndex = 0;
+            this.MainTabControl.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.MainTabControl.AllowDrop = true;
+            this.MainTabControl.BackTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.MainTabControl.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.MainTabControl.ClosingButtonColor = System.Drawing.Color.WhiteSmoke;
+            this.MainTabControl.ClosingMessage = null;
+            this.MainTabControl.Controls.Add(this.MainTab);
+            this.MainTabControl.Controls.Add(this.RushingTab);
+            this.MainTabControl.Controls.Add(this.GameInfoTab);
+            this.MainTabControl.Controls.Add(this.DebuggingTab);
+            this.MainTabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.MainTabControl.HeaderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.MainTabControl.HorizontalLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.MainTabControl.ItemSize = new System.Drawing.Size(240, 16);
+            this.MainTabControl.Location = new System.Drawing.Point(12, 31);
+            this.MainTabControl.Multiline = true;
+            this.MainTabControl.Name = "MainTabControl";
+            this.MainTabControl.SelectedIndex = 0;
+            this.MainTabControl.SelectedTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.MainTabControl.ShowClosingButton = false;
+            this.MainTabControl.ShowClosingMessage = false;
+            this.MainTabControl.Size = new System.Drawing.Size(444, 429);
+            this.MainTabControl.TabIndex = 1;
+            this.MainTabControl.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             // 
-            // ConsoleTab
+            // MainTab
             // 
-            this.ConsoleTab.Controls.Add(this.ConsolePanel);
-            this.ConsoleTab.Location = new System.Drawing.Point(4, 22);
-            this.ConsoleTab.Name = "ConsoleTab";
-            this.ConsoleTab.Size = new System.Drawing.Size(424, 370);
-            this.ConsoleTab.TabIndex = 2;
-            this.ConsoleTab.Text = "Console";
-            this.ConsoleTab.UseVisualStyleBackColor = true;
+            this.MainTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.MainTab.Controls.Add(this.AspectRatioGroup);
+            this.MainTab.Controls.Add(this.SearchDelayInput);
+            this.MainTab.Controls.Add(this.UpdateDelayInput);
+            this.MainTab.Controls.Add(this.ProcessNameLabel);
+            this.MainTab.Controls.Add(this.SeachDelayLabel);
+            this.MainTab.Controls.Add(this.UpdateDelayLabel);
+            this.MainTab.Controls.Add(this.ProcessName);
+            this.MainTab.Controls.Add(this.RotMGProcess);
+            this.MainTab.Controls.Add(this.HotkeyButton0);
+            this.MainTab.Controls.Add(this.HotkeyBox0);
+            this.MainTab.Controls.Add(this.RotMGFound);
+            this.MainTab.Controls.Add(this.OptionsLabel);
+            this.MainTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.MainTab.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.MainTab.Location = new System.Drawing.Point(4, 20);
+            this.MainTab.Name = "MainTab";
+            this.MainTab.Padding = new System.Windows.Forms.Padding(3);
+            this.MainTab.Size = new System.Drawing.Size(436, 405);
+            this.MainTab.TabIndex = 0;
+            this.MainTab.Text = "Main";
             // 
-            // ConsolePanel
+            // AspectRatioGroup
             // 
-            this.ConsolePanel.BackColor = System.Drawing.Color.Black;
-            this.ConsolePanel.Controls.Add(this.RichConsoleText);
-            this.ConsolePanel.Controls.Add(this.ConsoleSend);
-            this.ConsolePanel.Controls.Add(this.ConsoleInput);
-            this.ConsolePanel.Location = new System.Drawing.Point(3, 3);
-            this.ConsolePanel.Name = "ConsolePanel";
-            this.ConsolePanel.Size = new System.Drawing.Size(418, 364);
-            this.ConsolePanel.TabIndex = 1;
+            this.AspectRatioGroup.Controls.Add(this.AspectNone);
+            this.AspectRatioGroup.Controls.Add(this.AspectOneOne);
+            this.AspectRatioGroup.Controls.Add(this.AspectSixteenNine);
+            this.AspectRatioGroup.Controls.Add(this.AspectFourThree);
+            this.AspectRatioGroup.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AspectRatioGroup.ForeColor = System.Drawing.Color.White;
+            this.AspectRatioGroup.Location = new System.Drawing.Point(266, 332);
+            this.AspectRatioGroup.Name = "AspectRatioGroup";
+            this.AspectRatioGroup.Size = new System.Drawing.Size(164, 67);
+            this.AspectRatioGroup.TabIndex = 26;
+            this.AspectRatioGroup.TabStop = false;
+            this.AspectRatioGroup.Text = "Lock Game To Aspect Ratio";
             // 
-            // RichConsoleText
+            // AspectNone
             // 
-            this.RichConsoleText.BackColor = System.Drawing.Color.Black;
-            this.RichConsoleText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RichConsoleText.Font = new System.Drawing.Font("Arial", 10.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RichConsoleText.ForeColor = System.Drawing.Color.Lime;
-            this.RichConsoleText.Location = new System.Drawing.Point(0, 0);
-            this.RichConsoleText.Name = "RichConsoleText";
-            this.RichConsoleText.ReadOnly = true;
-            this.RichConsoleText.Size = new System.Drawing.Size(421, 334);
-            this.RichConsoleText.TabIndex = 3;
-            this.RichConsoleText.Text = "";
+            this.AspectNone.AutoSize = true;
+            this.AspectNone.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AspectNone.ForeColor = System.Drawing.Color.White;
+            this.AspectNone.Location = new System.Drawing.Point(85, 42);
+            this.AspectNone.Name = "AspectNone";
+            this.AspectNone.Size = new System.Drawing.Size(57, 20);
+            this.AspectNone.TabIndex = 3;
+            this.AspectNone.Text = "None";
+            this.AspectNone.UseVisualStyleBackColor = true;
             // 
-            // ConsoleSend
+            // AspectOneOne
             // 
-            this.ConsoleSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.ConsoleSend.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.ConsoleSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ConsoleSend.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsoleSend.ForeColor = System.Drawing.Color.Aqua;
-            this.ConsoleSend.Location = new System.Drawing.Point(350, 340);
-            this.ConsoleSend.Name = "ConsoleSend";
-            this.ConsoleSend.Size = new System.Drawing.Size(65, 21);
-            this.ConsoleSend.TabIndex = 2;
-            this.ConsoleSend.TabStop = false;
-            this.ConsoleSend.Text = "Send";
-            this.ConsoleSend.UseVisualStyleBackColor = false;
-            this.ConsoleSend.Click += new System.EventHandler(this.ConsoleSendClick);
+            this.AspectOneOne.AutoSize = true;
+            this.AspectOneOne.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AspectOneOne.ForeColor = System.Drawing.Color.White;
+            this.AspectOneOne.Location = new System.Drawing.Point(85, 19);
+            this.AspectOneOne.Name = "AspectOneOne";
+            this.AspectOneOne.Size = new System.Drawing.Size(45, 20);
+            this.AspectOneOne.TabIndex = 2;
+            this.AspectOneOne.Text = "1:1";
+            this.AspectOneOne.UseVisualStyleBackColor = true;
             // 
-            // ConsoleInput
+            // AspectSixteenNine
             // 
-            this.ConsoleInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.ConsoleInput.Font = new System.Drawing.Font("Arial", 10.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ConsoleInput.ForeColor = System.Drawing.Color.Aqua;
-            this.ConsoleInput.Location = new System.Drawing.Point(3, 339);
-            this.ConsoleInput.Name = "ConsoleInput";
-            this.ConsoleInput.Size = new System.Drawing.Size(346, 23);
-            this.ConsoleInput.TabIndex = 1;
+            this.AspectSixteenNine.AutoSize = true;
+            this.AspectSixteenNine.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AspectSixteenNine.ForeColor = System.Drawing.Color.White;
+            this.AspectSixteenNine.Location = new System.Drawing.Point(6, 43);
+            this.AspectSixteenNine.Name = "AspectSixteenNine";
+            this.AspectSixteenNine.Size = new System.Drawing.Size(52, 20);
+            this.AspectSixteenNine.TabIndex = 1;
+            this.AspectSixteenNine.Text = "16:9";
+            this.AspectSixteenNine.UseVisualStyleBackColor = true;
             // 
-            // ProgramInfoTab
+            // AspectFourThree
             // 
-            this.ProgramInfoTab.Controls.Add(this.GitHubLink);
-            this.ProgramInfoTab.Controls.Add(this.VersionLabel);
-            this.ProgramInfoTab.Controls.Add(this.WarningLabel2);
-            this.ProgramInfoTab.Controls.Add(this.WarningLabel1);
-            this.ProgramInfoTab.Controls.Add(this.GithubLabel);
-            this.ProgramInfoTab.Controls.Add(this.AuthorLabel);
-            this.ProgramInfoTab.Location = new System.Drawing.Point(4, 22);
-            this.ProgramInfoTab.Name = "ProgramInfoTab";
-            this.ProgramInfoTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ProgramInfoTab.Size = new System.Drawing.Size(424, 370);
-            this.ProgramInfoTab.TabIndex = 1;
-            this.ProgramInfoTab.Text = "Program Info";
-            this.ProgramInfoTab.UseVisualStyleBackColor = true;
+            this.AspectFourThree.AutoSize = true;
+            this.AspectFourThree.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AspectFourThree.ForeColor = System.Drawing.Color.White;
+            this.AspectFourThree.Location = new System.Drawing.Point(6, 19);
+            this.AspectFourThree.Name = "AspectFourThree";
+            this.AspectFourThree.Size = new System.Drawing.Size(45, 20);
+            this.AspectFourThree.TabIndex = 0;
+            this.AspectFourThree.Text = "4:3";
+            this.AspectFourThree.UseVisualStyleBackColor = true;
             // 
-            // GitHubLink
+            // SearchDelayInput
             // 
-            this.GitHubLink.AutoSize = true;
-            this.GitHubLink.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GitHubLink.Location = new System.Drawing.Point(124, 128);
-            this.GitHubLink.Name = "GitHubLink";
-            this.GitHubLink.Size = new System.Drawing.Size(52, 17);
-            this.GitHubLink.TabIndex = 10;
-            this.GitHubLink.TabStop = true;
-            this.GitHubLink.Tag = "";
-            this.GitHubLink.Text = "GitHub";
+            this.SearchDelayInput.BackColor = System.Drawing.SystemColors.Control;
+            this.SearchDelayInput.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchDelayInput.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.SearchDelayInput.Location = new System.Drawing.Point(87, 129);
+            this.SearchDelayInput.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.SearchDelayInput.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.SearchDelayInput.Name = "SearchDelayInput";
+            this.SearchDelayInput.Size = new System.Drawing.Size(121, 22);
+            this.SearchDelayInput.TabIndex = 22;
+            this.SearchDelayInput.Value = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
             // 
-            // VersionLabel
+            // UpdateDelayInput
             // 
-            this.VersionLabel.AutoSize = true;
-            this.VersionLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.VersionLabel.Location = new System.Drawing.Point(20, 102);
-            this.VersionLabel.Name = "VersionLabel";
-            this.VersionLabel.Size = new System.Drawing.Size(64, 17);
-            this.VersionLabel.TabIndex = 9;
-            this.VersionLabel.Text = "Version: ";
+            this.UpdateDelayInput.BackColor = System.Drawing.SystemColors.Control;
+            this.UpdateDelayInput.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateDelayInput.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.UpdateDelayInput.Location = new System.Drawing.Point(232, 129);
+            this.UpdateDelayInput.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.UpdateDelayInput.Minimum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.UpdateDelayInput.Name = "UpdateDelayInput";
+            this.UpdateDelayInput.Size = new System.Drawing.Size(121, 22);
+            this.UpdateDelayInput.TabIndex = 24;
+            this.UpdateDelayInput.Value = new decimal(new int[] {
+            250,
+            0,
+            0,
+            0});
             // 
-            // WarningLabel2
+            // ProcessNameLabel
             // 
-            this.WarningLabel2.AutoSize = true;
-            this.WarningLabel2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WarningLabel2.Location = new System.Drawing.Point(67, 26);
-            this.WarningLabel2.Name = "WarningLabel2";
-            this.WarningLabel2.Size = new System.Drawing.Size(291, 17);
-            this.WarningLabel2.TabIndex = 8;
-            this.WarningLabel2.Text = "immediately change your RotMG password.";
+            this.ProcessNameLabel.AutoSize = true;
+            this.ProcessNameLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProcessNameLabel.ForeColor = System.Drawing.Color.White;
+            this.ProcessNameLabel.Location = new System.Drawing.Point(243, 46);
+            this.ProcessNameLabel.Name = "ProcessNameLabel";
+            this.ProcessNameLabel.Size = new System.Drawing.Size(98, 16);
+            this.ProcessNameLabel.TabIndex = 5;
+            this.ProcessNameLabel.Text = "Process Name:";
             // 
-            // WarningLabel1
+            // SeachDelayLabel
             // 
-            this.WarningLabel1.AutoSize = true;
-            this.WarningLabel1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WarningLabel1.Location = new System.Drawing.Point(8, 9);
-            this.WarningLabel1.Name = "WarningLabel1";
-            this.WarningLabel1.Size = new System.Drawing.Size(404, 17);
-            this.WarningLabel1.TabIndex = 7;
-            this.WarningLabel1.Text = " If you downloaded this anywhere other than MPGH or Github,";
+            this.SeachDelayLabel.AutoSize = true;
+            this.SeachDelayLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SeachDelayLabel.ForeColor = System.Drawing.Color.White;
+            this.SeachDelayLabel.Location = new System.Drawing.Point(88, 110);
+            this.SeachDelayLabel.Name = "SeachDelayLabel";
+            this.SeachDelayLabel.Size = new System.Drawing.Size(120, 16);
+            this.SeachDelayLabel.TabIndex = 21;
+            this.SeachDelayLabel.Text = "Search Delay (ms):";
             // 
-            // GithubLabel
+            // UpdateDelayLabel
             // 
-            this.GithubLabel.AutoSize = true;
-            this.GithubLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GithubLabel.Location = new System.Drawing.Point(20, 128);
-            this.GithubLabel.Name = "GithubLabel";
-            this.GithubLabel.Size = new System.Drawing.Size(98, 17);
-            this.GithubLabel.TabIndex = 6;
-            this.GithubLabel.Text = "Source Code:";
+            this.UpdateDelayLabel.AutoSize = true;
+            this.UpdateDelayLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateDelayLabel.ForeColor = System.Drawing.Color.White;
+            this.UpdateDelayLabel.Location = new System.Drawing.Point(233, 110);
+            this.UpdateDelayLabel.Name = "UpdateDelayLabel";
+            this.UpdateDelayLabel.Size = new System.Drawing.Size(120, 16);
+            this.UpdateDelayLabel.TabIndex = 23;
+            this.UpdateDelayLabel.Text = "Update Delay (ms):";
             // 
-            // AuthorLabel
+            // ProcessName
             // 
-            this.AuthorLabel.AutoSize = true;
-            this.AuthorLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AuthorLabel.Location = new System.Drawing.Point(20, 76);
-            this.AuthorLabel.Name = "AuthorLabel";
-            this.AuthorLabel.Size = new System.Drawing.Size(88, 17);
-            this.AuthorLabel.TabIndex = 5;
-            this.AuthorLabel.Text = "Author: Lilypad-666";
+            this.ProcessName.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ProcessName.Location = new System.Drawing.Point(232, 65);
+            this.ProcessName.Name = "ProcessName";
+            this.ProcessName.Size = new System.Drawing.Size(121, 22);
+            this.ProcessName.TabIndex = 4;
+            this.ProcessName.Text = "flashplayer";
+            // 
+            // RotMGProcess
+            // 
+            this.RotMGProcess.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RotMGProcess.Location = new System.Drawing.Point(87, 65);
+            this.RotMGProcess.Name = "RotMGProcess";
+            this.RotMGProcess.ReadOnly = true;
+            this.RotMGProcess.Size = new System.Drawing.Size(121, 22);
+            this.RotMGProcess.TabIndex = 1;
+            this.RotMGProcess.Text = "Not Found...";
+            // 
+            // HotkeyButton0
+            // 
+            this.HotkeyButton0.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HotkeyButton0.Location = new System.Drawing.Point(174, 247);
+            this.HotkeyButton0.Name = "HotkeyButton0";
+            this.HotkeyButton0.Size = new System.Drawing.Size(92, 25);
+            this.HotkeyButton0.TabIndex = 18;
+            this.HotkeyButton0.Text = "Edit...";
+            this.HotkeyButton0.UseVisualStyleBackColor = true;
+            // 
+            // HotkeyBox0
+            // 
+            this.HotkeyBox0.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.HotkeyBox0.Location = new System.Drawing.Point(150, 219);
+            this.HotkeyBox0.Name = "HotkeyBox0";
+            this.HotkeyBox0.ReadOnly = true;
+            this.HotkeyBox0.Size = new System.Drawing.Size(137, 22);
+            this.HotkeyBox0.TabIndex = 12;
+            this.HotkeyBox0.Text = "N/A";
+            this.HotkeyBox0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // RotMGFound
+            // 
+            this.RotMGFound.AutoSize = true;
+            this.RotMGFound.BackColor = System.Drawing.Color.Transparent;
+            this.RotMGFound.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RotMGFound.ForeColor = System.Drawing.Color.White;
+            this.RotMGFound.Location = new System.Drawing.Point(101, 46);
+            this.RotMGFound.Name = "RotMGFound";
+            this.RotMGFound.Size = new System.Drawing.Size(93, 16);
+            this.RotMGFound.TabIndex = 0;
+            this.RotMGFound.Text = "RotMG Found:";
+            // 
+            // OptionsLabel
+            // 
+            this.OptionsLabel.AutoSize = true;
+            this.OptionsLabel.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsLabel.ForeColor = System.Drawing.Color.White;
+            this.OptionsLabel.Location = new System.Drawing.Point(179, 200);
+            this.OptionsLabel.Name = "OptionsLabel";
+            this.OptionsLabel.Size = new System.Drawing.Size(84, 16);
+            this.OptionsLabel.TabIndex = 9;
+            this.OptionsLabel.Text = "Options Key:";
             // 
             // RushingTab
             // 
+            this.RushingTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RushingTab.Controls.Add(this.RushingTabControl);
-            this.RushingTab.Location = new System.Drawing.Point(4, 22);
+            this.RushingTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.RushingTab.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.RushingTab.Location = new System.Drawing.Point(4, 20);
             this.RushingTab.Name = "RushingTab";
             this.RushingTab.Padding = new System.Windows.Forms.Padding(3);
-            this.RushingTab.Size = new System.Drawing.Size(436, 400);
+            this.RushingTab.Size = new System.Drawing.Size(436, 405);
             this.RushingTab.TabIndex = 1;
             this.RushingTab.Text = "Rushing";
             this.RushingTab.UseVisualStyleBackColor = true;
@@ -288,206 +411,15 @@
             this.RushingTabControl.Size = new System.Drawing.Size(427, 391);
             this.RushingTabControl.TabIndex = 0;
             // 
-            // MainTab
-            // 
-            this.MainTab.Controls.Add(this.AspectRatioGroup);
-            this.MainTab.Controls.Add(this.SearchDelayInput);
-            this.MainTab.Controls.Add(this.UpdateDelayInput);
-            this.MainTab.Controls.Add(this.ProcessNameLabel);
-            this.MainTab.Controls.Add(this.OptionsWarningLabel2);
-            this.MainTab.Controls.Add(this.SeachDelayLabel);
-            this.MainTab.Controls.Add(this.UpdateDelayLabel);
-            this.MainTab.Controls.Add(this.ProcessName);
-            this.MainTab.Controls.Add(this.OptionsWarningLabel1);
-            this.MainTab.Controls.Add(this.RotMGProcess);
-            this.MainTab.Controls.Add(this.HotkeyButton0);
-            this.MainTab.Controls.Add(this.HotkeyBox0);
-            this.MainTab.Controls.Add(this.RotMGFound);
-            this.MainTab.Controls.Add(this.OptionsLabel);
-            this.MainTab.Location = new System.Drawing.Point(4, 22);
-            this.MainTab.Name = "MainTab";
-            this.MainTab.Padding = new System.Windows.Forms.Padding(3);
-            this.MainTab.Size = new System.Drawing.Size(436, 400);
-            this.MainTab.TabIndex = 0;
-            this.MainTab.Text = "Main";
-            this.MainTab.UseVisualStyleBackColor = true;
-            // 
-            // SearchDelayInput
-            // 
-            this.SearchDelayInput.BackColor = System.Drawing.SystemColors.Control;
-            this.SearchDelayInput.Increment = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.SearchDelayInput.Location = new System.Drawing.Point(149, 76);
-            this.SearchDelayInput.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.SearchDelayInput.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            0});
-            this.SearchDelayInput.Name = "SearchDelayInput";
-            this.SearchDelayInput.Size = new System.Drawing.Size(120, 20);
-            this.SearchDelayInput.TabIndex = 22;
-            this.SearchDelayInput.Value = new decimal(new int[] {
-            2000,
-            0,
-            0,
-            0});
-            // 
-            // ProcessNameLabel
-            // 
-            this.ProcessNameLabel.AutoSize = true;
-            this.ProcessNameLabel.Location = new System.Drawing.Point(218, 10);
-            this.ProcessNameLabel.Name = "ProcessNameLabel";
-            this.ProcessNameLabel.Size = new System.Drawing.Size(79, 13);
-            this.ProcessNameLabel.TabIndex = 5;
-            this.ProcessNameLabel.Text = "Process Name:";
-            // 
-            // SeachDelayLabel
-            // 
-            this.SeachDelayLabel.AutoSize = true;
-            this.SeachDelayLabel.Location = new System.Drawing.Point(6, 78);
-            this.SeachDelayLabel.Name = "SeachDelayLabel";
-            this.SeachDelayLabel.Size = new System.Drawing.Size(137, 13);
-            this.SeachDelayLabel.TabIndex = 21;
-            this.SeachDelayLabel.Text = "Process Search Delay (ms):";
-            // 
-            // ProcessName
-            // 
-            this.ProcessName.Location = new System.Drawing.Point(307, 7);
-            this.ProcessName.Name = "ProcessName";
-            this.ProcessName.Size = new System.Drawing.Size(121, 20);
-            this.ProcessName.TabIndex = 4;
-            this.ProcessName.Text = "flashplayer";
-            // 
-            // RotMGProcess
-            // 
-            this.RotMGProcess.Location = new System.Drawing.Point(89, 7);
-            this.RotMGProcess.Name = "RotMGProcess";
-            this.RotMGProcess.ReadOnly = true;
-            this.RotMGProcess.Size = new System.Drawing.Size(121, 20);
-            this.RotMGProcess.TabIndex = 1;
-            this.RotMGProcess.Text = "Not Found...";
-            // 
-            // UpdateDelayInput
-            // 
-            this.UpdateDelayInput.BackColor = System.Drawing.SystemColors.Control;
-            this.UpdateDelayInput.Increment = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.UpdateDelayInput.Location = new System.Drawing.Point(149, 106);
-            this.UpdateDelayInput.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.UpdateDelayInput.Minimum = new decimal(new int[] {
-            50,
-            0,
-            0,
-            0});
-            this.UpdateDelayInput.Name = "UpdateDelayInput";
-            this.UpdateDelayInput.Size = new System.Drawing.Size(120, 20);
-            this.UpdateDelayInput.TabIndex = 24;
-            this.UpdateDelayInput.Value = new decimal(new int[] {
-            250,
-            0,
-            0,
-            0});
-            // 
-            // OptionsWarningLabel2
-            // 
-            this.OptionsWarningLabel2.AutoSize = true;
-            this.OptionsWarningLabel2.ForeColor = System.Drawing.Color.Black;
-            this.OptionsWarningLabel2.Location = new System.Drawing.Point(347, 52);
-            this.OptionsWarningLabel2.Name = "OptionsWarningLabel2";
-            this.OptionsWarningLabel2.Size = new System.Drawing.Size(78, 13);
-            this.OptionsWarningLabel2.TabIndex = 20;
-            this.OptionsWarningLabel2.Text = "A-Z,0-9,F1-F24";
-            // 
-            // UpdateDelayLabel
-            // 
-            this.UpdateDelayLabel.AutoSize = true;
-            this.UpdateDelayLabel.Location = new System.Drawing.Point(6, 108);
-            this.UpdateDelayLabel.Name = "UpdateDelayLabel";
-            this.UpdateDelayLabel.Size = new System.Drawing.Size(97, 13);
-            this.UpdateDelayLabel.TabIndex = 23;
-            this.UpdateDelayLabel.Text = "Update Delay (ms):";
-            // 
-            // OptionsWarningLabel1
-            // 
-            this.OptionsWarningLabel1.AutoSize = true;
-            this.OptionsWarningLabel1.ForeColor = System.Drawing.Color.Black;
-            this.OptionsWarningLabel1.Location = new System.Drawing.Point(362, 34);
-            this.OptionsWarningLabel1.Name = "OptionsWarningLabel1";
-            this.OptionsWarningLabel1.Size = new System.Drawing.Size(48, 13);
-            this.OptionsWarningLabel1.TabIndex = 19;
-            this.OptionsWarningLabel1.Text = "Must be:";
-            // 
-            // HotkeyButton0
-            // 
-            this.HotkeyButton0.Location = new System.Drawing.Point(238, 42);
-            this.HotkeyButton0.Name = "HotkeyButton0";
-            this.HotkeyButton0.Size = new System.Drawing.Size(92, 21);
-            this.HotkeyButton0.TabIndex = 18;
-            this.HotkeyButton0.Text = "Edit...";
-            this.HotkeyButton0.UseVisualStyleBackColor = true;
-            // 
-            // HotkeyBox0
-            // 
-            this.HotkeyBox0.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HotkeyBox0.Location = new System.Drawing.Point(84, 42);
-            this.HotkeyBox0.Name = "HotkeyBox0";
-            this.HotkeyBox0.ReadOnly = true;
-            this.HotkeyBox0.Size = new System.Drawing.Size(137, 20);
-            this.HotkeyBox0.TabIndex = 12;
-            this.HotkeyBox0.Text = "N/A";
-            this.HotkeyBox0.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // OptionsLabel
-            // 
-            this.OptionsLabel.AutoSize = true;
-            this.OptionsLabel.Location = new System.Drawing.Point(6, 45);
-            this.OptionsLabel.Name = "OptionsLabel";
-            this.OptionsLabel.Size = new System.Drawing.Size(67, 13);
-            this.OptionsLabel.TabIndex = 9;
-            this.OptionsLabel.Text = "Options Key:";
-            // 
-            // RotMGFound
-            // 
-            this.RotMGFound.AutoSize = true;
-            this.RotMGFound.Location = new System.Drawing.Point(6, 10);
-            this.RotMGFound.Name = "RotMGFound";
-            this.RotMGFound.Size = new System.Drawing.Size(77, 13);
-            this.RotMGFound.TabIndex = 0;
-            this.RotMGFound.Text = "RotMG Found:";
-            // 
-            // MainTabControl
-            // 
-            this.MainTabControl.Controls.Add(this.MainTab);
-            this.MainTabControl.Controls.Add(this.RushingTab);
-            this.MainTabControl.Controls.Add(this.GameInfoTab);
-            this.MainTabControl.Controls.Add(this.DebuggingTab);
-            this.MainTabControl.Location = new System.Drawing.Point(12, 12);
-            this.MainTabControl.Name = "MainTabControl";
-            this.MainTabControl.SelectedIndex = 0;
-            this.MainTabControl.Size = new System.Drawing.Size(444, 426);
-            this.MainTabControl.TabIndex = 0;
-            // 
             // GameInfoTab
             // 
+            this.GameInfoTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.GameInfoTab.Controls.Add(this.GameInfoPanel);
-            this.GameInfoTab.Location = new System.Drawing.Point(4, 22);
+            this.GameInfoTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.GameInfoTab.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.GameInfoTab.Location = new System.Drawing.Point(4, 20);
             this.GameInfoTab.Name = "GameInfoTab";
-            this.GameInfoTab.Size = new System.Drawing.Size(436, 400);
+            this.GameInfoTab.Size = new System.Drawing.Size(436, 405);
             this.GameInfoTab.TabIndex = 6;
             this.GameInfoTab.Text = "Game Info";
             this.GameInfoTab.UseVisualStyleBackColor = true;
@@ -513,6 +445,10 @@
             // 
             // GameInfoOther
             // 
+            this.GameInfoOther.Controls.Add(this.OffsetVoidBow22);
+            this.GameInfoOther.Controls.Add(this.OffsetCultistStaff21);
+            this.GameInfoOther.Controls.Add(this.OffsetColo20);
+            this.GameInfoOther.Controls.Add(this.OffsetEtherite19);
             this.GameInfoOther.Controls.Add(this.MobInfo18);
             this.GameInfoOther.Location = new System.Drawing.Point(274, 70);
             this.GameInfoOther.Name = "GameInfoOther";
@@ -520,6 +456,50 @@
             this.GameInfoOther.TabIndex = 17;
             this.GameInfoOther.TabStop = false;
             this.GameInfoOther.Text = "Other Settings";
+            // 
+            // OffsetVoidBow22
+            // 
+            this.OffsetVoidBow22.AutoCheck = false;
+            this.OffsetVoidBow22.AutoSize = true;
+            this.OffsetVoidBow22.Location = new System.Drawing.Point(7, 113);
+            this.OffsetVoidBow22.Name = "OffsetVoidBow22";
+            this.OffsetVoidBow22.Size = new System.Drawing.Size(102, 17);
+            this.OffsetVoidBow22.TabIndex = 8;
+            this.OffsetVoidBow22.Text = "Offset Void Bow";
+            this.OffsetVoidBow22.UseVisualStyleBackColor = true;
+            // 
+            // OffsetCultistStaff21
+            // 
+            this.OffsetCultistStaff21.AutoCheck = false;
+            this.OffsetCultistStaff21.AutoSize = true;
+            this.OffsetCultistStaff21.Location = new System.Drawing.Point(7, 90);
+            this.OffsetCultistStaff21.Name = "OffsetCultistStaff21";
+            this.OffsetCultistStaff21.Size = new System.Drawing.Size(110, 17);
+            this.OffsetCultistStaff21.TabIndex = 7;
+            this.OffsetCultistStaff21.Text = "Offset Cultist Staff";
+            this.OffsetCultistStaff21.UseVisualStyleBackColor = true;
+            // 
+            // OffsetColo20
+            // 
+            this.OffsetColo20.AutoCheck = false;
+            this.OffsetColo20.AutoSize = true;
+            this.OffsetColo20.Location = new System.Drawing.Point(7, 66);
+            this.OffsetColo20.Name = "OffsetColo20";
+            this.OffsetColo20.Size = new System.Drawing.Size(132, 17);
+            this.OffsetColo20.TabIndex = 6;
+            this.OffsetColo20.Text = "Offset Colossus Sword";
+            this.OffsetColo20.UseVisualStyleBackColor = true;
+            // 
+            // OffsetEtherite19
+            // 
+            this.OffsetEtherite19.AutoCheck = false;
+            this.OffsetEtherite19.AutoSize = true;
+            this.OffsetEtherite19.Location = new System.Drawing.Point(7, 42);
+            this.OffsetEtherite19.Name = "OffsetEtherite19";
+            this.OffsetEtherite19.Size = new System.Drawing.Size(93, 17);
+            this.OffsetEtherite19.TabIndex = 5;
+            this.OffsetEtherite19.Text = "Offset Etherite";
+            this.OffsetEtherite19.UseVisualStyleBackColor = true;
             // 
             // MobInfo18
             // 
@@ -851,84 +831,187 @@
             this.WindowInfoLabel.TabIndex = 0;
             this.WindowInfoLabel.Text = "Game Window Info:";
             // 
-            // AspectRatioGroup
+            // DebuggingTab
             // 
-            this.AspectRatioGroup.Controls.Add(this.checkBox1);
-            this.AspectRatioGroup.Controls.Add(this.AspectOneOne);
-            this.AspectRatioGroup.Controls.Add(this.AspectSixteenNine);
-            this.AspectRatioGroup.Controls.Add(this.AspectFourByThree);
-            this.AspectRatioGroup.Location = new System.Drawing.Point(10, 145);
-            this.AspectRatioGroup.Name = "AspectRatioGroup";
-            this.AspectRatioGroup.Size = new System.Drawing.Size(164, 67);
-            this.AspectRatioGroup.TabIndex = 26;
-            this.AspectRatioGroup.TabStop = false;
-            this.AspectRatioGroup.Text = "Lock Game To Aspect Ratio";
+            this.DebuggingTab.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DebuggingTab.Controls.Add(this.DebuggingTabControl);
+            this.DebuggingTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.DebuggingTab.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.DebuggingTab.Location = new System.Drawing.Point(4, 20);
+            this.DebuggingTab.Name = "DebuggingTab";
+            this.DebuggingTab.Size = new System.Drawing.Size(436, 405);
+            this.DebuggingTab.TabIndex = 5;
+            this.DebuggingTab.Text = "Debugging";
+            this.DebuggingTab.UseVisualStyleBackColor = true;
             // 
-            // AspectFourByThree
+            // DebuggingTabControl
             // 
-            this.AspectFourByThree.AutoSize = true;
-            this.AspectFourByThree.Checked = true;
-            this.AspectFourByThree.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.AspectFourByThree.Location = new System.Drawing.Point(6, 19);
-            this.AspectFourByThree.Name = "AspectFourByThree";
-            this.AspectFourByThree.Size = new System.Drawing.Size(41, 17);
-            this.AspectFourByThree.TabIndex = 0;
-            this.AspectFourByThree.Text = "4:3";
-            this.AspectFourByThree.UseVisualStyleBackColor = true;
+            this.DebuggingTabControl.Controls.Add(this.ConsoleTab);
+            this.DebuggingTabControl.Controls.Add(this.ProgramInfoTab);
+            this.DebuggingTabControl.Location = new System.Drawing.Point(4, 4);
+            this.DebuggingTabControl.Name = "DebuggingTabControl";
+            this.DebuggingTabControl.SelectedIndex = 0;
+            this.DebuggingTabControl.Size = new System.Drawing.Size(432, 396);
+            this.DebuggingTabControl.TabIndex = 0;
             // 
-            // AspectSixteenNine
+            // ConsoleTab
             // 
-            this.AspectSixteenNine.AutoSize = true;
-            this.AspectSixteenNine.Location = new System.Drawing.Point(6, 43);
-            this.AspectSixteenNine.Name = "AspectSixteenNine";
-            this.AspectSixteenNine.Size = new System.Drawing.Size(47, 17);
-            this.AspectSixteenNine.TabIndex = 1;
-            this.AspectSixteenNine.Text = "16:9";
-            this.AspectSixteenNine.UseVisualStyleBackColor = true;
+            this.ConsoleTab.Controls.Add(this.ConsolePanel);
+            this.ConsoleTab.Location = new System.Drawing.Point(4, 22);
+            this.ConsoleTab.Name = "ConsoleTab";
+            this.ConsoleTab.Size = new System.Drawing.Size(424, 370);
+            this.ConsoleTab.TabIndex = 2;
+            this.ConsoleTab.Text = "Console";
+            this.ConsoleTab.UseVisualStyleBackColor = true;
             // 
-            // AspectOneOne
+            // ConsolePanel
             // 
-            this.AspectOneOne.AutoSize = true;
-            this.AspectOneOne.Location = new System.Drawing.Point(85, 19);
-            this.AspectOneOne.Name = "AspectOneOne";
-            this.AspectOneOne.Size = new System.Drawing.Size(41, 17);
-            this.AspectOneOne.TabIndex = 2;
-            this.AspectOneOne.Text = "1:1";
-            this.AspectOneOne.UseVisualStyleBackColor = true;
+            this.ConsolePanel.BackColor = System.Drawing.Color.Black;
+            this.ConsolePanel.Controls.Add(this.RichConsoleText);
+            this.ConsolePanel.Controls.Add(this.ConsoleSend);
+            this.ConsolePanel.Controls.Add(this.ConsoleInput);
+            this.ConsolePanel.Location = new System.Drawing.Point(3, 3);
+            this.ConsolePanel.Name = "ConsolePanel";
+            this.ConsolePanel.Size = new System.Drawing.Size(418, 364);
+            this.ConsolePanel.TabIndex = 1;
             // 
-            // checkBox1
+            // RichConsoleText
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(85, 42);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(52, 17);
-            this.checkBox1.TabIndex = 3;
-            this.checkBox1.Text = "None";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.RichConsoleText.BackColor = System.Drawing.Color.Black;
+            this.RichConsoleText.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RichConsoleText.Font = new System.Drawing.Font("Arial", 10.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RichConsoleText.ForeColor = System.Drawing.Color.Lime;
+            this.RichConsoleText.Location = new System.Drawing.Point(0, 0);
+            this.RichConsoleText.Name = "RichConsoleText";
+            this.RichConsoleText.ReadOnly = true;
+            this.RichConsoleText.Size = new System.Drawing.Size(421, 334);
+            this.RichConsoleText.TabIndex = 3;
+            this.RichConsoleText.Text = "";
+            // 
+            // ConsoleSend
+            // 
+            this.ConsoleSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.ConsoleSend.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.ConsoleSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ConsoleSend.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConsoleSend.ForeColor = System.Drawing.Color.Aqua;
+            this.ConsoleSend.Location = new System.Drawing.Point(350, 340);
+            this.ConsoleSend.Name = "ConsoleSend";
+            this.ConsoleSend.Size = new System.Drawing.Size(65, 21);
+            this.ConsoleSend.TabIndex = 2;
+            this.ConsoleSend.TabStop = false;
+            this.ConsoleSend.Text = "Send";
+            this.ConsoleSend.UseVisualStyleBackColor = false;
+            this.ConsoleSend.Click += new System.EventHandler(this.ConsoleSendClick);
+            // 
+            // ConsoleInput
+            // 
+            this.ConsoleInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.ConsoleInput.Font = new System.Drawing.Font("Arial", 10.4F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConsoleInput.ForeColor = System.Drawing.Color.Aqua;
+            this.ConsoleInput.Location = new System.Drawing.Point(3, 339);
+            this.ConsoleInput.Name = "ConsoleInput";
+            this.ConsoleInput.Size = new System.Drawing.Size(346, 23);
+            this.ConsoleInput.TabIndex = 1;
+            // 
+            // ProgramInfoTab
+            // 
+            this.ProgramInfoTab.Controls.Add(this.GitHubLink);
+            this.ProgramInfoTab.Controls.Add(this.VersionLabel);
+            this.ProgramInfoTab.Controls.Add(this.WarningLabel2);
+            this.ProgramInfoTab.Controls.Add(this.WarningLabel1);
+            this.ProgramInfoTab.Controls.Add(this.GithubLabel);
+            this.ProgramInfoTab.Controls.Add(this.AuthorLabel);
+            this.ProgramInfoTab.Location = new System.Drawing.Point(4, 22);
+            this.ProgramInfoTab.Name = "ProgramInfoTab";
+            this.ProgramInfoTab.Padding = new System.Windows.Forms.Padding(3);
+            this.ProgramInfoTab.Size = new System.Drawing.Size(424, 370);
+            this.ProgramInfoTab.TabIndex = 1;
+            this.ProgramInfoTab.Text = "Program Info";
+            this.ProgramInfoTab.UseVisualStyleBackColor = true;
+            // 
+            // GitHubLink
+            // 
+            this.GitHubLink.AutoSize = true;
+            this.GitHubLink.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GitHubLink.Location = new System.Drawing.Point(124, 128);
+            this.GitHubLink.Name = "GitHubLink";
+            this.GitHubLink.Size = new System.Drawing.Size(52, 17);
+            this.GitHubLink.TabIndex = 10;
+            this.GitHubLink.TabStop = true;
+            this.GitHubLink.Tag = "";
+            this.GitHubLink.Text = "GitHub";
+            // 
+            // VersionLabel
+            // 
+            this.VersionLabel.AutoSize = true;
+            this.VersionLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.VersionLabel.Location = new System.Drawing.Point(20, 102);
+            this.VersionLabel.Name = "VersionLabel";
+            this.VersionLabel.Size = new System.Drawing.Size(64, 17);
+            this.VersionLabel.TabIndex = 9;
+            this.VersionLabel.Text = "Version: ";
+            // 
+            // WarningLabel2
+            // 
+            this.WarningLabel2.AutoSize = true;
+            this.WarningLabel2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WarningLabel2.Location = new System.Drawing.Point(67, 26);
+            this.WarningLabel2.Name = "WarningLabel2";
+            this.WarningLabel2.Size = new System.Drawing.Size(291, 17);
+            this.WarningLabel2.TabIndex = 8;
+            this.WarningLabel2.Text = "immediately change your RotMG password.";
+            // 
+            // WarningLabel1
+            // 
+            this.WarningLabel1.AutoSize = true;
+            this.WarningLabel1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WarningLabel1.Location = new System.Drawing.Point(8, 9);
+            this.WarningLabel1.Name = "WarningLabel1";
+            this.WarningLabel1.Size = new System.Drawing.Size(404, 17);
+            this.WarningLabel1.TabIndex = 7;
+            this.WarningLabel1.Text = " If you downloaded this anywhere other than MPGH or Github,";
+            // 
+            // GithubLabel
+            // 
+            this.GithubLabel.AutoSize = true;
+            this.GithubLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GithubLabel.Location = new System.Drawing.Point(20, 128);
+            this.GithubLabel.Name = "GithubLabel";
+            this.GithubLabel.Size = new System.Drawing.Size(98, 17);
+            this.GithubLabel.TabIndex = 6;
+            this.GithubLabel.Text = "Source Code:";
+            // 
+            // AuthorLabel
+            // 
+            this.AuthorLabel.AutoSize = true;
+            this.AuthorLabel.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AuthorLabel.Location = new System.Drawing.Point(20, 76);
+            this.AuthorLabel.Name = "AuthorLabel";
+            this.AuthorLabel.Size = new System.Drawing.Size(88, 17);
+            this.AuthorLabel.TabIndex = 5;
+            this.AuthorLabel.Text = "Author: Lilypad-666";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(468, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(32)))));
+            this.ClientSize = new System.Drawing.Size(468, 471);
+            this.Controls.Add(this.TitleBarPanel);
             this.Controls.Add(this.MainTabControl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "RotMG Scripts ";
-            this.DebuggingTab.ResumeLayout(false);
-            this.DebuggingTabControl.ResumeLayout(false);
-            this.ConsoleTab.ResumeLayout(false);
-            this.ConsolePanel.ResumeLayout(false);
-            this.ConsolePanel.PerformLayout();
-            this.ProgramInfoTab.ResumeLayout(false);
-            this.ProgramInfoTab.PerformLayout();
-            this.RushingTab.ResumeLayout(false);
+            this.MainTabControl.ResumeLayout(false);
             this.MainTab.ResumeLayout(false);
             this.MainTab.PerformLayout();
+            this.AspectRatioGroup.ResumeLayout(false);
+            this.AspectRatioGroup.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SearchDelayInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateDelayInput)).EndInit();
-            this.MainTabControl.ResumeLayout(false);
+            this.RushingTab.ResumeLayout(false);
             this.GameInfoTab.ResumeLayout(false);
             this.GameInfoPanel.ResumeLayout(false);
             this.GameInfoPanel.PerformLayout();
@@ -938,8 +1021,13 @@
             this.GameInfoClient.PerformLayout();
             this.GameInfoServer.ResumeLayout(false);
             this.GameInfoServer.PerformLayout();
-            this.AspectRatioGroup.ResumeLayout(false);
-            this.AspectRatioGroup.PerformLayout();
+            this.DebuggingTab.ResumeLayout(false);
+            this.DebuggingTabControl.ResumeLayout(false);
+            this.ConsoleTab.ResumeLayout(false);
+            this.ConsolePanel.ResumeLayout(false);
+            this.ConsolePanel.PerformLayout();
+            this.ProgramInfoTab.ResumeLayout(false);
+            this.ProgramInfoTab.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -962,13 +1050,10 @@
         public System.Windows.Forms.Label ProcessNameLabel;
         public System.Windows.Forms.TextBox ProcessName;
         public System.Windows.Forms.TextBox RotMGProcess;
-        public System.Windows.Forms.Label OptionsWarningLabel2;
-        public System.Windows.Forms.Label OptionsWarningLabel1;
         public System.Windows.Forms.Button HotkeyButton0;
         public System.Windows.Forms.TextBox HotkeyBox0;
         public System.Windows.Forms.Label OptionsLabel;
         public System.Windows.Forms.Label RotMGFound;
-        public System.Windows.Forms.TabControl MainTabControl;
         public System.Windows.Forms.TabPage GameInfoTab;
         public System.Windows.Forms.Panel GameInfoPanel;
         public System.Windows.Forms.TextBox WindowYBox;
@@ -1010,11 +1095,17 @@
         public System.Windows.Forms.RichTextBox RichConsoleText;
         public System.Windows.Forms.Button ConsoleSend;
         public System.Windows.Forms.TextBox ConsoleInput;
-        private System.Windows.Forms.GroupBox AspectRatioGroup;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.CheckBox AspectOneOne;
-        private System.Windows.Forms.CheckBox AspectSixteenNine;
-        private System.Windows.Forms.CheckBox AspectFourByThree;
+        public System.Windows.Forms.GroupBox AspectRatioGroup;
+        public System.Windows.Forms.CheckBox AspectNone;
+        public System.Windows.Forms.CheckBox AspectOneOne;
+        public System.Windows.Forms.CheckBox AspectSixteenNine;
+        public System.Windows.Forms.CheckBox AspectFourThree;
+        public System.Windows.Forms.CheckBox OffsetVoidBow22;
+        public System.Windows.Forms.CheckBox OffsetCultistStaff21;
+        public System.Windows.Forms.CheckBox OffsetColo20;
+        public System.Windows.Forms.CheckBox OffsetEtherite19;
+        public RotMG_Scripts.CustomTabControl MainTabControl;
+        public System.Windows.Forms.Panel TitleBarPanel;
     }
 }
 

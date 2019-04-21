@@ -227,14 +227,31 @@ namespace RotMG_Scripts {
                 form.SearchDelayInput.Value = Info.searchDelay;
                 form.UpdateDelayInput.Value = Info.updateDelay;
 
-                form.AutoResizeCheckBox.Checked = (bool)settings[3];
+                int checkboxChecked = (int)settings[3];
+
+                switch (checkboxChecked) {
+                    case 0:
+                        form.AspectFourThree.Checked = true;
+                        break;
+                    case 1:
+                        form.AspectSixteenNine.Checked = true;
+                        break;
+                    case 2:
+                        form.AspectOneOne.Checked = true;
+                        break;
+                    case 3:
+                        form.AspectNone.Checked = true;
+                        break;
+                }
 
                 form.UpdateTimerDelay();
             } else {
                 settings[0] = "flashplayer";
                 settings[1] = Info.searchDelay;
                 settings[2] = Info.updateDelay;
-                settings[3] = true;
+                settings[3] = 0;
+
+                form.AspectFourThree.Checked = true;
             }
         }
 
@@ -242,7 +259,12 @@ namespace RotMG_Scripts {
         /// Loads all our images into an array for easy access later
         /// </summary>
         private static void LoadImages() {
-            images[0] = new Bitmap(WebRequest.Create("http://drive.google.com/uc?export=view&id=1-cB9ogUaib_1ZwPSXMHzY8jtTuzicobt").GetResponse().GetResponseStream());
+            images[0] = new Bitmap(@"\C:\Users\Star\source\repos\RotMG Scripts\RotMG Scripts\bin\Debug\Icon.ico");
+            images[1] = new Bitmap(@"C:\Users\Star\source\repos\RotMG Scripts\RotMG Scripts\bin\Debug\Lilypad-666.png");
+
+            //images[1] = new Bitmap(WebRequest.Create("http://drive.google.com/uc?export=view&id=1-cB9ogUaib_1ZwPSXMHzY8jtTuzicobt").GetResponse().GetResponseStream());
+
+            Save<Bitmap[]>("images.dat", images);
         }
 
         /// <summary>

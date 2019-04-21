@@ -26,19 +26,21 @@ namespace RotMG_Scripts {
 
         //Count of options
         public const int debuffsCount = 18;
-        public const int othersCount = 1;
+        public const int othersCount = 5;
 
         public enum headerNames {
             None = 0,
             Debuffs = 1,
-            Visual = 2
+            Visual = 2,
+            World = 3
         }
 
         public static readonly PercentPoint closeOptions = new PercentPoint(50, 92);
 
-        public static readonly PercentPoint[] headerPoints = new PercentPoint[2] {
+        public static readonly PercentPoint[] headerPoints = new PercentPoint[3] {
             new PercentPoint(5.5f, 14),
-            new PercentPoint(69.75f, 14)
+            new PercentPoint(69.75f, 14),
+            new PercentPoint(44, 14)
         };
 
         //List of debuffs to search the save file for
@@ -84,12 +86,20 @@ namespace RotMG_Scripts {
         };
 
         //List of others to search the save file for
-        public static readonly string[] otherNames = new string[1] {
-            "MobInfo"
+        public static readonly string[] otherNames = new string[othersCount] {
+            "MobInfo",
+            "ethDisable",
+            "Colossus",
+            "cultiststaffDisable",
+            "VoidBow"
         };
 
         public static readonly PercentPoint[] otherPoints = new PercentPoint[othersCount] {
-            new PercentPoint(57, 45)
+            new PercentPoint(57, 45),
+            new PercentPoint(7, 23),
+            new PercentPoint(7, 30.5f),
+            new PercentPoint(57, 23),
+            new PercentPoint(57, 30.5f)
         };
 
         //List of control offsets
@@ -110,8 +120,5 @@ namespace RotMG_Scripts {
                 Y = y;
             }
         }
-
-        public static Timer timer;
-        public static int count = 0;
     }
 }

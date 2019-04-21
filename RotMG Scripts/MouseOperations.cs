@@ -19,6 +19,7 @@ namespace RotMG_Scripts {
             public MOUSEINPUT Mouse;
         }
 
+#pragma warning disable CS0649
         internal struct MOUSEINPUT {
             public Int32 X;
             public Int32 Y;
