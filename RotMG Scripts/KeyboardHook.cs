@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
+
     /// <summary>
     /// Hooks into the keyboard to be able to register keypresses as hotkeys
     /// </summary>
@@ -19,7 +20,8 @@ namespace RotMG_Scripts {
 
             if (Info.hookId == IntPtr.Zero) {
                 Console.WriteLine("Hook Failed.", Console.logTypes.WARN);
-            } else {
+            }
+            else {
                 Console.WriteLine("Hook Succeeded: " + Info.hookId);
             }
         }
@@ -32,7 +34,8 @@ namespace RotMG_Scripts {
 
             if (UnhookWindowsHookEx(Info.hookId)) {
                 Console.WriteLine("Unhooked.");
-            } else {
+            }
+            else {
                 Console.WriteLine("Unhook Failed.", Console.logTypes.WARN);
             }
 

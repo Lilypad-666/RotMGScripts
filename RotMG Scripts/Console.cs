@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -6,6 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
+
     /// <summary>
     /// Console class to take care of debugging and logging
     /// </summary>
@@ -51,8 +53,6 @@ namespace RotMG_Scripts {
             string[] tokens = text.Split(' ');
 
             if (tokens.Length == 1) {
-
-
                 if (text.ToUpper().Equals("HOOK") || text.ToUpper().Equals("REHOOK")) {
                     KeyboardHook.StartHook();
                 }
@@ -88,7 +88,8 @@ namespace RotMG_Scripts {
                             string info = settingToString(Data.rushConfigs[index].debuffs[i]);
 
                             WriteLine(Info.debuffNames[i] + ": " + info, logTypes.INFO);
-                        } else {
+                        }
+                        else {
                             Console.WriteLine("Invalid format");
                         }
                     }
@@ -105,8 +106,10 @@ namespace RotMG_Scripts {
             switch (setting) {
                 case 1:
                     return "On";
+
                 case -1:
                     return "Off";
+
                 default:
                     return "Unknown";
             }
@@ -121,8 +124,10 @@ namespace RotMG_Scripts {
             switch (setting) {
                 case true:
                     return "On";
+
                 case false:
                     return "Off";
+
                 default:
                     return "Unknown";
             }
@@ -143,7 +148,11 @@ namespace RotMG_Scripts {
         /// <param name="text"></param>
         /// <param name="type"></param>
         public static void WriteLine(string text, logTypes type = logTypes.INFO) {
-            //Get the date and time 
+            if (LicenseManager.UsageMode == LicenseUsageMode.Designtime) {
+                return;
+            }
+
+            //Get the date and time
             DateTime now = DateTime.Now;
             string date = now.ToString("yyyy-MM-dd");
             string time = now.ToString("HH:mm:ss");
@@ -174,7 +183,8 @@ namespace RotMG_Scripts {
                 StreamWriter sw = File.CreateText("Logs/" + date + ".log");
                 sw.Write(output);
                 sw.Close();
-            } else {
+            }
+            else {
                 //Otherwise append the output to the end
                 File.AppendAllText("Logs/" + date + ".log", output);
             }
@@ -215,12 +225,16 @@ namespace RotMG_Scripts {
             switch (type) {
                 case logTypes.CMD:
                     return Color.Aqua;
+
                 case logTypes.WARN:
                     return Color.Yellow;
+
                 case logTypes.ERROR:
                     return Color.Orange;
+
                 case logTypes.FATAL:
                     return Color.Red;
+
                 default:
                     return Color.Lime;
             }

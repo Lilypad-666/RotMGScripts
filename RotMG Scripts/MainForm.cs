@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
+
     /// <summary>
     /// The main form!
     /// </summary>
@@ -32,8 +31,11 @@ namespace RotMG_Scripts {
             Directory.CreateDirectory("Logs");
 
             //Doesn't allow resizing or maximizing of the window
-            //FormBorderStyle = FormBorderStyle.FixedSingle;
-            //MaximizeBox = false;
+            if (!Info.debug) {
+                FormBorderStyle = FormBorderStyle.None;
+            }
+
+            MaximizeBox = false;
 
             //Lets the program see keys even when it's not focused (for hotkeys)
             KeyPreview = true;
@@ -49,6 +51,7 @@ namespace RotMG_Scripts {
 
             //Adds the version number to the title
             Text += Info.version;
+            TitleLabel.Text += Info.version;
 
             //Adds events for others
             Load += new EventHandler(FormLoaded);
@@ -63,9 +66,8 @@ namespace RotMG_Scripts {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void FormLoaded(object sender, EventArgs e) {
-
             //Start the timer once the form is loaded
-            InitTimer(); 
+            InitTimer();
 
             MainTabControl.SelectedTab = RushingTab;
 
@@ -92,17 +94,17 @@ namespace RotMG_Scripts {
             GitHubLink.Links.Add(0, 0, "https://github.com/Lilypad-666/RotMGScripts");
             GitHubLink.LinkClicked += new LinkLabelLinkClickedEventHandler(LinkClicked);
 
-            //Adds events for tabs to be able to disable them
-            MainTabControl.Selecting += TabControlSelecting;
-
             //Update the version label to include the current version number
             VersionLabel.Text += Info.version;
 
             //Add event handlers for when you click hotkey buttons
             HotkeyButton0.Click += new EventHandler(HotkeyButtonClick);
 
-            //Set the paint handler for adding images to the background(s)
+            //Set the paint handler for adding images to the background
             ProgramInfoTab.Paint += new PaintEventHandler(InfoTabPaint);
+
+            //Set the paint handler for adding images to the title bar
+            TitleBarPanel.Paint += new PaintEventHandler(TitleBarPaint);
 
             //Call event when the text is changed in the process name field
             ProcessName.TextChanged += new EventHandler(ProcessTextChanged);
@@ -119,7 +121,10 @@ namespace RotMG_Scripts {
                 box.MouseClick += new MouseEventHandler(AspectBoxChanged);
             }
 
-            TitleBarPanel.MouseDown += TitleBar;
+            TitleBarPanel.MouseDown += new MouseEventHandler(TitleBar);
+
+            ExitButton.InitializeButton();
+            MinimizeButton.InitializeButton();
 
             KeyboardHook.StartHook();
         }
@@ -149,19 +154,21 @@ namespace RotMG_Scripts {
                 case "AspectFourThree":
                     Data.settings[3] = 0;
                     break;
+
                 case "AspectSixteenNine":
                     Data.settings[3] = 1;
                     break;
+
                 case "AspectOneOne":
                     Data.settings[3] = 2;
                     break;
+
                 case "AspectNone":
                     Data.settings[3] = 3;
                     break;
             }
 
             Data.Save("settings.dat", Data.settings);
-
         }
 
         /// <summary>
@@ -235,7 +242,29 @@ namespace RotMG_Scripts {
             //Draws the images on the program info tab
             Graphics g = e.Graphics;
             g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
-            e.Graphics.DrawImage(Data.images[0], 250, 170, 150, 150);
+
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            Stream myStream = myAssembly.GetManifestResourceStream("RotMG_Scripts.Resources.Lilypad-666.jpg");
+            Bitmap bmp = new Bitmap(myStream);
+
+            e.Graphics.DrawImage(bmp, 250, 170, 150, 150);
+        }
+
+        /// <summary>
+        /// Triggers when the Title Bar tab needs to get repained. Allows me to draw images.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TitleBarPaint(object sender, PaintEventArgs e) {
+            //Draws the images on the program info tab
+            Graphics g = e.Graphics;
+            g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
+
+            Assembly myAssembly = Assembly.GetExecutingAssembly();
+            Stream myStream = myAssembly.GetManifestResourceStream("RotMG_Scripts.Resources.Cloak.png");
+            Bitmap bmp = new Bitmap(myStream);
+
+            e.Graphics.DrawImage(bmp, 5f, 2.5f, 25, 25);
         }
 
         /// <summary>
@@ -337,18 +366,6 @@ namespace RotMG_Scripts {
         }
 
         /// <summary>
-        /// Doesn't let you switch to disabled tabs
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TabControlSelecting(object sender, TabControlCancelEventArgs e) {
-            //This is called when the tabpage is disabled, doesn't let the user use the tab
-            if (!e.TabPage.Enabled) {
-                e.Cancel = true;
-            }
-        }
-
-        /// <summary>
         /// Triggers when the change hotkey button is pressed
         /// </summary>
         /// <param name="sender"></param>
@@ -426,7 +443,8 @@ namespace RotMG_Scripts {
                         //Print out that we changed the delay
                         Console.WriteLine("Changed current delay to " + Info.currentDelay + "ms.");
                     }
-                } else {
+                }
+                else {
                     //Verify that the current delay is the search delay
                     if (Info.currentDelay != Info.searchDelay) {
                         //If it isn't, set the interval to be the search delay
@@ -501,7 +519,8 @@ namespace RotMG_Scripts {
                             currentTab = 1;
                             Data.window.SettingsTab(Info.headerNames.Visual);
                         }
-                    } else if (Array.IndexOf(new int[4] { 1, 2, 3, 4 }, i) != -1) {
+                    }
+                    else if (Array.IndexOf(new int[4] { 1, 2, 3, 4 }, i) != -1) {
                         if (currentTab != 2) {
                             currentTab = 2;
                             Data.window.SettingsTab(Info.headerNames.World);
@@ -562,7 +581,7 @@ namespace RotMG_Scripts {
         private void ToggleTabs() {
             //If the active tab isn't the Debugging tab or the Main tab, set the active tab to the Main tab
             if (MainTabControl.SelectedTab != MainTab && MainTabControl.SelectedTab != DebuggingTab) {
-                MainTabControl.SelectedTab = MainTab;
+                MainTabControl.ForceTab(MainTab);
             }
 
             //Run through each tab and set it to Data.foundGame unless it's the Main or Debugging tab,
@@ -572,6 +591,8 @@ namespace RotMG_Scripts {
                     tab.Enabled = Info.foundGame;
                 }
             }
+
+            MainTabControl.Refresh();
         }
 
         /// <summary>
@@ -602,10 +623,8 @@ namespace RotMG_Scripts {
         private void UpdateRotMGWindow() {
             //If the window is no longer a valid process
             if (!Data.window.ValidflashplayerProcess()) {
-
                 //Try to find the new flashplayer window
                 if (Data.window.FindflashplayerProcess()) {
-
                     //If the process is found but the window handle isn't, don't enable anything
                     if (Data.window.GetWindowName() == "") {
                         Info.foundGame = false;
@@ -623,16 +642,19 @@ namespace RotMG_Scripts {
 
                     //Verify that the delay is at the updateDelay speed
                     UpdateTimerDelay();
-                } else {
+                }
+                else {
                     RestoreWindowInfoDefault();
 
                     Info.foundGame = false;
+                    Info.toggleTabs = true;
                     Info.isFocusedWindow = false;
 
                     //Verify that the delay is at the searchDelay speed
                     UpdateTimerDelay();
                 }
-            } else {
+            }
+            else {
                 //The window is still a valid process, so verify that the Data.window's dimensions are correct
                 //We don't care about x and y because the clicks are all relative
                 Data.window.UpdateWindowRect();
@@ -643,7 +665,6 @@ namespace RotMG_Scripts {
                 WindowWidthBox.Text = Data.window.GetWidth().ToString();
                 WindowHeightBox.Text = Data.window.GetHeight().ToString();
             }
-
         }
 
         /// <summary>
@@ -701,13 +722,16 @@ namespace RotMG_Scripts {
                 if (number < Data.debuffSettings.Length) {
                     if (Data.debuffSettings[number] == 1) {
                         box.Checked = true;
-                    } else {
+                    }
+                    else {
                         box.Checked = false;
                     }
-                } else if (number < Data.debuffSettings.Length + Data.otherSettings.Length) {
+                }
+                else if (number < Data.debuffSettings.Length + Data.otherSettings.Length) {
                     if (Data.otherSettings[number - Data.debuffSettings.Length] == 1) {
                         box.Checked = true;
-                    } else {
+                    }
+                    else {
                         box.Checked = false;
                     }
                 }
@@ -741,7 +765,8 @@ namespace RotMG_Scripts {
                     if (t != null) {
                         return t;
                     }
-                } else {
+                }
+                else {
                     //If the name matches, return it
                     if (c is T && c.Name.Equals(name)) {
                         return (c as T);
@@ -775,7 +800,8 @@ namespace RotMG_Scripts {
                 if (childrenOfChildren) {
                     //Recursively call the function on each child
                     list.AddRange(FindControls<T>(name, c));
-                } else {
+                }
+                else {
                     //If the name matches, return it
                     if (c is T && c.Name.Contains(name)) {
                         list.Add(c as T);
@@ -791,6 +817,7 @@ namespace RotMG_Scripts {
 
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
     }

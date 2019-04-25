@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace RotMG_Scripts {
+
     /// <summary>
     /// Template tab for a rushing layout
     /// </summary>
     public partial class RushingUserControl : CustomUserControl {
 
         //Global index, including all controls
-        int globalIndex;
+        private int globalIndex;
 
         //Local index of just this control
-        int localIndex;
+        private int localIndex;
 
         //Config for this control
         public RushConfig config;
@@ -24,6 +25,13 @@ namespace RotMG_Scripts {
         /// <param name="index"></param>
         public RushingUserControl(int index) {
             InitializeComponent();
+
+            this.GameInfoOther.ResumeLayout();
+            this.OffsetGroupBox.ResumeLayout();
+            this.GameInfoClient.ResumeLayout();
+            this.GameInfoServer.ResumeLayout();
+            this.SettingsPanel.ResumeLayout();
+            this.ResumeLayout();
 
             offset = Info.controlOffsets[0];
 
@@ -107,13 +115,13 @@ namespace RotMG_Scripts {
         /// Loads the config from the rushConfigs if it exists
         /// </summary>
         private void LoadConfig() {
-
             //If the config exists
             if (Data.rushConfigs[globalIndex - offset] != null) {
                 //Set the config and refresh the screen
                 config = Data.rushConfigs[globalIndex - offset];
                 ConfigToScreen();
-            } else {
+            }
+            else {
                 //Create a new config
                 config = new RushConfig();
                 Data.rushConfigs[globalIndex - offset] = config;
@@ -129,7 +137,6 @@ namespace RotMG_Scripts {
             //Run through each checkbox on the page
             List<CheckBox> boxes = MainForm.FindControls<CheckBox>("", this);
             foreach (CheckBox box in boxes) {
-
                 //Snag the number from the end of the String
                 int number = int.Parse(Regex.Match(box.Name, @"\d+").Value);
 
@@ -137,13 +144,16 @@ namespace RotMG_Scripts {
                 if (number < config.debuffs.Length) {
                     if (config.debuffs[number] == 1) {
                         box.Checked = true;
-                    } else {
+                    }
+                    else {
                         box.Checked = false;
                     }
-                } else if (number < config.debuffs.Length + config.others.Length) {
+                }
+                else if (number < config.debuffs.Length + config.others.Length) {
                     if (config.others[number - config.debuffs.Length] == 1) {
                         box.Checked = true;
-                    } else {
+                    }
+                    else {
                         box.Checked = false;
                     }
                 }
@@ -164,17 +174,20 @@ namespace RotMG_Scripts {
                     //Sort by the type of category it's in and store it into the config
                     if (number < config.debuffs.Length) {
                         config.debuffs[number] = c.Checked ? 1 : -1;
-                    } else if (number < config.debuffs.Length + config.others.Length) {
+                    }
+                    else if (number < config.debuffs.Length + config.others.Length) {
                         config.others[number - config.debuffs.Length] = c.Checked ? 1 : -1;
                     }
                 }
-            } else {
+            }
+            else {
                 int number = int.Parse(Regex.Match(box.Name, @"\d+").Value);
 
                 //Sort by the type of category it's in and store it into the config
                 if (number < config.debuffs.Length) {
                     config.debuffs[number] = box.Checked ? 1 : -1;
-                } else if (number < config.debuffs.Length + config.others.Length) {
+                }
+                else if (number < config.debuffs.Length + config.others.Length) {
                     config.others[number - config.debuffs.Length] = box.Checked ? 1 : -1;
                 }
             }
@@ -184,6 +197,126 @@ namespace RotMG_Scripts {
 
             //Re-write RushConfigs to the file
             Data.Save("rushconfigs.dat", Data.rushConfigs);
+        }
+
+        private void Weak9_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Sick10_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Stunned11_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Bleeding12_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void PetStasis13_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Silence14_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Petrified5_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void ArmorBroken4_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Paralyzed3_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Dazed2_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Slowed1_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Quiet0_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void GameInfoClient_Enter(object sender, EventArgs e) {
+
+        }
+
+        private void Blind6_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Drunk7_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Unstable8_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Darkness17_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Confused16_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void Hallucinating15_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void OffsetEtherite19_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void OffsetColo20_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void OffsetVoidBow22_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void OffsetCultistStaff21_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void MobInfo18_CheckedChanged(object sender, EventArgs e) {
+
+        }
+
+        private void GameInfoOther_Enter(object sender, EventArgs e) {
+
+        }
+
+        private void OffsetGroupBox_Enter(object sender, EventArgs e) {
+
+        }
+
+        private void CheckedDescription_Click(object sender, EventArgs e) {
+
+        }
+
+        private void OptionsLabel_Click(object sender, EventArgs e) {
+
+        }
+
+        private void HotkeyButton_Click(object sender, EventArgs e) {
+
+        }
+
+        private void AddScript_Click(object sender, EventArgs e) {
+
         }
     }
 }

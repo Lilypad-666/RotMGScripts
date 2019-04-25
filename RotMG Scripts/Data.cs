@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Net;
 using System.Text;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
+
     /// <summary>
     /// Data that's often changed by the code, easy way to access everything
     /// </summary>
@@ -28,10 +28,11 @@ namespace RotMG_Scripts {
         public static RushConfig[] rushConfigs = new RushConfig[8];
 
         //Images that are used throughout the project
-        public static Bitmap[] images = new Bitmap[1];
+        public static Bitmap[] images = new Bitmap[2];
 
         //Keep track of the previous command
         public static List<string> previousCommands = new List<string>();
+
         public static int currentCommand = -1;
 
         //Window of RotMG
@@ -65,7 +66,8 @@ namespace RotMG_Scripts {
                 if (count <= 3) {
                     //Write to the console with an error to give the user a chance to exit
                     Console.WriteLine("Can't find your RotMG save data, attempt " + count + ".", Console.logTypes.ERROR);
-                } else {
+                }
+                else {
                     //Tried 3 times, no data there
                     Console.WriteLine("There is no locatable RotMG save data. Aborting.", Console.logTypes.FATAL);
                 }
@@ -76,10 +78,6 @@ namespace RotMG_Scripts {
 
             //Load data from \Data\ folder
             LoadData();
-
-            //Load our images from URLs
-            LoadImages();
-
         }
 
         /// <summary>
@@ -140,10 +138,12 @@ namespace RotMG_Scripts {
                     if (hex == 3) {
                         //Enabled
                         debuffSettings[i] = 1;
-                    } else if (hex == 2) {
+                    }
+                    else if (hex == 2) {
                         //Disabled
                         debuffSettings[i] = -1;
-                    } else {
+                    }
+                    else {
                         //Should never happen
                         debuffSettings[i] = 0;
                         Console.WriteLine(name + " is " + hex + "! Please report this!", Console.logTypes.ERROR);
@@ -164,16 +164,19 @@ namespace RotMG_Scripts {
                     if (hex == 3) {
                         //Enabled
                         otherSettings[i] = 1;
-                    } else if (hex == 2) {
+                    }
+                    else if (hex == 2) {
                         //Disabled
                         otherSettings[i] = -1;
-                    } else {
+                    }
+                    else {
                         //Should never happen
                         otherSettings[i] = 0;
                         Console.WriteLine(name + " IS " + hex + "! Please report this!", Console.logTypes.ERROR);
                     }
                 }
-            } else {
+            }
+            else {
                 //Save location isn't valid so reload everything
                 LoadAllData();
                 return;
@@ -206,7 +209,8 @@ namespace RotMG_Scripts {
                         }
                     }
                 }
-            } else {
+            }
+            else {
                 //If the file doesn't exist, set default options key to "O"
                 hotkeys[0] = Keys.O;
                 form.HotkeyBox0.Text = "O";
@@ -220,7 +224,7 @@ namespace RotMG_Scripts {
             //Other settings
             if (File.Exists("Data/settings.dat")) {
                 settings = Load<object[]>("settings.dat");
-                form.ProcessName.Text =(string)settings[0];
+                form.ProcessName.Text = (string)settings[0];
                 Info.searchDelay = (int)settings[1];
                 Info.updateDelay = (int)settings[2];
 
@@ -233,19 +237,23 @@ namespace RotMG_Scripts {
                     case 0:
                         form.AspectFourThree.Checked = true;
                         break;
+
                     case 1:
                         form.AspectSixteenNine.Checked = true;
                         break;
+
                     case 2:
                         form.AspectOneOne.Checked = true;
                         break;
+
                     case 3:
                         form.AspectNone.Checked = true;
                         break;
                 }
 
                 form.UpdateTimerDelay();
-            } else {
+            }
+            else {
                 settings[0] = "flashplayer";
                 settings[1] = Info.searchDelay;
                 settings[2] = Info.updateDelay;
@@ -253,18 +261,6 @@ namespace RotMG_Scripts {
 
                 form.AspectFourThree.Checked = true;
             }
-        }
-
-        /// <summary>
-        /// Loads all our images into an array for easy access later
-        /// </summary>
-        private static void LoadImages() {
-            images[0] = new Bitmap(@"\C:\Users\Star\source\repos\RotMG Scripts\RotMG Scripts\bin\Debug\Icon.ico");
-            images[1] = new Bitmap(@"C:\Users\Star\source\repos\RotMG Scripts\RotMG Scripts\bin\Debug\Lilypad-666.png");
-
-            //images[1] = new Bitmap(WebRequest.Create("http://drive.google.com/uc?export=view&id=1-cB9ogUaib_1ZwPSXMHzY8jtTuzicobt").GetResponse().GetResponseStream());
-
-            Save<Bitmap[]>("images.dat", images);
         }
 
         /// <summary>

@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Diagnostics;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
-    static class Program {
-        
+
+    internal static class Program {
+
         [STAThread]
-        static void Main() {
-            //If not debugging
-            if (Path.GetDirectoryName(Application.ExecutablePath).EndsWith(@"\RotMG Scripts\bin\Debug")) {
+        private static void Main(string[] args) {
+            //If in VS
+            if (args.Length > 0 && args[0].Equals("1")) {
                 Info.debug = true;
-            } else {
+            }
+            else {
                 Info.debug = false;
                 //UI Excepitons
                 Application.ThreadException += new ThreadExceptionEventHandler(Console.ThreadException);
@@ -21,7 +21,7 @@ namespace RotMG_Scripts {
                 //Force exceptions to go through our handler
                 Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
 
-                //Non-UI Exceptions 
+                //Non-UI Exceptions
                 AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(Console.UnhandledException);
             }
 

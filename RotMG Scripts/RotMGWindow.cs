@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
+
     /// <summary>
     /// The window that RotMG is running on
     /// </summary>
@@ -25,9 +26,9 @@ namespace RotMG_Scripts {
         //Name of the flashplayer
         private string flashplayerName = "";
 
-        const int WM_KEYDOWN = 0x100;
-        const int WM_KEYUP = 0x101;
-        const int WM_CHAR = 0x105;
+        private const int WM_KEYDOWN = 0x100;
+        private const int WM_KEYUP = 0x101;
+        private const int WM_CHAR = 0x105;
 
         /// <summary>
         /// Resets everything back to default
@@ -120,7 +121,6 @@ namespace RotMG_Scripts {
             GetWindowSize();
 
             return true;
-
         }
 
         /// <summary>
@@ -222,7 +222,6 @@ namespace RotMG_Scripts {
                     MoveWindow(flashplayerHandle, flashplayerRect.X, flashplayerRect.Y, (int)idealWidth, flashplayerRect.Height + 50, true);
                     flashplayerRect.Width = (int)idealWidth;
                 }
-
             }
         }
 
@@ -233,7 +232,7 @@ namespace RotMG_Scripts {
         }
 
         public void SettingsTab(Info.headerNames location) {
-            ClickMouse(Info.headerPoints[(int)location-1]);
+            ClickMouse(Info.headerPoints[(int)location - 1]);
         }
 
         public void CloseSettings() {
@@ -339,7 +338,7 @@ namespace RotMG_Scripts {
 
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
+        private static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
 
         private struct WINDOWPLACEMENT {
             public int length;
@@ -351,7 +350,7 @@ namespace RotMG_Scripts {
         }
 
         [DllImport("user32.dll")]
-        static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
+        private static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
 
         [DllImport("user32.dll")]
         public static extern bool GetWindowRect(IntPtr hwnd, ref RECT rectangle);
@@ -369,7 +368,7 @@ namespace RotMG_Scripts {
         /// </summary>
         /// <returns></returns>
         [DllImport("user32.dll")]
-        static extern IntPtr GetForegroundWindow();
+        private static extern IntPtr GetForegroundWindow();
 
         /// <summary>
         /// Gets the window title from a IntPtr
@@ -379,19 +378,19 @@ namespace RotMG_Scripts {
         /// <param name="count"></param>
         /// <returns></returns>
         [DllImport("user32.dll")]
-        static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
+        private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
         [DllImport("user32.dll")]
         private static extern bool SetForegroundWindow(IntPtr hWnd);
 
         [DllImport("user32.dll")]
-        static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+        private static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
 
         [DllImport("user32.dll", SetLastError = true)]
         internal static extern bool MoveWindow(IntPtr hWnd, int X, int Y, int nWidth, int nHeight, bool bRepaint);
 
         [DllImport("user32.dll")]
-        static extern short GetAsyncKeyState(int vKey);
+        private static extern short GetAsyncKeyState(int vKey);
 
         public const int VK_LBUTTON = 0x01;
     }

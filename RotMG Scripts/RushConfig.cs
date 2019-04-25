@@ -1,11 +1,13 @@
 ﻿using System;
 
 namespace RotMG_Scripts {
+
     /// <summary>
     /// A single config for rushing, stores the debuffs and other settings
     /// </summary>
     [Serializable]
     public class RushConfig {
+
         /// <summary>
         /// List of all the debuffs and whether they are on or not for the given config
         /// </summary>

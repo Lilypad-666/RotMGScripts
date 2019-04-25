@@ -1,16 +1,19 @@
 ﻿using System;
-using System.Threading;
+using System.ComponentModel;
 
 namespace RotMG_Scripts {
+
     /// <summary>
     /// Info to keep track of
     /// </summary>
     public class Info {
+
         //Whether we're in debug mode or not
         public static bool debug;
 
         //Bool to keep track of finding game
         public static bool foundGame = false;
+
         public static bool toggleTabs = false;
 
         //Bool to keep track of active window
@@ -21,11 +24,13 @@ namespace RotMG_Scripts {
 
         //Delays for the timer
         public static int searchDelay = 1000;
+
         public static int updateDelay = 200;
         public static int currentDelay = 1000;
 
         //Count of options
         public const int debuffsCount = 18;
+
         public const int othersCount = 5;
 
         public enum headerNames {
@@ -107,6 +112,7 @@ namespace RotMG_Scripts {
 
         //Keyboard hooks
         public const int WH_KEYBOARD_LL = 13;
+
         public const int WM_KEYDOWN = 0x0100;
         public static KeyboardHook.LowLevelKeyboardProc proc = KeyboardHook.HookCallback;
         public static IntPtr hookId = IntPtr.Zero;

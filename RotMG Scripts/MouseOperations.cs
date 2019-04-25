@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
@@ -15,11 +14,13 @@ namespace RotMG_Scripts {
 
         [StructLayout(LayoutKind.Explicit)]
         internal struct MOUSEKEYBDHARDWAREINPUT {
+
             [FieldOffset(0)]
             public MOUSEINPUT Mouse;
         }
 
 #pragma warning disable CS0649
+
         internal struct MOUSEINPUT {
             public Int32 X;
             public Int32 Y;
@@ -53,7 +54,7 @@ namespace RotMG_Scripts {
             var inputs = new INPUT[] { inputMouseDown, inputMouseUp };
             SendInput((uint)inputs.Length, inputs, Marshal.SizeOf(typeof(INPUT)));
 
-            /// return mouse 
+            /// return mouse
             Cursor.Position = oldPos;
         }
 
