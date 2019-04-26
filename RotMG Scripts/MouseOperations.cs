@@ -5,8 +5,14 @@ using System.Windows.Forms;
 
 namespace RotMG_Scripts {
 
+    /// <summary>
+    /// Handles moving the mouse and clicking for changing settings
+    /// </summary>
     public class MouseOperations {
 
+        /// <summary>
+        /// The input type
+        /// </summary>
         internal struct INPUT {
             public UInt32 Type;
             public MOUSEKEYBDHARDWAREINPUT Data;
@@ -21,6 +27,9 @@ namespace RotMG_Scripts {
 
 #pragma warning disable CS0649
 
+        /// <summary>
+        /// Info of the mouse input
+        /// </summary>
         internal struct MOUSEINPUT {
             public Int32 X;
             public Int32 Y;
@@ -30,17 +39,27 @@ namespace RotMG_Scripts {
             public IntPtr ExtraInfo;
         }
 
+        /// <summary>
+        /// Moves the mouse to the given position on the given window
+        /// </summary>
+        /// <param name="wndHandle">Window to move the mouse on</param>
+        /// <param name="clientPoint">Point to move the mouse to</param>
         public static void SetCursorPosition(IntPtr wndHandle, Point clientPoint) {
             var oldPos = Cursor.Position;
 
-            /// set cursor on coords, and press mouse
+            //Set cursor on coords
             Cursor.Position = new Point(clientPoint.X, clientPoint.Y);
         }
 
+        /// <summary>
+        /// Moves the mouse to the given position and left clicks
+        /// </summary>
+        /// <param name="wndHandle">Window to move the mouse on</param>
+        /// <param name="clientPoint">Point to click</param>
         public static void LeftMouseClick(IntPtr wndHandle, Point clientPoint) {
             var oldPos = Cursor.Position;
 
-            /// set cursor on coords, and press mouse
+            //Set cursor on coords, and press mouse
             Cursor.Position = new Point(clientPoint.X, clientPoint.Y);
 
             var inputMouseDown = new INPUT();

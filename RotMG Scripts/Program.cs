@@ -8,7 +8,7 @@ namespace RotMG_Scripts {
 
         [STAThread]
         private static void Main(string[] args) {
-            //If in VS
+            //If debugging
             if (args.Length > 0 && args[0].Equals("1")) {
                 Info.debug = true;
             }

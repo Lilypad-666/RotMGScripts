@@ -14,16 +14,24 @@ namespace RotMG_Scripts {
     /// </summary>
     public class RotMGWindow {
 
-        //Process of the flashplayer
+        /// <summary>
+        /// Process of the flashplayer
+        /// </summary>
         private Process flashplayerProcess = null;
 
-        //Handle of the window of the flashplayer
+        /// <summary>
+        /// Handle of the window of the flashplayer
+        /// </summary>
         private IntPtr flashplayerHandle;
 
-        //Rectangle of the window of the flashplayer
+        /// <summary>
+        /// Rectangle of the window of the flashplayer
+        /// </summary>
         private Rectangle flashplayerRect;
 
-        //Name of the flashplayer
+        /// <summary>
+        /// Name of the flashplayer
+        /// </summary>
         private string flashplayerName = "";
 
         private const int WM_KEYDOWN = 0x100;
@@ -139,11 +147,13 @@ namespace RotMG_Scripts {
         private void GetWindowSize() {
             RECT rct;
 
+            //Gets the width and height of the window
             GetClientRect(flashplayerHandle, out rct);
 
             flashplayerRect.Width = rct.Right;
             flashplayerRect.Height = rct.Bottom;
 
+            //Gets the x and y of the window on the screen
             GetWindowRect(flashplayerHandle, ref rct);
 
             flashplayerRect.X = rct.Left + 9;
@@ -225,71 +235,122 @@ namespace RotMG_Scripts {
             }
         }
 
+        /// <summary>
+        /// Opens the game settings
+        /// </summary>
         public void OpenSettings() {
             //Send the settings key
             SendMessage(flashplayerHandle, WM_KEYDOWN, Convert.ToInt32(Data.hotkeys[0]), 0);
             SendMessage(flashplayerHandle, WM_KEYUP, Convert.ToInt32(Data.hotkeys[0]), 0);
         }
 
+        /// <summary>
+        /// Changes to the given tab
+        /// </summary>
+        /// <param name="location"></param>
         public void SettingsTab(Info.headerNames location) {
             ClickMouse(Info.headerPoints[(int)location - 1]);
         }
 
+        /// <summary>
+        /// Clicks the close settings button
+        /// </summary>
         public void CloseSettings() {
             //Close the settings if they're open
             ClickMouse(Info.closeOptions);
         }
 
+        /// <summary>
+        /// Clicks the mouse at the given x and y percent
+        /// </summary>
+        /// <param name="xPercent">x percent to click at, 0-100</param>
+        /// <param name="yPercent">y percent to click at, 0-100</param>
         public void ClickMouse(float xPercent, float yPercent) {
             Point absolute = RelativeToAbsolute(xPercent, yPercent);
 
             MouseOperations.LeftMouseClick(flashplayerHandle, absolute);
         }
 
+        /// <summary>
+        /// Clicks the mouse at the given percent point
+        /// </summary>
+        /// <param name="pointPercent">percent point to click at</param>
         public void ClickMouse(Info.PercentPoint pointPercent) {
             Point absolute = RelativeToAbsolute(pointPercent.X, pointPercent.Y);
 
             MouseOperations.LeftMouseClick(flashplayerHandle, absolute);
         }
 
+        /// <summary>
+        /// Moves the mouse to the given x and y percent
+        /// </summary>
+        /// <param name="xPercent">x percent to move mouse to, 0-100</param>
+        /// <param name="yPercent">y percent to move mouse to, 0-100</param>
         public void MoveMouse(float xPercent, float yPercent) {
             Point absolute = RelativeToAbsolute(xPercent, yPercent);
 
             MouseOperations.SetCursorPosition(flashplayerHandle, absolute);
         }
 
+        /// <summary>
+        /// Moves the mouse to the given percent point
+        /// </summary>
+        /// <param name="pointPercent">percent point to move mouse to</param>
         public void MoveMouse(Info.PercentPoint pointPercent) {
             Point absolute = RelativeToAbsolute(pointPercent.X, pointPercent.Y);
 
             MouseOperations.SetCursorPosition(flashplayerHandle, absolute);
         }
 
+        /// <summary>
+        /// Clicks the given debuff
+        /// </summary>
+        /// <param name="index">index of the debuff to click</param>
         public void ClickDebuff(int index) {
             Point absolute = RelativeToAbsolute(Info.debuffPoints[index]);
 
             MouseOperations.LeftMouseClick(flashplayerHandle, absolute);
         }
 
+        /// <summary>
+        /// Clicks the given "other" setting
+        /// </summary>
+        /// <param name="index">index of the other setting to click</param>
         public void ClickOther(int index) {
             Point absolute = RelativeToAbsolute(Info.otherPoints[index]);
 
             MouseOperations.LeftMouseClick(flashplayerHandle, absolute);
         }
 
+        /// <summary>
+        /// Converts a percent point to an absolute point
+        /// </summary>
+        /// <param name="percentPoint">percent point to convert to absolute</param>
+        /// <returns></returns>
         public Point RelativeToAbsolute(Info.PercentPoint percentPoint) {
             return RelativeToAbsolute(percentPoint.X, percentPoint.Y);
         }
 
+        /// <summary>
+        /// Converts a relative point to an absolute point
+        /// </summary>
+        /// <param name="x">x point to convert to absolute</param>
+        /// <param name="y">y point to convert to absolute</param>
+        /// <returns></returns>
         public Point RelativeToAbsolute(float x, float y) {
+            //Convert the x and y to percents
             float percentX = x / 100f;
             float percentY = y / 100f;
 
+            //Get the starting x and y
             float startingX = flashplayerRect.X;
             float startingY = flashplayerRect.Y + 50;
 
+            //Get the starting width and height
             float width = flashplayerRect.Width;
             float height = flashplayerRect.Height;
 
+            //Convert the percents to real x and y values
             int totalX = (int)(startingX + (width * percentX));
             int totalY = (int)(startingY + (height * percentY));
 
@@ -336,18 +397,11 @@ namespace RotMG_Scripts {
             return flashplayerName;
         }
 
+        public const int VK_LBUTTON = 0x01;
+
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
-
-        private struct WINDOWPLACEMENT {
-            public int length;
-            public int flags;
-            public int showCmd;
-            public Point ptMinPosition;
-            public Point ptMaxPosition;
-            public Rectangle rcNormalPosition;
-        }
 
         [DllImport("user32.dll")]
         private static extern bool GetClientRect(IntPtr hWnd, out RECT lpRect);
@@ -355,28 +409,9 @@ namespace RotMG_Scripts {
         [DllImport("user32.dll")]
         public static extern bool GetWindowRect(IntPtr hwnd, ref RECT rectangle);
 
-        [StructLayout(LayoutKind.Sequential)]
-        public struct RECT {
-            public int Left;        // x position of upper-left corner
-            public int Top;         // y position of upper-left corner
-            public int Right;       // x position of lower-right corner
-            public int Bottom;      // y position of lower-right corner
-        }
-
-        /// <summary>
-        /// Gets the current focused window
-        /// </summary>
-        /// <returns></returns>
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
-        /// <summary>
-        /// Gets the window title from a IntPtr
-        /// </summary>
-        /// <param name="hWnd"></param>
-        /// <param name="text"></param>
-        /// <param name="count"></param>
-        /// <returns></returns>
         [DllImport("user32.dll")]
         private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
@@ -392,6 +427,21 @@ namespace RotMG_Scripts {
         [DllImport("user32.dll")]
         private static extern short GetAsyncKeyState(int vKey);
 
-        public const int VK_LBUTTON = 0x01;
+        private struct WINDOWPLACEMENT {
+            public int length;
+            public int flags;
+            public int showCmd;
+            public Point ptMinPosition;
+            public Point ptMaxPosition;
+            public Rectangle rcNormalPosition;
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT {
+            public int Left;        // x position of upper-left corner
+            public int Top;         // y position of upper-left corner
+            public int Right;       // x position of lower-right corner
+            public int Bottom;      // y position of lower-right corner
+        }
     }
 }

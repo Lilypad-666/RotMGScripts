@@ -520,8 +520,9 @@ namespace RotMG_Scripts {
         /// <param name="config">Config to compare against</param>
         /// <returns>How many settings were missed</returns>
         public static int VerifyFlipped(RushConfig config) {
+            //Loads the data from file
             Data.LoadRotMGData();
-
+            
             int missedCount = 0;
 
             for (int i = 0; i < Data.debuffSettings.Length; i++) {
