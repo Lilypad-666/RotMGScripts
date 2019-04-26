@@ -88,9 +88,6 @@
     <Compile Include="CustomControls\CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="CustomControls\CustomTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CustomControls\CustomUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

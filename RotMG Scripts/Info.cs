@@ -3,35 +3,63 @@
 namespace RotMG_Scripts {
 
     /// <summary>
-    /// Info to keep track of
+    /// Static info to keep track of
     /// </summary>
     public class Info {
 
-        //Whether we're in debug mode or not
+        /// <summary>
+        /// Whether we're in debug mode or not
+        /// </summary>
         public static bool debug;
 
-        //Bool to keep track of finding game
+        /// <summary>
+        /// Bool to keep track of finding game
+        /// </summary>
         public static bool foundGame = false;
 
+        /// <summary>
+        /// Whether we're toggling tabs
+        /// </summary>
         public static bool toggleTabs = false;
 
-        //Bool to keep track of active window
+        /// <summary>
+        /// Bool to keep track of active window
+        /// </summary>
         public static bool isFocusedWindow = false;
 
-        //Version of the program
+        /// <summary>
+        /// Version of the program
+        /// </summary>
         public static string version;
 
-        //Delays for the timer
-        public static int searchDelay = 1000;
+        /// <summary>
+        /// Delay for the search timer
+        /// </summary>
+        public static int searchDelay = 2000;
 
-        public static int updateDelay = 200;
-        public static int currentDelay = 1000;
+        /// <summary>
+        /// Delay for the update timer
+        /// </summary>
+        public static int updateDelay = 250;
 
-        //Count of options
+        /// <summary>
+        /// The current delay for the timer
+        /// </summary>
+        public static int currentDelay = 2000;
+
+        /// <summary>
+        /// Count of debuff options
+        /// </summary>
         public const int debuffsCount = 18;
 
+        /// <summary>
+        /// Count of other options
+        /// </summary>
         public const int othersCount = 5;
 
+        /// <summary>
+        /// Names of the different in-game option categories
+        /// </summary>
         public enum headerNames {
             None = 0,
             Debuffs = 1,
@@ -39,15 +67,23 @@ namespace RotMG_Scripts {
             World = 3
         }
 
+        /// <summary>
+        /// Location of the close options button
+        /// </summary>
         public static readonly PercentPoint closeOptions = new PercentPoint(50, 92);
 
+        /// <summary>
+        /// Locations of the in-game options categories
+        /// </summary>
         public static readonly PercentPoint[] headerPoints = new PercentPoint[3] {
             new PercentPoint(5.5f, 14),
             new PercentPoint(69.75f, 14),
             new PercentPoint(44, 14)
         };
 
-        //List of debuffs to search the save file for
+        /// <summary>
+        /// List of debuffs to search the save file for
+        /// </summary>
         public static readonly string[] debuffNames = new string[debuffsCount] {
             "Quiet",
             "Slowed",
@@ -68,6 +104,9 @@ namespace RotMG_Scripts {
             "Confused",
             "Darkness" };
 
+        /// <summary>
+        /// List of in-game debuff locations
+        /// </summary>
         public static readonly PercentPoint[] debuffPoints = new PercentPoint[debuffsCount] {
             new PercentPoint(7, 23),
             new PercentPoint(7, 30.5f),
@@ -89,7 +128,9 @@ namespace RotMG_Scripts {
             new PercentPoint(57, 81.5f)
         };
 
-        //List of others to search the save file for
+        /// <summary>
+        /// List of others to search the save file for
+        /// </summary>
         public static readonly string[] otherNames = new string[othersCount] {
             "MobInfo",
             "ethDisable",
@@ -98,6 +139,9 @@ namespace RotMG_Scripts {
             "VoidBow"
         };
 
+        /// <summary>
+        /// List of other in-game setting locations
+        /// </summary>
         public static readonly PercentPoint[] otherPoints = new PercentPoint[othersCount] {
             new PercentPoint(57, 45),
             new PercentPoint(7, 23),
@@ -106,23 +150,48 @@ namespace RotMG_Scripts {
             new PercentPoint(57, 30.5f)
         };
 
-        //List of control offsets
+        /// <summary>
+        /// List of control offsets
+        /// </summary>
         public static readonly int[] controlOffsets = new int[2] { 1, 9 };
 
         //Keyboard hooks
         public const int WH_KEYBOARD_LL = 13;
-
         public const int WM_KEYDOWN = 0x0100;
         public static KeyboardHook.LowLevelKeyboardProc proc = KeyboardHook.HookCallback;
         public static IntPtr hookId = IntPtr.Zero;
 
+        /// <summary>
+        /// A struct to handle points in percent, 0-100
+        /// </summary>
         public struct PercentPoint {
             public float X;
             public float Y;
 
+            /// <summary>
+            /// Create a percent point
+            /// </summary>
+            /// <param name="x">Percet of x, 0-100</param>
+            /// <param name="y">Percent of y, 0-100</param>
             public PercentPoint(float x, float y) {
                 X = x;
                 Y = y;
+
+                if (X < 0) {
+                    X = 0;
+                }
+
+                if (X > 100) {
+                    X = 100;
+                }
+
+                if (Y < 0) {
+                    Y = 0;
+                }
+
+                if (Y > 100) {
+                    Y = 100;
+                }
             }
         }
     }

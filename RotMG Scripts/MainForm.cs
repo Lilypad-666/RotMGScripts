@@ -14,12 +14,15 @@ namespace RotMG_Scripts {
     /// The main form!
     /// </summary>
     public partial class MainForm : Form {
-
-
-
-        //Timer that runs to ensure that the game is still running and valid
+        
+        /// <summary>
+        /// Timer that runs to ensure that the game is still running and valid
+        /// </summary>
         private System.Windows.Forms.Timer updateTimer;
 
+        /// <summary>
+        /// Creates the main form
+        /// </summary>
         public MainForm() {
             InitializeComponent();
 
@@ -130,7 +133,6 @@ namespace RotMG_Scripts {
 
             //Call event when a key is pressed in the console input to check for an Enter or Arrow key
             ConsoleInput.KeyDown += new KeyEventHandler(ConsoleInputKeyDown);
-
             ConsoleSendButton.Click += new EventHandler(ConsoleSendClick);
 
             //Update the two delays
@@ -142,6 +144,7 @@ namespace RotMG_Scripts {
                 box.MouseClick += new MouseEventHandler(AspectBoxChanged);
             }
 
+            //Lets you drag around the window without a windows title bar
             TitleBarPanel.MouseDown += new MouseEventHandler(TitleBar);
             TitleLabel.MouseDown += new MouseEventHandler(TitleBar);
 
@@ -151,6 +154,11 @@ namespace RotMG_Scripts {
             KeyboardHook.StartHook();
         }
 
+        /// <summary>
+        /// Handles dragging around the window without a windows title bar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TitleBar(object sender, MouseEventArgs e) {
             if (e.Button == MouseButtons.Left) {
                 ReleaseCapture();
@@ -424,7 +432,13 @@ namespace RotMG_Scripts {
             }
         }
 
+        /// <summary>
+        /// Attempts to change the given settings, attempts 3 times
+        /// </summary>
+        /// <param name="config">The config to try to change to</param>
+        /// <param name="depth">Attempt count</param>
         private static void FlipSettings(RushConfig config, int depth = 0) {
+            //After 3 attempts, throw an error
             if (depth >= 3) {
                 Console.WriteLine("Unable to flip settings properly, check your options key.", Console.logTypes.ERROR);
                 return;
@@ -433,29 +447,38 @@ namespace RotMG_Scripts {
             bool settingsOpen = false;
             int currentTab = -1;
 
+            //Runs through each debuff setting
             for (int i = 0; i < Data.debuffSettings.Length; i++) {
+                //If the settings are different
                 if (Data.debuffSettings[i] != config.debuffs[i]) {
+                    //If you haven't already opened the settings menu, do so
                     if (!settingsOpen) {
                         settingsOpen = true;
                         Data.window.OpenSettings();
                     }
 
+                    //If you're not already on the proper tab, switch
                     if (currentTab != 0) {
                         currentTab = 0;
                         Data.window.SettingsTab(Info.headerNames.Debuffs);
                     }
 
+                    //Toggle the debuff
                     Data.window.ClickDebuff(i);
                 }
             }
 
+            //Run through each other setting
             for (int i = 0; i < Data.otherSettings.Length; i++) {
                 if (Data.otherSettings[i] != config.others[i]) {
+                    //If you haven't already opened the settings menu, do so
                     if (!settingsOpen) {
                         settingsOpen = true;
                         Data.window.OpenSettings();
                     }
-
+                    
+                    //Done this way to allow for settings to jump around
+                    //Checks which tab the setting should be and changes to it
                     if (Array.IndexOf(new int[1] { 0 }, i) != -1) {
                         if (currentTab != 1) {
                             currentTab = 1;
@@ -469,16 +492,21 @@ namespace RotMG_Scripts {
                         }
                     }
 
+                    //Clicks the setting
                     Data.window.ClickOther(i);
                 }
             }
 
+            //Closes the settings
             Data.window.CloseSettings();
 
+            //Sleep to let the settings save to file
             Thread.Sleep(400);
 
+            //Count how many missed
             int missedCount = VerifyFlipped(config);
 
+            //Retry if missed any
             if (missedCount > 0) {
                 Console.WriteLine("Missed " + missedCount + " flips, retrying!", Console.logTypes.WARN);
                 FlipSettings(config, depth + 1);
@@ -486,6 +514,11 @@ namespace RotMG_Scripts {
             }
         }
 
+        /// <summary>
+        /// Verifies that the in-game settings are correct
+        /// </summary>
+        /// <param name="config">Config to compare against</param>
+        /// <returns>How many settings were missed</returns>
         public static int VerifyFlipped(RushConfig config) {
             Data.LoadRotMGData();
 
@@ -523,7 +556,7 @@ namespace RotMG_Scripts {
         private void ToggleTabs() {
             //If the active tab isn't the Debugging tab or the Main tab, set the active tab to the Main tab
             if (MainTabControl.SelectedTab != MainTab && MainTabControl.SelectedTab != DebuggingTab) {
-                MainTabControl.ForceTab(MainTab);
+                MainTabControl.ForceTabSwitch(MainTab);
             }
 
             //Run through each tab and set it to Data.foundGame unless it's the Main or Debugging tab,
@@ -646,7 +679,7 @@ namespace RotMG_Scripts {
             tc.TabPages.Add(tp);
 
             //Sets the tab as the currently active tab
-            tc.ForceTab(tp);
+            tc.ForceTabSwitch(tp);
 
             Console.WriteLine("Successfully created tab index " + adjustedIndex);
 

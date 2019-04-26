@@ -13,44 +13,66 @@ namespace RotMG_Scripts {
     /// </summary>
     public class Data {
 
-        //0 - Options
-        //1-7 - Rushing
+        /// <summary>
+        /// 0 - Options
+        ///1-7 - Rushing
+        /// </summary>
         public static Keys[] hotkeys = new Keys[9];
 
-        //Settings
-        //0 - Process Name
-        //1 - Process Search Delay
-        //2 - Update Delay
-        //3 - Auto resize
+        /// <summary>
+        /// Settings
+        ///0 - Process Name
+        ///1 - Process Search Delay
+        ///2 - Update Delay
+        ///3 - Auto resize
+        /// </summary>
         public static object[] settings = new object[4];
 
-        //The 7 rushing configs to save/load from file
+        /// <summary>
+        /// The 7 rushing configs to save/load from file
+        /// </summary>
         public static RushConfig[] rushConfigs = new RushConfig[7];
 
-        //Images that are used throughout the project
+        /// <summary>
+        /// Images that are used throughout the project
+        /// </summary>
         public static Bitmap[] images = new Bitmap[2];
 
-        //Keep track of the previous command
+        /// <summary>
+        /// Keep track of the previous command
+        /// </summary>
         public static List<string> previousCommands = new List<string>();
 
         public static int currentCommand = -1;
 
-        //Window of RotMG
+        /// <summary>
+        /// Window of RotMG
+        /// </summary>
         public static RotMGWindow window = null;
 
-        //Stopwatch to not allow hotkeys too cose to eachother
+        /// <summary>
+        /// Stopwatch to not allow hotkeys too cose to eachother
+        /// </summary>
         public static Stopwatch hotkeyDelay = new Stopwatch();
 
-        //Location of the RotMG save
+        /// <summary>
+        /// Location of the RotMG save
+        /// </summary>
         public static string saveLocation = "";
 
-        //List of debuffs in their current state
+        /// <summary>
+        /// List of debuffs in their current state
+        /// </summary>
         public static int[] debuffSettings = new int[Info.debuffsCount];
 
-        //List of other settings in their current state
+        /// <summary>
+        /// List of other settings in their current state
+        /// </summary>
         public static int[] otherSettings = new int[Info.othersCount];
 
-        //A reference to the main form
+        /// <summary>
+        /// A reference to the main form
+        /// </summary>
         public static MainForm form = null;
 
         /// <summary>
@@ -221,14 +243,21 @@ namespace RotMG_Scripts {
 
             //Other settings
             if (File.Exists("Data/settings.dat")) {
+                //Load from the file
                 settings = Load<object[]>("settings.dat");
+                //Process name to search for
                 form.ProcessName.Text = (string)settings[0];
+
+                //Delay for the search timer
                 Info.searchDelay = (int)settings[1];
+
+                //Delay for the update timer
                 Info.updateDelay = (int)settings[2];
 
                 form.SearchDelayInput.Value = Info.searchDelay;
                 form.UpdateDelayInput.Value = Info.updateDelay;
-
+                
+                //Which of the four aspect ratio boxes are checked
                 int checkboxChecked = (int)settings[3];
 
                 switch (checkboxChecked) {
@@ -252,12 +281,20 @@ namespace RotMG_Scripts {
                 form.UpdateTimerDelay();
             }
             else {
-                settings[0] = "flashplayer";
-                settings[1] = Info.searchDelay;
-                settings[2] = Info.updateDelay;
-                settings[3] = 0;
+                //Default settings
 
-                form.AspectFourThree.Checked = true;
+                //Process name
+                settings[0] = "flashplayer";
+
+                //Search delay
+                settings[1] = Info.searchDelay;
+
+                //Update delay
+                settings[2] = Info.updateDelay;
+
+                //Force aspect ratio
+                settings[3] = 3;
+                form.AspectNone.Checked = true;
             }
         }
 

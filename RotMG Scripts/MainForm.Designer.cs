@@ -28,6 +28,8 @@ namespace RotMG_Scripts {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.TitleBarPanel = new System.Windows.Forms.Panel();
             this.TitleLabel = new System.Windows.Forms.Label();
+            this.MinimizeButton = new RotMG_Scripts.TitleBarButton();
+            this.ExitButton = new RotMG_Scripts.TitleBarButton();
             this.MainTabControl = new RotMG_Scripts.CustomTabControl();
             this.MainTab = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -84,8 +86,6 @@ namespace RotMG_Scripts {
             this.DebuggingInfoPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.MinimizeButton = new RotMG_Scripts.TitleBarButton();
-            this.ExitButton = new RotMG_Scripts.TitleBarButton();
             this.TitleBarPanel.SuspendLayout();
             this.MainTabControl.SuspendLayout();
             this.MainTab.SuspendLayout();
@@ -134,6 +134,34 @@ namespace RotMG_Scripts {
             this.TitleLabel.TabIndex = 29;
             this.TitleLabel.Text = "RotMG Scripts ";
             // 
+            // MinimizeButton
+            // 
+            this.MinimizeButton.BackColor = System.Drawing.Color.Gray;
+            this.MinimizeButton.FlatAppearance.BorderSize = 0;
+            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinimizeButton.Font = new System.Drawing.Font("Marlett", 12F, System.Drawing.FontStyle.Bold);
+            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
+            this.MinimizeButton.Location = new System.Drawing.Point(440, -2);
+            this.MinimizeButton.Name = "MinimizeButton";
+            this.MinimizeButton.Size = new System.Drawing.Size(55, 32);
+            this.MinimizeButton.TabIndex = 28;
+            this.MinimizeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.MinimizeButton.UseCompatibleTextRendering = true;
+            this.MinimizeButton.UseVisualStyleBackColor = false;
+            // 
+            // ExitButton
+            // 
+            this.ExitButton.BackColor = System.Drawing.Color.Red;
+            this.ExitButton.FlatAppearance.BorderSize = 0;
+            this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExitButton.Font = new System.Drawing.Font("Marlett", 12F);
+            this.ExitButton.ForeColor = System.Drawing.Color.White;
+            this.ExitButton.Location = new System.Drawing.Point(495, 0);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(55, 30);
+            this.ExitButton.TabIndex = 27;
+            this.ExitButton.UseVisualStyleBackColor = false;
+            // 
             // MainTabControl
             // 
             this.MainTabControl.ActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(105)))), ((int)(((byte)(199)))));
@@ -155,7 +183,6 @@ namespace RotMG_Scripts {
             this.MainTabControl.Padding = new System.Drawing.Point(10, 0);
             this.MainTabControl.RightToLeftLayout = true;
             this.MainTabControl.SelectedIndex = 0;
-            this.MainTabControl.ShowClosingMessage = false;
             this.MainTabControl.Size = new System.Drawing.Size(530, 540);
             this.MainTabControl.TabIndex = 1;
             this.MainTabControl.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -532,7 +559,6 @@ namespace RotMG_Scripts {
             this.RushingTabControl.Padding = new System.Drawing.Point(10, 0);
             this.RushingTabControl.RightToLeftLayout = true;
             this.RushingTabControl.SelectedIndex = 0;
-            this.RushingTabControl.ShowClosingMessage = false;
             this.RushingTabControl.Size = new System.Drawing.Size(519, 501);
             this.RushingTabControl.TabIndex = 3;
             this.RushingTabControl.TextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -751,7 +777,6 @@ namespace RotMG_Scripts {
             this.DebugTabControl.Padding = new System.Drawing.Point(10, 0);
             this.DebugTabControl.RightToLeftLayout = true;
             this.DebugTabControl.SelectedIndex = 0;
-            this.DebugTabControl.ShowClosingMessage = false;
             this.DebugTabControl.Size = new System.Drawing.Size(519, 501);
             this.DebugTabControl.TabIndex = 2;
             this.DebugTabControl.TextColor = System.Drawing.Color.White;
@@ -975,34 +1000,6 @@ namespace RotMG_Scripts {
             this.label2.Size = new System.Drawing.Size(313, 21);
             this.label2.TabIndex = 14;
             this.label2.Text = "immediately change your RotMG password.";
-            // 
-            // MinimizeButton
-            // 
-            this.MinimizeButton.BackColor = System.Drawing.Color.Gray;
-            this.MinimizeButton.FlatAppearance.BorderSize = 0;
-            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizeButton.Font = new System.Drawing.Font("Marlett", 12F, System.Drawing.FontStyle.Bold);
-            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
-            this.MinimizeButton.Location = new System.Drawing.Point(440, -2);
-            this.MinimizeButton.Name = "MinimizeButton";
-            this.MinimizeButton.Size = new System.Drawing.Size(55, 32);
-            this.MinimizeButton.TabIndex = 28;
-            this.MinimizeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.MinimizeButton.UseCompatibleTextRendering = true;
-            this.MinimizeButton.UseVisualStyleBackColor = false;
-            // 
-            // ExitButton
-            // 
-            this.ExitButton.BackColor = System.Drawing.Color.Red;
-            this.ExitButton.FlatAppearance.BorderSize = 0;
-            this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExitButton.Font = new System.Drawing.Font("Marlett", 12F);
-            this.ExitButton.ForeColor = System.Drawing.Color.White;
-            this.ExitButton.Location = new System.Drawing.Point(495, 0);
-            this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(55, 30);
-            this.ExitButton.TabIndex = 27;
-            this.ExitButton.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 

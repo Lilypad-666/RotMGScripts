@@ -51,48 +51,17 @@ namespace RotMG_Scripts {
             WriteLine(text, logTypes.CMD);
 
             string[] tokens = text.Split(' ');
-
+            
+            //Sorts by how many tokens
             if (tokens.Length == 1) {
+                //Hooks the keyboard
                 if (text.ToUpper().Equals("HOOK") || text.ToUpper().Equals("REHOOK")) {
                     KeyboardHook.StartHook();
                 }
 
+                //Unhooks the keyboard
                 if (text.ToUpper().Equals("UNHOOK")) {
                     KeyboardHook.StopHook();
-                }
-            }
-
-            if (tokens.Length == 5) {
-                if (tokens[0].ToUpper().Equals("WINDOW")) {
-                    //Data.window.SetWindowLocAndSize(int.Parse(tokens[1]), int.Parse(tokens[2]), int.Parse(tokens[3]), int.Parse(tokens[4]));
-                }
-            }
-
-            if (tokens[0].ToUpper().Equals("MOUSE")) {
-                Data.window.MoveMouse(float.Parse(tokens[1]), float.Parse(tokens[2]));
-            }
-
-            for (int i = 0; i < Info.debuffNames.Length; i++) {
-                if (text.ToUpper().Contains(Info.debuffNames[i].ToUpper())) {
-                    if (text.Substring(0, 8).ToUpper().Equals("GAMEINFO")) {
-                        string info = settingToString(Data.debuffSettings[i]);
-
-                        WriteLine(Info.debuffNames[i] + ": " + info, logTypes.INFO);
-                    }
-
-                    if (text.Substring(0, 8).ToUpper().Equals("RUSHINFO")) {
-                        //1-9
-                        int index = 0;
-
-                        if (int.TryParse(text.Substring(9, 1), out index)) {
-                            string info = settingToString(Data.rushConfigs[index].debuffs[i]);
-
-                            WriteLine(Info.debuffNames[i] + ": " + info, logTypes.INFO);
-                        }
-                        else {
-                            WriteLine("Invalid format");
-                        }
-                    }
                 }
             }
         }
@@ -100,8 +69,8 @@ namespace RotMG_Scripts {
         /// <summary>
         /// Simple int to string converter
         /// </summary>
-        /// <param name="setting"></param>
-        /// <returns></returns>
+        /// <param name="setting">Whether the setting is enabled or not</param>
+        /// <returns>"On", "Off", or "Unknown"</returns>
         private static string settingToString(int setting) {
             switch (setting) {
                 case 1:
@@ -116,10 +85,10 @@ namespace RotMG_Scripts {
         }
 
         /// <summary>
-        /// Simple int to string converter
+        /// Simple bool to string converter
         /// </summary>
-        /// <param name="setting"></param>
-        /// <returns></returns>
+        /// <param name="setting">Whether the setting is enabled or not</param>
+        /// <returns>"On", "Off", or "Unknown"</returns>
         private static string settingToString(bool setting) {
             switch (setting) {
                 case true:
@@ -221,6 +190,11 @@ namespace RotMG_Scripts {
             }
         }
 
+        /// <summary>
+        /// Gets the color for the given log type
+        /// </summary>
+        /// <param name="type">Type of log entry</param>
+        /// <returns>Color of text to output</returns>
         private static Color LogTypeToColor(logTypes type) {
             switch (type) {
                 case logTypes.CMD:
