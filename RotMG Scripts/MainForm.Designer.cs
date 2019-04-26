@@ -29,7 +29,11 @@ namespace RotMG_Scripts {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.TitleBarPanel = new System.Windows.Forms.Panel();
             this.TitleLabel = new System.Windows.Forms.Label();
+            this.MinimizeButton = new RotMG_Scripts.TitleBarButton();
+            this.ExitButton = new RotMG_Scripts.TitleBarButton();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.UpdateDelayLabel = new System.Windows.Forms.Label();
+            this.SeachDelayLabel = new System.Windows.Forms.Label();
             this.MainTabControl = new RotMG_Scripts.CustomTabControl();
             this.MainTab = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -49,8 +53,6 @@ namespace RotMG_Scripts {
             this.RotMGProcess = new System.Windows.Forms.TextBox();
             this.RotMGFound = new System.Windows.Forms.Label();
             this.UpdateDelayInput = new System.Windows.Forms.NumericUpDown();
-            this.UpdateDelayLabel = new System.Windows.Forms.Label();
-            this.SeachDelayLabel = new System.Windows.Forms.Label();
             this.SearchDelayInput = new System.Windows.Forms.NumericUpDown();
             this.RushingTab = new System.Windows.Forms.TabPage();
             this.RushingTabControl = new RotMG_Scripts.CustomTabControl();
@@ -86,8 +88,6 @@ namespace RotMG_Scripts {
             this.DebuggingInfoPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.MinimizeButton = new RotMG_Scripts.TitleBarButton();
-            this.ExitButton = new RotMG_Scripts.TitleBarButton();
             this.TitleBarPanel.SuspendLayout();
             this.MainTabControl.SuspendLayout();
             this.MainTab.SuspendLayout();
@@ -135,6 +135,62 @@ namespace RotMG_Scripts {
             this.TitleLabel.Size = new System.Drawing.Size(96, 17);
             this.TitleLabel.TabIndex = 29;
             this.TitleLabel.Text = "RotMG Scripts ";
+            // 
+            // MinimizeButton
+            // 
+            this.MinimizeButton.BackColor = System.Drawing.Color.Gray;
+            this.MinimizeButton.FlatAppearance.BorderSize = 0;
+            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinimizeButton.Font = new System.Drawing.Font("Marlett", 12F, System.Drawing.FontStyle.Bold);
+            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
+            this.MinimizeButton.Location = new System.Drawing.Point(440, -2);
+            this.MinimizeButton.Name = "MinimizeButton";
+            this.MinimizeButton.Size = new System.Drawing.Size(55, 32);
+            this.MinimizeButton.TabIndex = 28;
+            this.MinimizeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.MinimizeButton.UseCompatibleTextRendering = true;
+            this.MinimizeButton.UseVisualStyleBackColor = false;
+            // 
+            // ExitButton
+            // 
+            this.ExitButton.BackColor = System.Drawing.Color.Red;
+            this.ExitButton.FlatAppearance.BorderSize = 0;
+            this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExitButton.Font = new System.Drawing.Font("Marlett", 12F);
+            this.ExitButton.ForeColor = System.Drawing.Color.White;
+            this.ExitButton.Location = new System.Drawing.Point(495, 0);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(55, 30);
+            this.ExitButton.TabIndex = 27;
+            this.ExitButton.UseVisualStyleBackColor = false;
+            // 
+            // UpdateDelayLabel
+            // 
+            this.UpdateDelayLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.UpdateDelayLabel.AutoSize = true;
+            this.UpdateDelayLabel.BackColor = System.Drawing.Color.Transparent;
+            this.UpdateDelayLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UpdateDelayLabel.ForeColor = System.Drawing.Color.White;
+            this.UpdateDelayLabel.Location = new System.Drawing.Point(304, 141);
+            this.UpdateDelayLabel.Name = "UpdateDelayLabel";
+            this.UpdateDelayLabel.Size = new System.Drawing.Size(119, 17);
+            this.UpdateDelayLabel.TabIndex = 23;
+            this.UpdateDelayLabel.Text = "Update Delay (ms):";
+            this.ToolTip.SetToolTip(this.UpdateDelayLabel, "Delay is milliseconds to update the game data when the game is found.");
+            // 
+            // SeachDelayLabel
+            // 
+            this.SeachDelayLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.SeachDelayLabel.AutoSize = true;
+            this.SeachDelayLabel.BackColor = System.Drawing.Color.Transparent;
+            this.SeachDelayLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SeachDelayLabel.ForeColor = System.Drawing.Color.White;
+            this.SeachDelayLabel.Location = new System.Drawing.Point(98, 141);
+            this.SeachDelayLabel.Name = "SeachDelayLabel";
+            this.SeachDelayLabel.Size = new System.Drawing.Size(115, 17);
+            this.SeachDelayLabel.TabIndex = 21;
+            this.SeachDelayLabel.Text = "Search Delay (ms):";
+            this.ToolTip.SetToolTip(this.SeachDelayLabel, "Delay in milliseconds to re-search for the program when it is not found.");
             // 
             // MainTabControl
             // 
@@ -445,34 +501,6 @@ namespace RotMG_Scripts {
             0,
             0,
             0});
-            // 
-            // UpdateDelayLabel
-            // 
-            this.UpdateDelayLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.UpdateDelayLabel.AutoSize = true;
-            this.UpdateDelayLabel.BackColor = System.Drawing.Color.Transparent;
-            this.UpdateDelayLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UpdateDelayLabel.ForeColor = System.Drawing.Color.White;
-            this.UpdateDelayLabel.Location = new System.Drawing.Point(304, 141);
-            this.UpdateDelayLabel.Name = "UpdateDelayLabel";
-            this.UpdateDelayLabel.Size = new System.Drawing.Size(119, 17);
-            this.UpdateDelayLabel.TabIndex = 23;
-            this.UpdateDelayLabel.Text = "Update Delay (ms):";
-            this.ToolTip.SetToolTip(this.UpdateDelayLabel, "Delay is milliseconds to update the game data when the game is found.");
-            // 
-            // SeachDelayLabel
-            // 
-            this.SeachDelayLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.SeachDelayLabel.AutoSize = true;
-            this.SeachDelayLabel.BackColor = System.Drawing.Color.Transparent;
-            this.SeachDelayLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SeachDelayLabel.ForeColor = System.Drawing.Color.White;
-            this.SeachDelayLabel.Location = new System.Drawing.Point(98, 141);
-            this.SeachDelayLabel.Name = "SeachDelayLabel";
-            this.SeachDelayLabel.Size = new System.Drawing.Size(115, 17);
-            this.SeachDelayLabel.TabIndex = 21;
-            this.SeachDelayLabel.Text = "Search Delay (ms):";
-            this.ToolTip.SetToolTip(this.SeachDelayLabel, "Delay in milliseconds to re-search for the program when it is not found.");
             // 
             // SearchDelayInput
             // 
@@ -976,34 +1004,6 @@ namespace RotMG_Scripts {
             this.label2.Size = new System.Drawing.Size(313, 21);
             this.label2.TabIndex = 14;
             this.label2.Text = "immediately change your RotMG password.";
-            // 
-            // MinimizeButton
-            // 
-            this.MinimizeButton.BackColor = System.Drawing.Color.Gray;
-            this.MinimizeButton.FlatAppearance.BorderSize = 0;
-            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizeButton.Font = new System.Drawing.Font("Marlett", 12F, System.Drawing.FontStyle.Bold);
-            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
-            this.MinimizeButton.Location = new System.Drawing.Point(440, -2);
-            this.MinimizeButton.Name = "MinimizeButton";
-            this.MinimizeButton.Size = new System.Drawing.Size(55, 32);
-            this.MinimizeButton.TabIndex = 28;
-            this.MinimizeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.MinimizeButton.UseCompatibleTextRendering = true;
-            this.MinimizeButton.UseVisualStyleBackColor = false;
-            // 
-            // ExitButton
-            // 
-            this.ExitButton.BackColor = System.Drawing.Color.Red;
-            this.ExitButton.FlatAppearance.BorderSize = 0;
-            this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExitButton.Font = new System.Drawing.Font("Marlett", 12F);
-            this.ExitButton.ForeColor = System.Drawing.Color.White;
-            this.ExitButton.Location = new System.Drawing.Point(495, 0);
-            this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(55, 30);
-            this.ExitButton.TabIndex = 27;
-            this.ExitButton.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 

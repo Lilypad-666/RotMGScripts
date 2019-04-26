@@ -10,6 +10,15 @@ Download a release version from [releases](https://github.com/Lilypad-666/RotMGS
 Run 059's client and create the scripts with the settings you'd like, has only been tested with the .swf Flashplayer version.
 If you renamed the flashplayer process, ensure to change the name to your current flashplayer's name.
 
+## Console Commands
+
+Currently there are very few console commands, but more will be added shortly:
+
+```
+"hook"/"rehook" - Hooks into the keyboard if it gets unhooked or doesn't hook properly.
+"unhook" - Unhooks from the keyboard, meaning you can no longer use hotkeys.
+```
+
 ## Building the Source
 
 Steps to build source:
