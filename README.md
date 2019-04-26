@@ -1,10 +1,14 @@
 # RotMGScripts
 
-Hotkey scripts to edit RotMG commands at the press of a button. Only works on 059's client. Inspired by the AHK script that has been floating around.
+Hotkey scripts to edit RotMG commands at the press of a button. Inspired by the AHK script that has been floating around.
+
+**Only works on 059's client, has not been tested with steam.**
 
 ## Getting Started
 
-Download a release version from [releases](https://github.com/Lilypad-666/RotMGScripts/releases), extract to an empty folder, and run the .exe to get started.
+Download a release version from [releases](https://github.com/Lilypad-666/RotMGScripts/releases), extract to an empty folder, and run the .exe.
+Run 059's client and create the scripts with the settings you'd like, has only been tested with the .swf Flashplayer version.
+If you renamed the flashplayer process, ensure to change the name to your current flashplayer's name.
 
 ## Building the Source
 
