@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -26,14 +27,8 @@ namespace RotMG_Scripts {
         public RushingUserControl(int index) {
             InitializeComponent();
 
-            this.GameInfoOther.ResumeLayout();
-            this.OffsetGroupBox.ResumeLayout();
-            this.GameInfoClient.ResumeLayout();
-            this.GameInfoServer.ResumeLayout();
-            this.SettingsPanel.ResumeLayout();
-            this.ResumeLayout();
-
-            offset = Info.controlOffsets[0];
+            //Sets the offset if index is not -1
+            offset = index == -1 ? 0 : Info.controlOffsets[0];
 
             localIndex = index;
             globalIndex = index + offset;
@@ -64,8 +59,9 @@ namespace RotMG_Scripts {
             AddScript.Click += new EventHandler(AddScriptClick);
 
             //Adds Click handlers to the checkboxes to save the configs as they're being edited
-            List<CheckBox> boxes = MainForm.FindControls<CheckBox>("", this);
-            foreach (CheckBox box in boxes) {
+            List<CustomCheckBox> boxes = MainForm.FindControls<CustomCheckBox>("", this);
+            foreach (CustomCheckBox box in boxes) {
+                box.Loaded();
                 box.Click += CheckboxToggle;
             }
 
@@ -80,7 +76,8 @@ namespace RotMG_Scripts {
         /// <param name="e"></param>
         private void CheckboxToggle(object sender, EventArgs e) {
             //On checkbox toggle, save to the config
-            CheckBox box = (sender as CheckBox);
+            CustomCheckBox box = (sender as CustomCheckBox);
+            box.StartRotate();
             ScreenToConfig(box);
         }
 
@@ -96,6 +93,7 @@ namespace RotMG_Scripts {
             //Disable the add tab button on this page
             Button button = (Button)sender;
             button.Enabled = false;
+            button.BackColor = Color.Gray;
         }
 
         /// <summary>
@@ -104,8 +102,6 @@ namespace RotMG_Scripts {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void HotkeyButtonClick(object sender, EventArgs e) {
-            Button button = (Button)sender;
-            button.Text = "Press Any Key...";
 
             //Get the index from the regex \d+, which grabs the number at the end of the string
             Data.form.SetHotkey(globalIndex);
@@ -135,26 +131,26 @@ namespace RotMG_Scripts {
         /// </summary>
         private void ConfigToScreen() {
             //Run through each checkbox on the page
-            List<CheckBox> boxes = MainForm.FindControls<CheckBox>("", this);
-            foreach (CheckBox box in boxes) {
+            List<CustomCheckBox> boxes = MainForm.FindControls<CustomCheckBox>("", this);
+            foreach (CustomCheckBox box in boxes) {
                 //Snag the number from the end of the String
                 int number = int.Parse(Regex.Match(box.Name, @"\d+").Value);
 
                 //Sort by the type of category it's in and put it onto the page
                 if (number < config.debuffs.Length) {
                     if (config.debuffs[number] == 1) {
-                        box.Checked = true;
+                        box.SetChecked(true, true);
                     }
                     else {
-                        box.Checked = false;
+                        box.SetChecked(false, true);
                     }
                 }
                 else if (number < config.debuffs.Length + config.others.Length) {
                     if (config.others[number - config.debuffs.Length] == 1) {
-                        box.Checked = true;
+                        box.SetChecked(true, true);
                     }
                     else {
-                        box.Checked = false;
+                        box.SetChecked(false, true);
                     }
                 }
             }
@@ -164,11 +160,11 @@ namespace RotMG_Scripts {
         /// Save the screen to the config and then write to the file
         /// </summary>
         /// <param name="box">The checkbox that was updated</param>
-        private void ScreenToConfig(CheckBox box = null) {
+        private void ScreenToConfig(CustomCheckBox box = null) {
             if (box == null) {
                 //Run through each checkbox on the page
-                List<CheckBox> boxes = MainForm.FindControls<CheckBox>("", this);
-                foreach (CheckBox c in boxes) {
+                List<CustomCheckBox> boxes = MainForm.FindControls<CustomCheckBox>("", this);
+                foreach (CustomCheckBox c in boxes) {
                     int number = int.Parse(Regex.Match(c.Name, @"\d+").Value);
 
                     //Sort by the type of category it's in and store it into the config
@@ -197,126 +193,6 @@ namespace RotMG_Scripts {
 
             //Re-write RushConfigs to the file
             Data.Save("rushconfigs.dat", Data.rushConfigs);
-        }
-
-        private void Weak9_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Sick10_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Stunned11_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Bleeding12_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void PetStasis13_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Silence14_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Petrified5_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void ArmorBroken4_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Paralyzed3_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Dazed2_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Slowed1_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Quiet0_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void GameInfoClient_Enter(object sender, EventArgs e) {
-
-        }
-
-        private void Blind6_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Drunk7_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Unstable8_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Darkness17_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Confused16_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void Hallucinating15_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void OffsetEtherite19_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void OffsetColo20_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void OffsetVoidBow22_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void OffsetCultistStaff21_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void MobInfo18_CheckedChanged(object sender, EventArgs e) {
-
-        }
-
-        private void GameInfoOther_Enter(object sender, EventArgs e) {
-
-        }
-
-        private void OffsetGroupBox_Enter(object sender, EventArgs e) {
-
-        }
-
-        private void CheckedDescription_Click(object sender, EventArgs e) {
-
-        }
-
-        private void OptionsLabel_Click(object sender, EventArgs e) {
-
-        }
-
-        private void HotkeyButton_Click(object sender, EventArgs e) {
-
-        }
-
-        private void AddScript_Click(object sender, EventArgs e) {
-
         }
     }
 }

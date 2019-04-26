@@ -90,7 +90,7 @@ namespace RotMG_Scripts {
                             WriteLine(Info.debuffNames[i] + ": " + info, logTypes.INFO);
                         }
                         else {
-                            Console.WriteLine("Invalid format");
+                            WriteLine("Invalid format");
                         }
                     }
                 }

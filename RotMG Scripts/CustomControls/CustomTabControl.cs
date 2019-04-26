@@ -32,16 +32,6 @@ namespace RotMG_Scripts {
         private Color borderColor = Color.FromArgb(30, 30, 30);
 
         /// <summary>
-        ///     Color of the closing button
-        /// </summary>
-        private Color closingButtonColor = Color.WhiteSmoke;
-
-        /// <summary>
-        ///     Message for the user before losing
-        /// </summary>
-        private string closingMessage;
-
-        /// <summary>
         ///     The color of the tab header
         /// </summary>
         private Color headerColor = Color.FromArgb(45, 45, 48);
@@ -59,16 +49,9 @@ namespace RotMG_Scripts {
         /// <summary>
         /// Rectangles of the tabs' current locations
         /// </summary>
-        private Rectangle[] tabLocations = new Rectangle[4];
+        private Rectangle[] tabLocations = new Rectangle[7];
         private int maxSize = 4;
         private bool forceChange = false;
-
-        ///<summary>
-        /// Shows closing buttons
-        /// </summary>
-        public bool ShowClosingButton {
-            get; set;
-        }
 
         /// <summary>
         ///     Init
@@ -261,34 +244,6 @@ namespace RotMG_Scripts {
 
             set {
                 this.borderColor = value;
-            }
-        }
-
-        /// <summary>
-        ///     The color of the closing button
-        /// </summary>
-        [Category("Colors"), Browsable(true), Description("The color of the closing button")]
-        public Color ClosingButtonColor {
-            get {
-                return this.closingButtonColor;
-            }
-
-            set {
-                this.closingButtonColor = value;
-            }
-        }
-
-        /// <summary>
-        ///     The message that will be shown before closing.
-        /// </summary>
-        [Category("Options"), Browsable(true), Description("The message that will be shown before closing.")]
-        public string ClosingMessage {
-            get {
-                return this.closingMessage;
-            }
-
-            set {
-                this.closingMessage = value;
             }
         }
 

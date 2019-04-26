@@ -15,8 +15,7 @@ namespace RotMG_Scripts {
     /// </summary>
     public partial class MainForm : Form {
 
-        //The current hotkey that we're updating, see the hotkeys array above for meanings
-        private int updatingHotkey = -1;
+
 
         //Timer that runs to ensure that the game is still running and valid
         private System.Windows.Forms.Timer updateTimer;
@@ -29,6 +28,7 @@ namespace RotMG_Scripts {
             //Creates the data and log directories
             Directory.CreateDirectory("Data");
             Directory.CreateDirectory("Logs");
+
 
             //Doesn't allow resizing or maximizing of the window
             if (!Info.debug) {
@@ -55,7 +55,6 @@ namespace RotMG_Scripts {
 
             //Adds events for others
             Load += new EventHandler(FormLoaded);
-            KeyDown += new KeyEventHandler(KeyPressed);
 
             Data.LoadAllData();
         }
@@ -72,19 +71,36 @@ namespace RotMG_Scripts {
             MainTabControl.SelectedTab = RushingTab;
 
             TabPage firstRushing = CreateTab(RushingTabControl, new RushingUserControl(0), 0);
+            Button button = FindControl<Button>("AddScript", firstRushing);
+            button.Enabled = false;
+            button.BackColor = Color.Gray;
 
-            int lastIndex = 0;
+            int lastIndex = 1;
 
             //If there are more rushing tabs that should be created, create them
             for (int i = 1; i < Data.rushConfigs.Length; i++) {
                 if (Data.rushConfigs[i] != null) {
                     TabPage tp = CreateTab(RushingTabControl, new RushingUserControl(i), i);
-                    FindControl<Button>("AddScript", tp).Enabled = false;
+                    Button b = FindControl<Button>("AddScript", tp);
+                    b.Enabled = false;
+                    b.BackColor = Color.Gray;
                     lastIndex++;
                 }
             }
 
-            FindControl<Button>("AddScript", FindControl<TabPage>("Script" + lastIndex)).Enabled = true;
+            button = FindControl<Button>("AddScript", FindControl<TabPage>("Script" + lastIndex));
+            button.Enabled = true;
+            button.BackColor = Color.White;
+
+            //Create a new blank RUC in order to copy the controls over to the game info tab
+            RushingUserControl ruc = new RushingUserControl(-1);
+
+            GameInfoPanel.Controls.Add(ruc.SettingsPanel);
+
+            foreach (CustomCheckBox box in FindControls<CustomCheckBox>("", GameInfoPanel)) {
+                box.AutoCheck = false;
+                box.Loaded();
+            }
 
             //Set the current tab as the first one
             RushingTabControl.SelectedTab = firstRushing;
@@ -95,13 +111,13 @@ namespace RotMG_Scripts {
             GitHubLink.LinkClicked += new LinkLabelLinkClickedEventHandler(LinkClicked);
 
             //Update the version label to include the current version number
-            VersionLabel.Text += Info.version;
+            VersionNumberLabel.Text = Info.version;
 
             //Add event handlers for when you click hotkey buttons
             HotkeyButton0.Click += new EventHandler(HotkeyButtonClick);
 
             //Set the paint handler for adding images to the background
-            ProgramInfoTab.Paint += new PaintEventHandler(InfoTabPaint);
+            DebuggingInfoPanel.Paint += new PaintEventHandler(InfoTabPaint);
 
             //Set the paint handler for adding images to the title bar
             TitleBarPanel.Paint += new PaintEventHandler(TitleBarPaint);
@@ -111,6 +127,8 @@ namespace RotMG_Scripts {
 
             //Call event when a key is pressed in the console input to check for an Enter or Arrow key
             ConsoleInput.KeyDown += new KeyEventHandler(ConsoleInputKeyDown);
+
+            ConsoleSendButton.Click += new EventHandler(ConsoleSendClick);
 
             //Update the two delays
             SearchDelayInput.ValueChanged += new EventHandler(DelayInputValueChanged);
@@ -122,6 +140,7 @@ namespace RotMG_Scripts {
             }
 
             TitleBarPanel.MouseDown += new MouseEventHandler(TitleBar);
+            TitleLabel.MouseDown += new MouseEventHandler(TitleBar);
 
             ExitButton.InitializeButton();
             MinimizeButton.InitializeButton();
@@ -244,10 +263,10 @@ namespace RotMG_Scripts {
             g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
 
             Assembly myAssembly = Assembly.GetExecutingAssembly();
-            Stream myStream = myAssembly.GetManifestResourceStream("RotMG_Scripts.Resources.Lilypad-666.jpg");
+            Stream myStream = myAssembly.GetManifestResourceStream("RotMG_Scripts.Resources.lilypad1.png");
             Bitmap bmp = new Bitmap(myStream);
 
-            e.Graphics.DrawImage(bmp, 250, 170, 150, 150);
+            e.Graphics.DrawImage(bmp, 250, 250, bmp.Width, bmp.Height);
         }
 
         /// <summary>
@@ -288,92 +307,12 @@ namespace RotMG_Scripts {
         }
 
         /// <summary>
-        /// Handles updating hotkeys
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void KeyPressed(object sender, KeyEventArgs e) {
-            //If we're updating a hotkey
-            if (updatingHotkey >= 0) {
-                KeysConverter kc = new KeysConverter();
-                string key = kc.ConvertToString(e.KeyCode);
-                //If we're changing the Options key
-                if (updatingHotkey == 0) {
-                    //Verify that the key can only be set to A-Z, 0-9, and F1-F24
-                    Regex regex = new Regex(@"^[0-9]+$");
-                    if (key.Length > 1) {
-                        if (key.Length > 3 || !key.Substring(0, 1).Equals("F") || !regex.IsMatch(key.Substring(1, key.Length - 1))) {
-                            //Reset the button to edit
-                            Button btn = FindControl<Button>("HotkeyButton" + updatingHotkey);
-                            btn.Text = "Edit...";
-
-                            Console.WriteLine("Invalid Options key selected: " + key + ".", Console.logTypes.WARN);
-
-                            //No longer updating hotkeys
-                            updatingHotkey = -1;
-
-                            //Re-enable the form
-                            MainTabControl.Enabled = true;
-
-                            string message = "Options key must be A-Z, 0-9, or F1-F24!";
-                            string caption = "Invalid Key!";
-
-                            //Show a message saying that the key has to be in specifications
-                            MessageBox.Show(message, caption, MessageBoxButtons.OK);
-
-                            return;
-                        }
-                    }
-                }
-
-                //Store the index of the key code
-                int oldIndex = Array.IndexOf(Data.hotkeys, e.KeyCode);
-
-                //If it's set to another hotkey
-                if (oldIndex != -1) {
-                    //Try to find the old hotkey box
-                    TextBox oldBox = FindControl<TextBox>("HotkeyBox" + oldIndex);
-
-                    if (oldBox != null) {
-                        //If we can, set the text as N/A
-                        oldBox.Text = "N/A";
-                    }
-
-                    //Then, replace the old hotkey's index with none
-                    Data.hotkeys[oldIndex] = Keys.None;
-                }
-
-                //Set the new index's hotkey as the key code
-                Data.hotkeys[updatingHotkey] = e.KeyCode;
-
-                //Change the text of the hotkey box
-                FindControl<TextBox>("HotkeyBox" + updatingHotkey).Text = key;
-
-                //Reset the button back to edit
-                FindControl<Button>("HotkeyButton" + updatingHotkey).Text = "Edit...";
-
-                Console.WriteLine("Successfully set hotkey number " + updatingHotkey + " as " + key + ".");
-
-                //Reset updating hotkey
-                updatingHotkey = -1;
-
-                //Save the hotkeys to file
-                Data.Save("hotkeys.dat", Data.hotkeys);
-
-                //Re-enable the form
-                MainTabControl.Enabled = true;
-            }
-        }
-
-        /// <summary>
         /// Triggers when the change hotkey button is pressed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void HotkeyButtonClick(object sender, EventArgs e) {
-            Button button = (Button)sender;
-            button.Text = "Press Any Key...";
-
+            Button button = sender as Button;
             //Get the index from the regex \d+, which grabs the number at the end of the string
             SetHotkey(int.Parse(Regex.Match(button.Name, @"\d+").Value));
         }
@@ -471,7 +410,7 @@ namespace RotMG_Scripts {
             //If it's a valid index
             if (index >= 0) {
                 //Rush hotkey
-                if (index >= 1 && index <= 8) {
+                if (index >= 1 && index <= 7) {
                     if (!Data.hotkeyDelay.IsRunning || Data.hotkeyDelay.ElapsedMilliseconds > 1000) {
                         Data.hotkeyDelay.Restart();
                         RushingUserControl control = Data.form.RushingTabControl.TabPages[index - 1].Controls[0] as RushingUserControl;
@@ -612,8 +551,10 @@ namespace RotMG_Scripts {
         /// <param name="index">Index of the hotkey that's being changed</param>
         public void SetHotkey(int index) {
             //Disables the window until the hotkey is set
-            MainTabControl.Enabled = false;
-            updatingHotkey = index;
+            using (var form = new PressAnyKeyBox(index)) {
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.ShowDialog();
+            }
         }
 
         /// <summary>
@@ -674,8 +615,8 @@ namespace RotMG_Scripts {
         /// <param name="uc">Template to copy over to the new tab</param>
         /// <param name="index">Index of the new tab</param>
         /// <returns></returns>
-        public static TabPage CreateTab(TabControl tc, CustomUserControl template, int index) {
-            //Creates an "adjusted index" based on the index (0-8) and the offset
+        public static TabPage CreateTab(CustomTabControl tc, CustomUserControl template, int index) {
+            //Creates an "adjusted index" based on the index (0-7) and the offset
             int adjustedIndex = index + template.offset;
 
             TabPage tp = new TabPage();
@@ -689,10 +630,12 @@ namespace RotMG_Scripts {
             tp.Text = "Script " + (index + 1);
             tp.Name = "Script" + adjustedIndex;
 
-            //Allows 8 tabs (0-7) of any given type
-            if (index >= 7) {
+            //Allows 7 tabs (0-6) of any given type
+            if (index >= 6) {
                 if (template is UserControl) {
-                    FindControl<Button>("AddScript", tp).Enabled = false;
+                    Button button = FindControl<Button>("AddScript", tp);
+                    button.Enabled = false;
+                    button.BackColor = Color.Gray;
                 }
             }
 
@@ -700,7 +643,7 @@ namespace RotMG_Scripts {
             tc.TabPages.Add(tp);
 
             //Sets the tab as the currently active tab
-            tc.SelectedTab = tp;
+            tc.ForceTab(tp);
 
             Console.WriteLine("Successfully created tab index " + adjustedIndex);
 
@@ -711,30 +654,30 @@ namespace RotMG_Scripts {
         /// Converts the data from Data.debuffSettings and Data.otherSettings to check boxes on the screen
         /// </summary>
         public static void RotMGDataToScreen() {
-            //Run through each checkbox on the page
-            List<CheckBox> boxes = FindControls<CheckBox>("", Data.form.GameInfoPanel);
-
-            foreach (CheckBox box in boxes) {
+            //Run through each checkbox on the game info tab
+            foreach (CustomCheckBox box in FindControls<CustomCheckBox>("", Data.form.GameInfoPanel)) {
                 //Snag the number from the end of the String
                 int number = int.Parse(Regex.Match(box.Name, @"\d+").Value);
 
                 //Sort by the type of category it's in and put it onto the page
                 if (number < Data.debuffSettings.Length) {
                     if (Data.debuffSettings[number] == 1) {
-                        box.Checked = true;
+                        box.SetChecked(true, true);
                     }
                     else {
-                        box.Checked = false;
+                        box.SetChecked(false, true);
                     }
                 }
                 else if (number < Data.debuffSettings.Length + Data.otherSettings.Length) {
                     if (Data.otherSettings[number - Data.debuffSettings.Length] == 1) {
-                        box.Checked = true;
+                        box.SetChecked(true, true);
                     }
                     else {
-                        box.Checked = false;
+                        box.SetChecked(false, true);
                     }
                 }
+
+                box.Refresh();
             }
         }
 
@@ -784,7 +727,7 @@ namespace RotMG_Scripts {
         /// <param name="name">Name to search for</param>
         /// <param name="childrenOfChildren">Whether to recursively search or not</param>
         /// <returns>A list of all instances of T who's name contain name</returns>
-        public static List<T> FindControls<T>(string name, Control root = null, bool childrenOfChildren = true) where T : Control {
+        public static List<T> FindControls<T>(string name = "", Control root = null, bool childrenOfChildren = true) where T : Control {
             //Sets root to the form if it's null
             root = root == null ? Data.form : root;
 

@@ -58,8 +58,11 @@
     </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +72,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Console.cs" />
@@ -81,13 +85,23 @@
     <Compile Include="CustomControls\CustomTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CustomControls\CustomTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CustomControls\CustomUserControl.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\PressAnyKeyBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomControls\PressAnyKeyBox.Designer.cs">
+      <DependentUpon>PressAnyKeyBox.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\TitleBarButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Data.cs" />
+    <Compile Include="Drawer.cs" />
     <Compile Include="KeyboardHook.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -107,6 +121,9 @@
     <Compile Include="CustomControls\RushingUserControl.Designer.cs">
       <DependentUpon>RushingUserControl.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomControls\PressAnyKeyBox.resx">
+      <DependentUpon>PressAnyKeyBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,7 +169,16 @@
     <EmbeddedResource Include="Resources\Cloak.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Lilypad-666.jpg" />
+    <EmbeddedResource Include="Resources\Keyboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\lilypad1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Check.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

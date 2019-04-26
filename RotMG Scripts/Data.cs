@@ -14,7 +14,7 @@ namespace RotMG_Scripts {
     public class Data {
 
         //0 - Options
-        //1-8 - Rushing
+        //1-7 - Rushing
         public static Keys[] hotkeys = new Keys[9];
 
         //Settings
@@ -24,8 +24,8 @@ namespace RotMG_Scripts {
         //3 - Auto resize
         public static object[] settings = new object[4];
 
-        //The 8 rushing configs to save/load from file
-        public static RushConfig[] rushConfigs = new RushConfig[8];
+        //The 7 rushing configs to save/load from file
+        public static RushConfig[] rushConfigs = new RushConfig[7];
 
         //Images that are used throughout the project
         public static Bitmap[] images = new Bitmap[2];

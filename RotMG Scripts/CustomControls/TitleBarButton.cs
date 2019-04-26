@@ -58,6 +58,10 @@ namespace RotMG_Scripts {
         private void MouseClicked(object sender, EventArgs e) {
             Button b = sender as Button;
 
+            if (b.Name.Equals("HotkeyExitButton")) {
+                FindForm().Close();
+            }
+
             if (b.Name.Equals("ExitButton")) {
                 Console.WriteLine("Exiting.");
                 Application.Exit();

@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace RotMG_Scripts {
     public class CustomGroupBox : GroupBox {
 
-        readonly Color borderColor = Color.FromArgb(0, 122, 204);
+        readonly Color borderColor = Color.FromArgb(255, 200, 200);
         
         readonly int borderThickness = 2;
 
@@ -19,14 +19,14 @@ namespace RotMG_Scripts {
 
             Pen p = new Pen(borderColor, borderThickness);
 
-            int heightOffset = 9;
+            int heightOffset = 5;
             int x = borderThickness;
             int y = borderThickness + heightOffset;
-            int height = e.ClipRectangle.Height-borderThickness;
-            int width = e.ClipRectangle.Width-borderThickness;
+            int height = ClientRectangle.Height-borderThickness;
+            int width = ClientRectangle.Width-borderThickness;
 
             //Text
-            TextRenderer.DrawText(g, Text, Font, new Point(textLocation, 1), Color.White);
+            TextRenderer.DrawText(g, Text, Font, new Point(textLocation, heightOffset-8), Color.White);
 
             //Left
             g.DrawLine(p, x, y, x, height);
