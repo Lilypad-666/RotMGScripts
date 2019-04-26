@@ -57,6 +57,8 @@ namespace RotMG_Scripts {
             Load += new EventHandler(FormLoaded);
 
             Data.LoadAllData();
+
+            Data.LoadRotMGData(true);
         }
 
         /// <summary>
@@ -99,6 +101,7 @@ namespace RotMG_Scripts {
 
             foreach (CustomCheckBox box in FindControls<CustomCheckBox>("", GameInfoPanel)) {
                 box.AutoCheck = false;
+                box.Cursor = Cursors.Default;
                 box.Loaded();
             }
 
@@ -653,7 +656,7 @@ namespace RotMG_Scripts {
         /// <summary>
         /// Converts the data from Data.debuffSettings and Data.otherSettings to check boxes on the screen
         /// </summary>
-        public static void RotMGDataToScreen() {
+        public static void RotMGDataToScreen(bool firstRun) {
             //Run through each checkbox on the game info tab
             foreach (CustomCheckBox box in FindControls<CustomCheckBox>("", Data.form.GameInfoPanel)) {
                 //Snag the number from the end of the String
@@ -662,18 +665,42 @@ namespace RotMG_Scripts {
                 //Sort by the type of category it's in and put it onto the page
                 if (number < Data.debuffSettings.Length) {
                     if (Data.debuffSettings[number] == 1) {
-                        box.SetChecked(true, true);
+                        if (firstRun) {
+                            box.SetChecked(true, true);
+                        }
+
+                        if (!box.Checked) {
+                            box.SetChecked(true, false);
+                        }
                     }
                     else {
-                        box.SetChecked(false, true);
+                        if (firstRun) {
+                            box.SetChecked(false, true);
+                        }
+
+                        if (box.Checked) {
+                            box.SetChecked(false, false);
+                        }
                     }
                 }
                 else if (number < Data.debuffSettings.Length + Data.otherSettings.Length) {
                     if (Data.otherSettings[number - Data.debuffSettings.Length] == 1) {
-                        box.SetChecked(true, true);
+                        if (firstRun) {
+                            box.SetChecked(true, true);
+                        }
+
+                        if (!box.Checked) {
+                            box.SetChecked(true, false);
+                        }
                     }
                     else {
-                        box.SetChecked(false, true);
+                        if (firstRun) {
+                            box.SetChecked(false, true);
+                        }
+
+                        if (box.Checked) {
+                            box.SetChecked(false, false);
+                        }
                     }
                 }
 

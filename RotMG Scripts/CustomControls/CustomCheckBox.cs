@@ -6,9 +6,10 @@ using System.Reflection;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
+
     public class CustomCheckBox : CheckBox {
 
-        class CustomColor {
+        private class CustomColor {
             private float r;
             private float g;
             private float b;
@@ -73,53 +74,51 @@ namespace RotMG_Scripts {
                     b = 0;
                 }
             }
-
-
         }
 
-        Color borderOffColor = Color.FromArgb(180, 180, 180);
+        private Color borderOffColor = Color.FromArgb(180, 180, 180);
 
-        Color borderOnColor = Color.FromArgb(21, 175, 199);
+        private Color borderOnColor = Color.FromArgb(21, 175, 199);
 
-        CustomColor currentBorderColor;
+        private CustomColor currentBorderColor;
 
-        Color backgroundOffColor = Color.FromArgb(255, 255, 255);
+        private Color backgroundOffColor = Color.FromArgb(255, 255, 255);
 
-        Color backgroundOnColor = Color.FromArgb(21, 130, 199);
+        private Color backgroundOnColor = Color.FromArgb(21, 130, 199);
 
-        CustomColor currentBackgroundColor;
+        private CustomColor currentBackgroundColor;
 
-        Color textOffColor = Color.FromArgb(150, 150, 150);
+        private Color textOffColor = Color.FromArgb(150, 150, 150);
 
-        Color textOnColor = Color.FromArgb(0, 0, 0);
+        private Color textOnColor = Color.FromArgb(0, 0, 0);
 
-        CustomColor currentTextColor;
+        private CustomColor currentTextColor;
 
-        float rBackInc;
-        float gBackInc;
-        float bBackInc;
+        private float rBackInc;
+        private float gBackInc;
+        private float bBackInc;
 
-        float rBordInc;
-        float gBordInc;
-        float bBordInc;
+        private float rBordInc;
+        private float gBordInc;
+        private float bBordInc;
 
-        float rTextInc;
-        float gTextInc;
-        float bTextInc;
+        private float rTextInc;
+        private float gTextInc;
+        private float bTextInc;
 
-        Bitmap[] images = new Bitmap[2];
+        private Bitmap[] images = new Bitmap[2];
 
-        int currentImage = 0;
+        private int currentImage = 0;
 
-        float imageAngle = 0;
-        bool rotating = false;
-        bool flipped = false;
+        private float imageAngle = 0;
+        private bool rotating = false;
+        private bool flipped = false;
 
-        int ticks = 0;
+        private int ticks = 0;
 
-        Timer rotateTimer;
+        private Timer rotateTimer;
 
-        int cornerRadius = 10;
+        private int cornerRadius = 10;
 
         public void Loaded() {
             Assembly myAssembly = Assembly.GetExecutingAssembly();
@@ -218,7 +217,6 @@ namespace RotMG_Scripts {
                 }
 
                 Refresh();
-
             }
             else {
                 StopRotate();
@@ -291,7 +289,6 @@ namespace RotMG_Scripts {
             g.CompositingMode = CompositingMode.SourceOver;
 
             if (images[0] != null) {
-
                 Bitmap image = images[currentImage];
 
                 if (rotating) {
@@ -299,7 +296,6 @@ namespace RotMG_Scripts {
                 }
 
                 g.DrawImage(image, 8, 8, 10, 10);
-
             }
 
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -321,7 +317,5 @@ namespace RotMG_Scripts {
             }
             return returnBitmap;
         }
-
-
     }
 }

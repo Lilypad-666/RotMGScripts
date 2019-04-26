@@ -24,11 +24,11 @@
         /// </summary>
         private void InitializeComponent() {
             RotMG_Scripts.CustomCheckBox MobInfo18;
-            this.AddScript = new System.Windows.Forms.Button();
-            this.HotkeyChange = new System.Windows.Forms.Button();
+            this.AddScript = new RotMG_Scripts.CustomButton();
+            this.HotkeyChange = new RotMG_Scripts.CustomButton();
             this.RushingHotkeyLabel = new System.Windows.Forms.Label();
             this.CheckedDescription = new System.Windows.Forms.Label();
-            this.HotkeyButton = new System.Windows.Forms.Button();
+            this.HotkeyButton = new RotMG_Scripts.CustomButton();
             this.HotkeyBox = new System.Windows.Forms.TextBox();
             this.OptionsLabel = new System.Windows.Forms.Label();
             this.ServerSettingsGroupBox = new RotMG_Scripts.CustomGroupBox();
@@ -54,6 +54,7 @@
             this.Etherite19 = new RotMG_Scripts.CustomCheckBox();
             this.CultStaff21 = new RotMG_Scripts.CustomCheckBox();
             this.OtherSettingsGroupBox = new RotMG_Scripts.CustomGroupBox();
+            this.OtherSettingsPanel = new System.Windows.Forms.TableLayoutPanel();
             this.LeftLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.ClientSettingsGroupBox = new RotMG_Scripts.CustomGroupBox();
             this.ClientDebuffsPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -72,6 +73,7 @@
             this.OffsetGroupBox.SuspendLayout();
             this.OffsetPanel.SuspendLayout();
             this.OtherSettingsGroupBox.SuspendLayout();
+            this.OtherSettingsPanel.SuspendLayout();
             this.LeftLayoutPanel.SuspendLayout();
             this.ClientSettingsGroupBox.SuspendLayout();
             this.ClientDebuffsPanel.SuspendLayout();
@@ -83,9 +85,10 @@
             MobInfo18.Anchor = System.Windows.Forms.AnchorStyles.None;
             MobInfo18.Checked = true;
             MobInfo18.CheckState = System.Windows.Forms.CheckState.Checked;
+            MobInfo18.Cursor = System.Windows.Forms.Cursors.Hand;
             MobInfo18.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             MobInfo18.ForeColor = System.Drawing.Color.White;
-            MobInfo18.Location = new System.Drawing.Point(14, 26);
+            MobInfo18.Location = new System.Drawing.Point(5, 2);
             MobInfo18.Margin = new System.Windows.Forms.Padding(0);
             MobInfo18.Name = "MobInfo18";
             MobInfo18.Size = new System.Drawing.Size(110, 26);
@@ -99,7 +102,7 @@
             this.AddScript.BackColor = System.Drawing.Color.White;
             this.AddScript.FlatAppearance.BorderSize = 0;
             this.AddScript.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddScript.Location = new System.Drawing.Point(399, 434);
+            this.AddScript.Location = new System.Drawing.Point(399, 432);
             this.AddScript.Name = "AddScript";
             this.AddScript.Size = new System.Drawing.Size(100, 27);
             this.AddScript.TabIndex = 7;
@@ -146,6 +149,7 @@
             this.HotkeyButton.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.HotkeyButton.AutoSize = true;
             this.HotkeyButton.BackColor = System.Drawing.Color.White;
+            this.HotkeyButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.HotkeyButton.FlatAppearance.BorderSize = 0;
             this.HotkeyButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HotkeyButton.Location = new System.Drawing.Point(322, 4);
@@ -234,6 +238,7 @@
             // Silence14
             // 
             this.Silence14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Silence14.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Silence14.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Silence14.ForeColor = System.Drawing.Color.White;
             this.Silence14.Location = new System.Drawing.Point(127, 152);
@@ -249,6 +254,7 @@
             this.Petrified5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Petrified5.Checked = true;
             this.Petrified5.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Petrified5.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Petrified5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Petrified5.ForeColor = System.Drawing.Color.White;
             this.Petrified5.Location = new System.Drawing.Point(5, 152);
@@ -262,6 +268,7 @@
             // PetStasis13
             // 
             this.PetStasis13.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.PetStasis13.Cursor = System.Windows.Forms.Cursors.Hand;
             this.PetStasis13.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PetStasis13.ForeColor = System.Drawing.Color.White;
             this.PetStasis13.Location = new System.Drawing.Point(127, 122);
@@ -275,6 +282,7 @@
             // Weak9
             // 
             this.Weak9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Weak9.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Weak9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Weak9.ForeColor = System.Drawing.Color.White;
             this.Weak9.Location = new System.Drawing.Point(127, 2);
@@ -288,6 +296,7 @@
             // Bleeding12
             // 
             this.Bleeding12.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Bleeding12.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Bleeding12.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Bleeding12.ForeColor = System.Drawing.Color.White;
             this.Bleeding12.Location = new System.Drawing.Point(127, 92);
@@ -303,6 +312,7 @@
             this.ArmorBroken4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ArmorBroken4.Checked = true;
             this.ArmorBroken4.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ArmorBroken4.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ArmorBroken4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ArmorBroken4.ForeColor = System.Drawing.Color.White;
             this.ArmorBroken4.Location = new System.Drawing.Point(5, 122);
@@ -316,6 +326,7 @@
             // Sick10
             // 
             this.Sick10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Sick10.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Sick10.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Sick10.ForeColor = System.Drawing.Color.White;
             this.Sick10.Location = new System.Drawing.Point(127, 32);
@@ -329,6 +340,7 @@
             // Stunned11
             // 
             this.Stunned11.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Stunned11.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Stunned11.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Stunned11.ForeColor = System.Drawing.Color.White;
             this.Stunned11.Location = new System.Drawing.Point(127, 62);
@@ -344,6 +356,7 @@
             this.Slowed1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Slowed1.Checked = true;
             this.Slowed1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Slowed1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Slowed1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Slowed1.ForeColor = System.Drawing.Color.White;
             this.Slowed1.Location = new System.Drawing.Point(5, 32);
@@ -359,6 +372,7 @@
             this.Paralyzed3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Paralyzed3.Checked = true;
             this.Paralyzed3.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Paralyzed3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Paralyzed3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Paralyzed3.ForeColor = System.Drawing.Color.White;
             this.Paralyzed3.Location = new System.Drawing.Point(5, 92);
@@ -372,6 +386,7 @@
             // Dazed2
             // 
             this.Dazed2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Dazed2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Dazed2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Dazed2.ForeColor = System.Drawing.Color.White;
             this.Dazed2.Location = new System.Drawing.Point(5, 62);
@@ -387,6 +402,7 @@
             this.Quiet0.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Quiet0.Checked = true;
             this.Quiet0.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Quiet0.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Quiet0.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Quiet0.ForeColor = System.Drawing.Color.White;
             this.Quiet0.Location = new System.Drawing.Point(5, 2);
@@ -460,6 +476,7 @@
             // VoidBow22
             // 
             this.VoidBow22.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.VoidBow22.Cursor = System.Windows.Forms.Cursors.Hand;
             this.VoidBow22.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.VoidBow22.ForeColor = System.Drawing.Color.White;
             this.VoidBow22.Location = new System.Drawing.Point(127, 32);
@@ -473,6 +490,7 @@
             // Colo20
             // 
             this.Colo20.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Colo20.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Colo20.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Colo20.ForeColor = System.Drawing.Color.White;
             this.Colo20.Location = new System.Drawing.Point(5, 32);
@@ -486,6 +504,7 @@
             // Etherite19
             // 
             this.Etherite19.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Etherite19.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Etherite19.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Etherite19.ForeColor = System.Drawing.Color.White;
             this.Etherite19.Location = new System.Drawing.Point(5, 2);
@@ -499,6 +518,7 @@
             // CultStaff21
             // 
             this.CultStaff21.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CultStaff21.Cursor = System.Windows.Forms.Cursors.Hand;
             this.CultStaff21.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CultStaff21.ForeColor = System.Drawing.Color.White;
             this.CultStaff21.Location = new System.Drawing.Point(127, 2);
@@ -512,18 +532,32 @@
             // OtherSettingsGroupBox
             // 
             this.OtherSettingsGroupBox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.OtherSettingsGroupBox.Controls.Add(MobInfo18);
+            this.OtherSettingsGroupBox.Controls.Add(this.OtherSettingsPanel);
             this.OtherSettingsGroupBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OtherSettingsGroupBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OtherSettingsGroupBox.ForeColor = System.Drawing.Color.White;
-            this.OtherSettingsGroupBox.Location = new System.Drawing.Point(0, 86);
-            this.OtherSettingsGroupBox.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.OtherSettingsGroupBox.Location = new System.Drawing.Point(2, 86);
+            this.OtherSettingsGroupBox.Margin = new System.Windows.Forms.Padding(2, 3, 0, 0);
             this.OtherSettingsGroupBox.Name = "OtherSettingsGroupBox";
             this.OtherSettingsGroupBox.Padding = new System.Windows.Forms.Padding(0);
-            this.OtherSettingsGroupBox.Size = new System.Drawing.Size(251, 233);
+            this.OtherSettingsGroupBox.Size = new System.Drawing.Size(249, 233);
             this.OtherSettingsGroupBox.TabIndex = 24;
             this.OtherSettingsGroupBox.TabStop = false;
             this.OtherSettingsGroupBox.Text = "Other Settings";
+            // 
+            // OtherSettingsPanel
+            // 
+            this.OtherSettingsPanel.ColumnCount = 2;
+            this.OtherSettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.OtherSettingsPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.OtherSettingsPanel.Controls.Add(MobInfo18, 0, 0);
+            this.OtherSettingsPanel.Location = new System.Drawing.Point(3, 14);
+            this.OtherSettingsPanel.Name = "OtherSettingsPanel";
+            this.OtherSettingsPanel.RowCount = 2;
+            this.OtherSettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.OtherSettingsPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.OtherSettingsPanel.Size = new System.Drawing.Size(243, 60);
+            this.OtherSettingsPanel.TabIndex = 1;
             // 
             // LeftLayoutPanel
             // 
@@ -577,6 +611,7 @@
             this.Darkness17.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Darkness17.Checked = true;
             this.Darkness17.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Darkness17.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Darkness17.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Darkness17.ForeColor = System.Drawing.Color.White;
             this.Darkness17.Location = new System.Drawing.Point(127, 62);
@@ -592,6 +627,7 @@
             this.Blind6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Blind6.Checked = true;
             this.Blind6.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Blind6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Blind6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Blind6.ForeColor = System.Drawing.Color.White;
             this.Blind6.Location = new System.Drawing.Point(5, 2);
@@ -607,6 +643,7 @@
             this.Confused16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Confused16.Checked = true;
             this.Confused16.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Confused16.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Confused16.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Confused16.ForeColor = System.Drawing.Color.White;
             this.Confused16.Location = new System.Drawing.Point(127, 32);
@@ -622,6 +659,7 @@
             this.Drunk7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Drunk7.Checked = true;
             this.Drunk7.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Drunk7.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Drunk7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Drunk7.ForeColor = System.Drawing.Color.White;
             this.Drunk7.Location = new System.Drawing.Point(5, 32);
@@ -637,6 +675,7 @@
             this.Hallucinating15.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Hallucinating15.Checked = true;
             this.Hallucinating15.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.Hallucinating15.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Hallucinating15.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Hallucinating15.ForeColor = System.Drawing.Color.White;
             this.Hallucinating15.Location = new System.Drawing.Point(127, 2);
@@ -650,6 +689,7 @@
             // Unstable8
             // 
             this.Unstable8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.Unstable8.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Unstable8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Unstable8.ForeColor = System.Drawing.Color.White;
             this.Unstable8.Location = new System.Drawing.Point(5, 62);
@@ -701,6 +741,7 @@
             this.OffsetGroupBox.ResumeLayout(false);
             this.OffsetPanel.ResumeLayout(false);
             this.OtherSettingsGroupBox.ResumeLayout(false);
+            this.OtherSettingsPanel.ResumeLayout(false);
             this.LeftLayoutPanel.ResumeLayout(false);
             this.ClientSettingsGroupBox.ResumeLayout(false);
             this.ClientDebuffsPanel.ResumeLayout(false);
@@ -713,11 +754,11 @@
 
         #endregion
 
-        public System.Windows.Forms.Button AddScript;
-        public System.Windows.Forms.Button HotkeyChange;
+        public RotMG_Scripts.CustomButton AddScript;
+        public RotMG_Scripts.CustomButton HotkeyChange;
         public System.Windows.Forms.Label RushingHotkeyLabel;
         public System.Windows.Forms.Label CheckedDescription;
-        public System.Windows.Forms.Button HotkeyButton;
+        public RotMG_Scripts.CustomButton HotkeyButton;
         public System.Windows.Forms.TextBox HotkeyBox;
         public System.Windows.Forms.Label OptionsLabel;
         public CustomGroupBox ServerSettingsGroupBox;
@@ -753,5 +794,6 @@
         public CustomCheckBox Petrified5;
         public System.Windows.Forms.FlowLayoutPanel RightLayoutPanel;
         public System.Windows.Forms.TableLayoutPanel OffsetPanel;
+        private System.Windows.Forms.TableLayoutPanel OtherSettingsPanel;
     }
 }

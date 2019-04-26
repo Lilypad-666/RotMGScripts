@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RotMG_Scripts {
+
     public static class Drawer {
 
         public static GraphicsPath RoundedRect(Rectangle bounds, int radius) {
@@ -20,18 +17,18 @@ namespace RotMG_Scripts {
                 return path;
             }
 
-            // top left arc  
+            // top left arc
             path.AddArc(arc, 180, 90);
 
-            // top right arc  
+            // top right arc
             arc.X = bounds.Right - diameter;
             path.AddArc(arc, 270, 90);
 
-            // bottom right arc  
+            // bottom right arc
             arc.Y = bounds.Bottom - diameter;
             path.AddArc(arc, 0, 90);
 
-            // bottom left arc 
+            // bottom left arc
             arc.X = bounds.Left;
             path.AddArc(arc, 90, 90);
 

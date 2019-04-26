@@ -6,7 +6,9 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
+
     public partial class PressAnyKeyBox : Form {
+
         //The current hotkey that we're updating, see the hotkeys array above for meanings
         private int updatingHotkey;
 
@@ -21,7 +23,7 @@ namespace RotMG_Scripts {
             KeyPreview = true;
 
             this.updatingHotkey = updatingHotkey;
-            
+
             HotkeyTitleBar.MouseDown += new MouseEventHandler(TitleBar);
             HotkeyLabel.MouseDown += new MouseEventHandler(TitleBar);
 
@@ -35,6 +37,7 @@ namespace RotMG_Scripts {
             if (updatingHotkey == 0) {
                 labelText = "Options";
                 OptionsWarningLabel.Text = "Must be A-Z, 0-9, or F1-F24";
+                OptionsWarningLabel.ForeColor = Color.Red;
             }
 
             if (updatingHotkey >= 1 && updatingHotkey <= 7) {
@@ -91,12 +94,8 @@ namespace RotMG_Scripts {
                     Regex regex = new Regex(@"^[0-9]+$");
                     if (key.Length > 1) {
                         if (key.Length > 3 || !key.Substring(0, 1).Equals("F") || !regex.IsMatch(key.Substring(1, key.Length - 1))) {
-
                             Console.WriteLine("Invalid Options key selected: " + key + ".", Console.logTypes.WARN);
 
-                            //Show a message saying that the key has to be in specifications
-                            OptionsWarningLabel.ForeColor = Color.Red;
-                            
                             return;
                         }
                     }

@@ -102,7 +102,6 @@ namespace RotMG_Scripts {
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void HotkeyButtonClick(object sender, EventArgs e) {
-
             //Get the index from the regex \d+, which grabs the number at the end of the string
             Data.form.SetHotkey(globalIndex);
         }

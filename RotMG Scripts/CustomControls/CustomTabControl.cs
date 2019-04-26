@@ -50,6 +50,7 @@ namespace RotMG_Scripts {
         /// Rectangles of the tabs' current locations
         /// </summary>
         private Rectangle[] tabLocations = new Rectangle[7];
+
         private int maxSize = 4;
         private bool forceChange = false;
 

@@ -28,19 +28,18 @@ namespace RotMG_Scripts {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.TitleBarPanel = new System.Windows.Forms.Panel();
             this.TitleLabel = new System.Windows.Forms.Label();
-            this.MinimizeButton = new RotMG_Scripts.TitleBarButton();
-            this.ExitButton = new RotMG_Scripts.TitleBarButton();
             this.MainTabControl = new RotMG_Scripts.CustomTabControl();
             this.MainTab = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.MainPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.OptionsLabel = new System.Windows.Forms.Label();
             this.HotkeyBox0 = new System.Windows.Forms.TextBox();
-            this.HotkeyButton0 = new System.Windows.Forms.Button();
+            this.HotkeyButton0 = new RotMG_Scripts.CustomButton();
             this.AspectRatioGroup = new RotMG_Scripts.CustomGroupBox();
-            this.AspectNone = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AspectFourThree = new System.Windows.Forms.CheckBox();
             this.AspectSixteenNine = new System.Windows.Forms.CheckBox();
+            this.AspectNone = new System.Windows.Forms.CheckBox();
             this.AspectOneOne = new System.Windows.Forms.CheckBox();
             this.MainPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.ProcessName = new System.Windows.Forms.TextBox();
@@ -54,12 +53,24 @@ namespace RotMG_Scripts {
             this.RushingTab = new System.Windows.Forms.TabPage();
             this.RushingTabControl = new RotMG_Scripts.CustomTabControl();
             this.GameInfoTab = new System.Windows.Forms.TabPage();
+            this.GameInfoPanel = new System.Windows.Forms.Panel();
+            this.GameInfoPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.WindowWidthLabel = new System.Windows.Forms.Label();
+            this.WindowHeightBox = new System.Windows.Forms.TextBox();
+            this.WindowXBox = new System.Windows.Forms.TextBox();
+            this.WindowXLabel = new System.Windows.Forms.Label();
+            this.WindowWidthBox = new System.Windows.Forms.TextBox();
+            this.WindowYLabel = new System.Windows.Forms.Label();
+            this.WindowHeightLabel = new System.Windows.Forms.Label();
+            this.WindowYBox = new System.Windows.Forms.TextBox();
+            this.WindowInfoLabel = new System.Windows.Forms.Label();
             this.DebuggingTab = new System.Windows.Forms.TabPage();
             this.DebugTabControl = new RotMG_Scripts.CustomTabControl();
             this.ConsoleTab = new System.Windows.Forms.TabPage();
             this.ConsolePanel = new System.Windows.Forms.Panel();
             this.RichConsoleText = new System.Windows.Forms.RichTextBox();
-            this.ConsoleSendButton = new System.Windows.Forms.Button();
+            this.ConsoleSendButton = new RotMG_Scripts.CustomButton();
             this.ConsoleInput = new System.Windows.Forms.TextBox();
             this.ProgramInfoTab = new System.Windows.Forms.TabPage();
             this.DebuggingInfoPanel = new System.Windows.Forms.Panel();
@@ -73,29 +84,23 @@ namespace RotMG_Scripts {
             this.DebuggingInfoPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.GameInfoPanel = new System.Windows.Forms.Panel();
-            this.GameInfoPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.WindowInfoLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.WindowYBox = new System.Windows.Forms.TextBox();
-            this.WindowHeightLabel = new System.Windows.Forms.Label();
-            this.WindowYLabel = new System.Windows.Forms.Label();
-            this.WindowWidthBox = new System.Windows.Forms.TextBox();
-            this.WindowXLabel = new System.Windows.Forms.Label();
-            this.WindowXBox = new System.Windows.Forms.TextBox();
-            this.WindowHeightBox = new System.Windows.Forms.TextBox();
-            this.WindowWidthLabel = new System.Windows.Forms.Label();
+            this.MinimizeButton = new RotMG_Scripts.TitleBarButton();
+            this.ExitButton = new RotMG_Scripts.TitleBarButton();
             this.TitleBarPanel.SuspendLayout();
             this.MainTabControl.SuspendLayout();
             this.MainTab.SuspendLayout();
             this.panel2.SuspendLayout();
             this.MainPanel2.SuspendLayout();
             this.AspectRatioGroup.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.MainPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateDelayInput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchDelayInput)).BeginInit();
             this.RushingTab.SuspendLayout();
             this.GameInfoTab.SuspendLayout();
+            this.GameInfoPanel.SuspendLayout();
+            this.GameInfoPanel1.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.DebuggingTab.SuspendLayout();
             this.DebugTabControl.SuspendLayout();
             this.ConsoleTab.SuspendLayout();
@@ -104,9 +109,6 @@ namespace RotMG_Scripts {
             this.DebuggingInfoPanel.SuspendLayout();
             this.DebuggingInfoPanel2.SuspendLayout();
             this.DebuggingInfoPanel1.SuspendLayout();
-            this.GameInfoPanel.SuspendLayout();
-            this.GameInfoPanel1.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // TitleBarPanel
@@ -131,34 +133,6 @@ namespace RotMG_Scripts {
             this.TitleLabel.Size = new System.Drawing.Size(96, 17);
             this.TitleLabel.TabIndex = 29;
             this.TitleLabel.Text = "RotMG Scripts ";
-            // 
-            // MinimizeButton
-            // 
-            this.MinimizeButton.BackColor = System.Drawing.Color.Gray;
-            this.MinimizeButton.FlatAppearance.BorderSize = 0;
-            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinimizeButton.Font = new System.Drawing.Font("Marlett", 12F, System.Drawing.FontStyle.Bold);
-            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
-            this.MinimizeButton.Location = new System.Drawing.Point(440, -2);
-            this.MinimizeButton.Name = "MinimizeButton";
-            this.MinimizeButton.Size = new System.Drawing.Size(55, 32);
-            this.MinimizeButton.TabIndex = 28;
-            this.MinimizeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.MinimizeButton.UseCompatibleTextRendering = true;
-            this.MinimizeButton.UseVisualStyleBackColor = false;
-            // 
-            // ExitButton
-            // 
-            this.ExitButton.BackColor = System.Drawing.Color.Red;
-            this.ExitButton.FlatAppearance.BorderSize = 0;
-            this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExitButton.Font = new System.Drawing.Font("Marlett", 12F);
-            this.ExitButton.ForeColor = System.Drawing.Color.White;
-            this.ExitButton.Location = new System.Drawing.Point(495, 0);
-            this.ExitButton.Name = "ExitButton";
-            this.ExitButton.Size = new System.Drawing.Size(55, 30);
-            this.ExitButton.TabIndex = 27;
-            this.ExitButton.UseVisualStyleBackColor = false;
             // 
             // MainTabControl
             // 
@@ -217,7 +191,8 @@ namespace RotMG_Scripts {
             this.MainPanel2.Controls.Add(this.HotkeyBox0, 0, 2);
             this.MainPanel2.Controls.Add(this.HotkeyButton0, 0, 3);
             this.MainPanel2.Controls.Add(this.AspectRatioGroup, 0, 5);
-            this.MainPanel2.Location = new System.Drawing.Point(6, 235);
+            this.MainPanel2.Location = new System.Drawing.Point(0, 230);
+            this.MainPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.MainPanel2.Name = "MainPanel2";
             this.MainPanel2.RowCount = 6;
             this.MainPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
@@ -226,7 +201,7 @@ namespace RotMG_Scripts {
             this.MainPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.MainPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.MainPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
-            this.MainPanel2.Size = new System.Drawing.Size(510, 266);
+            this.MainPanel2.Size = new System.Drawing.Size(522, 274);
             this.MainPanel2.TabIndex = 28;
             // 
             // OptionsLabel
@@ -236,7 +211,7 @@ namespace RotMG_Scripts {
             this.OptionsLabel.BackColor = System.Drawing.Color.Transparent;
             this.OptionsLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OptionsLabel.ForeColor = System.Drawing.Color.White;
-            this.OptionsLabel.Location = new System.Drawing.Point(214, 34);
+            this.OptionsLabel.Location = new System.Drawing.Point(220, 39);
             this.OptionsLabel.Name = "OptionsLabel";
             this.OptionsLabel.Size = new System.Drawing.Size(82, 17);
             this.OptionsLabel.TabIndex = 9;
@@ -249,7 +224,7 @@ namespace RotMG_Scripts {
             this.HotkeyBox0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.HotkeyBox0.Cursor = System.Windows.Forms.Cursors.Default;
             this.HotkeyBox0.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HotkeyBox0.Location = new System.Drawing.Point(186, 60);
+            this.HotkeyBox0.Location = new System.Drawing.Point(192, 65);
             this.HotkeyBox0.Name = "HotkeyBox0";
             this.HotkeyBox0.ReadOnly = true;
             this.HotkeyBox0.Size = new System.Drawing.Size(137, 25);
@@ -261,9 +236,10 @@ namespace RotMG_Scripts {
             // 
             this.HotkeyButton0.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.HotkeyButton0.BackColor = System.Drawing.Color.White;
+            this.HotkeyButton0.Cursor = System.Windows.Forms.Cursors.Hand;
             this.HotkeyButton0.FlatAppearance.BorderSize = 0;
             this.HotkeyButton0.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HotkeyButton0.Location = new System.Drawing.Point(205, 99);
+            this.HotkeyButton0.Location = new System.Drawing.Point(211, 104);
             this.HotkeyButton0.Margin = new System.Windows.Forms.Padding(0);
             this.HotkeyButton0.Name = "HotkeyButton0";
             this.HotkeyButton0.Size = new System.Drawing.Size(100, 27);
@@ -275,37 +251,43 @@ namespace RotMG_Scripts {
             // 
             this.AspectRatioGroup.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.AspectRatioGroup.BackColor = System.Drawing.Color.Transparent;
-            this.AspectRatioGroup.Controls.Add(this.AspectNone);
-            this.AspectRatioGroup.Controls.Add(this.AspectFourThree);
-            this.AspectRatioGroup.Controls.Add(this.AspectSixteenNine);
-            this.AspectRatioGroup.Controls.Add(this.AspectOneOne);
+            this.AspectRatioGroup.Controls.Add(this.tableLayoutPanel1);
             this.AspectRatioGroup.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AspectRatioGroup.ForeColor = System.Drawing.Color.White;
-            this.AspectRatioGroup.Location = new System.Drawing.Point(161, 158);
+            this.AspectRatioGroup.Location = new System.Drawing.Point(169, 174);
             this.AspectRatioGroup.Name = "AspectRatioGroup";
-            this.AspectRatioGroup.Size = new System.Drawing.Size(187, 105);
+            this.AspectRatioGroup.Size = new System.Drawing.Size(184, 88);
             this.AspectRatioGroup.TabIndex = 26;
             this.AspectRatioGroup.TabStop = false;
             this.AspectRatioGroup.Text = "Lock Game To Aspect Ratio";
             // 
-            // AspectNone
+            // tableLayoutPanel1
             // 
-            this.AspectNone.AutoSize = true;
-            this.AspectNone.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AspectNone.ForeColor = System.Drawing.Color.White;
-            this.AspectNone.Location = new System.Drawing.Point(105, 61);
-            this.AspectNone.Name = "AspectNone";
-            this.AspectNone.Size = new System.Drawing.Size(59, 21);
-            this.AspectNone.TabIndex = 3;
-            this.AspectNone.Text = "None";
-            this.AspectNone.UseVisualStyleBackColor = true;
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.90909F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.90909F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.090909F));
+            this.tableLayoutPanel1.Controls.Add(this.AspectFourThree, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.AspectSixteenNine, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.AspectNone, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.AspectOneOne, 2, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 15);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(178, 70);
+            this.tableLayoutPanel1.TabIndex = 4;
             // 
             // AspectFourThree
             // 
+            this.AspectFourThree.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.AspectFourThree.AutoSize = true;
             this.AspectFourThree.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AspectFourThree.ForeColor = System.Drawing.Color.White;
-            this.AspectFourThree.Location = new System.Drawing.Point(26, 38);
+            this.AspectFourThree.Location = new System.Drawing.Point(19, 7);
             this.AspectFourThree.Name = "AspectFourThree";
             this.AspectFourThree.Size = new System.Drawing.Size(44, 21);
             this.AspectFourThree.TabIndex = 0;
@@ -314,22 +296,37 @@ namespace RotMG_Scripts {
             // 
             // AspectSixteenNine
             // 
+            this.AspectSixteenNine.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.AspectSixteenNine.AutoSize = true;
             this.AspectSixteenNine.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AspectSixteenNine.ForeColor = System.Drawing.Color.White;
-            this.AspectSixteenNine.Location = new System.Drawing.Point(26, 62);
+            this.AspectSixteenNine.Location = new System.Drawing.Point(19, 42);
             this.AspectSixteenNine.Name = "AspectSixteenNine";
             this.AspectSixteenNine.Size = new System.Drawing.Size(51, 21);
             this.AspectSixteenNine.TabIndex = 1;
             this.AspectSixteenNine.Text = "16:9";
             this.AspectSixteenNine.UseVisualStyleBackColor = true;
             // 
+            // AspectNone
+            // 
+            this.AspectNone.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.AspectNone.AutoSize = true;
+            this.AspectNone.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AspectNone.ForeColor = System.Drawing.Color.White;
+            this.AspectNone.Location = new System.Drawing.Point(91, 42);
+            this.AspectNone.Name = "AspectNone";
+            this.AspectNone.Size = new System.Drawing.Size(59, 21);
+            this.AspectNone.TabIndex = 3;
+            this.AspectNone.Text = "None";
+            this.AspectNone.UseVisualStyleBackColor = true;
+            // 
             // AspectOneOne
             // 
+            this.AspectOneOne.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.AspectOneOne.AutoSize = true;
             this.AspectOneOne.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AspectOneOne.ForeColor = System.Drawing.Color.White;
-            this.AspectOneOne.Location = new System.Drawing.Point(105, 38);
+            this.AspectOneOne.Location = new System.Drawing.Point(91, 7);
             this.AspectOneOne.Name = "AspectOneOne";
             this.AspectOneOne.Size = new System.Drawing.Size(44, 21);
             this.AspectOneOne.TabIndex = 2;
@@ -351,23 +348,25 @@ namespace RotMG_Scripts {
             this.MainPanel1.Controls.Add(this.UpdateDelayLabel, 2, 4);
             this.MainPanel1.Controls.Add(this.SearchDelayInput, 1, 5);
             this.MainPanel1.Controls.Add(this.SeachDelayLabel, 1, 4);
-            this.MainPanel1.Location = new System.Drawing.Point(6, 8);
+            this.MainPanel1.Location = new System.Drawing.Point(0, 8);
+            this.MainPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.MainPanel1.Name = "MainPanel1";
-            this.MainPanel1.RowCount = 6;
-            this.MainPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.MainPanel1.RowCount = 7;
+            this.MainPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.MainPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MainPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.MainPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.MainPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.MainPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.MainPanel1.Size = new System.Drawing.Size(510, 221);
+            this.MainPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.MainPanel1.Size = new System.Drawing.Size(522, 221);
             this.MainPanel1.TabIndex = 27;
             // 
             // ProcessName
             // 
             this.ProcessName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.ProcessName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ProcessName.Location = new System.Drawing.Point(282, 107);
+            this.ProcessName.Location = new System.Drawing.Point(289, 87);
             this.ProcessName.Name = "ProcessName";
             this.ProcessName.Size = new System.Drawing.Size(150, 25);
             this.ProcessName.TabIndex = 4;
@@ -381,7 +380,7 @@ namespace RotMG_Scripts {
             this.ProcessNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.ProcessNameLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ProcessNameLabel.ForeColor = System.Drawing.Color.White;
-            this.ProcessNameLabel.Location = new System.Drawing.Point(309, 81);
+            this.ProcessNameLabel.Location = new System.Drawing.Point(316, 61);
             this.ProcessNameLabel.Name = "ProcessNameLabel";
             this.ProcessNameLabel.Size = new System.Drawing.Size(95, 17);
             this.ProcessNameLabel.TabIndex = 5;
@@ -394,7 +393,7 @@ namespace RotMG_Scripts {
             this.RotMGProcess.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.RotMGProcess.Cursor = System.Windows.Forms.Cursors.Default;
             this.RotMGProcess.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RotMGProcess.Location = new System.Drawing.Point(78, 107);
+            this.RotMGProcess.Location = new System.Drawing.Point(81, 87);
             this.RotMGProcess.Name = "RotMGProcess";
             this.RotMGProcess.ReadOnly = true;
             this.RotMGProcess.Size = new System.Drawing.Size(150, 25);
@@ -409,7 +408,7 @@ namespace RotMG_Scripts {
             this.RotMGFound.BackColor = System.Drawing.Color.Transparent;
             this.RotMGFound.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RotMGFound.ForeColor = System.Drawing.Color.White;
-            this.RotMGFound.Location = new System.Drawing.Point(107, 81);
+            this.RotMGFound.Location = new System.Drawing.Point(110, 61);
             this.RotMGFound.Name = "RotMGFound";
             this.RotMGFound.Size = new System.Drawing.Size(92, 17);
             this.RotMGFound.TabIndex = 0;
@@ -425,7 +424,7 @@ namespace RotMG_Scripts {
             0,
             0,
             0});
-            this.UpdateDelayInput.Location = new System.Drawing.Point(282, 188);
+            this.UpdateDelayInput.Location = new System.Drawing.Point(289, 167);
             this.UpdateDelayInput.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -453,7 +452,7 @@ namespace RotMG_Scripts {
             this.UpdateDelayLabel.BackColor = System.Drawing.Color.Transparent;
             this.UpdateDelayLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UpdateDelayLabel.ForeColor = System.Drawing.Color.White;
-            this.UpdateDelayLabel.Location = new System.Drawing.Point(297, 161);
+            this.UpdateDelayLabel.Location = new System.Drawing.Point(304, 141);
             this.UpdateDelayLabel.Name = "UpdateDelayLabel";
             this.UpdateDelayLabel.Size = new System.Drawing.Size(119, 17);
             this.UpdateDelayLabel.TabIndex = 23;
@@ -469,7 +468,7 @@ namespace RotMG_Scripts {
             0,
             0,
             0});
-            this.SearchDelayInput.Location = new System.Drawing.Point(78, 188);
+            this.SearchDelayInput.Location = new System.Drawing.Point(81, 167);
             this.SearchDelayInput.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -497,7 +496,7 @@ namespace RotMG_Scripts {
             this.SeachDelayLabel.BackColor = System.Drawing.Color.Transparent;
             this.SeachDelayLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SeachDelayLabel.ForeColor = System.Drawing.Color.White;
-            this.SeachDelayLabel.Location = new System.Drawing.Point(95, 161);
+            this.SeachDelayLabel.Location = new System.Drawing.Point(98, 141);
             this.SeachDelayLabel.Name = "SeachDelayLabel";
             this.SeachDelayLabel.Size = new System.Drawing.Size(115, 17);
             this.SeachDelayLabel.TabIndex = 21;
@@ -549,6 +548,177 @@ namespace RotMG_Scripts {
             this.GameInfoTab.Size = new System.Drawing.Size(522, 504);
             this.GameInfoTab.TabIndex = 6;
             this.GameInfoTab.Text = "Game Info";
+            // 
+            // GameInfoPanel
+            // 
+            this.GameInfoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.GameInfoPanel.Controls.Add(this.GameInfoPanel1);
+            this.GameInfoPanel.Location = new System.Drawing.Point(0, 0);
+            this.GameInfoPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.GameInfoPanel.Name = "GameInfoPanel";
+            this.GameInfoPanel.Size = new System.Drawing.Size(522, 504);
+            this.GameInfoPanel.TabIndex = 27;
+            // 
+            // GameInfoPanel1
+            // 
+            this.GameInfoPanel1.ColumnCount = 4;
+            this.GameInfoPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.GameInfoPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.GameInfoPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.GameInfoPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.GameInfoPanel1.Controls.Add(this.tableLayoutPanel4, 2, 0);
+            this.GameInfoPanel1.Controls.Add(this.WindowInfoLabel, 1, 0);
+            this.GameInfoPanel1.Location = new System.Drawing.Point(0, 8);
+            this.GameInfoPanel1.Name = "GameInfoPanel1";
+            this.GameInfoPanel1.RowCount = 1;
+            this.GameInfoPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.GameInfoPanel1.Size = new System.Drawing.Size(522, 64);
+            this.GameInfoPanel1.TabIndex = 27;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel4.ColumnCount = 5;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.WindowWidthLabel, 3, 0);
+            this.tableLayoutPanel4.Controls.Add(this.WindowHeightBox, 4, 1);
+            this.tableLayoutPanel4.Controls.Add(this.WindowXBox, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.WindowXLabel, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.WindowWidthBox, 4, 0);
+            this.tableLayoutPanel4.Controls.Add(this.WindowYLabel, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.WindowHeightLabel, 3, 1);
+            this.tableLayoutPanel4.Controls.Add(this.WindowYBox, 1, 1);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(230, 3);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 2;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(209, 58);
+            this.tableLayoutPanel4.TabIndex = 28;
+            // 
+            // WindowWidthLabel
+            // 
+            this.WindowWidthLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.WindowWidthLabel.AutoSize = true;
+            this.WindowWidthLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WindowWidthLabel.ForeColor = System.Drawing.Color.White;
+            this.WindowWidthLabel.Location = new System.Drawing.Point(111, 6);
+            this.WindowWidthLabel.Name = "WindowWidthLabel";
+            this.WindowWidthLabel.Size = new System.Drawing.Size(45, 17);
+            this.WindowWidthLabel.TabIndex = 3;
+            this.WindowWidthLabel.Text = "Width:";
+            // 
+            // WindowHeightBox
+            // 
+            this.WindowHeightBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.WindowHeightBox.BackColor = System.Drawing.Color.Gray;
+            this.WindowHeightBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WindowHeightBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.WindowHeightBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WindowHeightBox.Location = new System.Drawing.Point(164, 32);
+            this.WindowHeightBox.Name = "WindowHeightBox";
+            this.WindowHeightBox.ReadOnly = true;
+            this.WindowHeightBox.Size = new System.Drawing.Size(40, 25);
+            this.WindowHeightBox.TabIndex = 6;
+            this.WindowHeightBox.Text = "N/A";
+            this.WindowHeightBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // WindowXBox
+            // 
+            this.WindowXBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.WindowXBox.BackColor = System.Drawing.Color.Gray;
+            this.WindowXBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WindowXBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.WindowXBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WindowXBox.Location = new System.Drawing.Point(35, 3);
+            this.WindowXBox.Name = "WindowXBox";
+            this.WindowXBox.ReadOnly = true;
+            this.WindowXBox.Size = new System.Drawing.Size(40, 25);
+            this.WindowXBox.TabIndex = 5;
+            this.WindowXBox.Text = "N/A";
+            this.WindowXBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // WindowXLabel
+            // 
+            this.WindowXLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.WindowXLabel.AutoSize = true;
+            this.WindowXLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WindowXLabel.ForeColor = System.Drawing.Color.White;
+            this.WindowXLabel.Location = new System.Drawing.Point(8, 6);
+            this.WindowXLabel.Name = "WindowXLabel";
+            this.WindowXLabel.Size = new System.Drawing.Size(19, 17);
+            this.WindowXLabel.TabIndex = 1;
+            this.WindowXLabel.Text = "X:";
+            // 
+            // WindowWidthBox
+            // 
+            this.WindowWidthBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.WindowWidthBox.BackColor = System.Drawing.Color.Gray;
+            this.WindowWidthBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WindowWidthBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.WindowWidthBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WindowWidthBox.Location = new System.Drawing.Point(164, 3);
+            this.WindowWidthBox.Name = "WindowWidthBox";
+            this.WindowWidthBox.ReadOnly = true;
+            this.WindowWidthBox.Size = new System.Drawing.Size(40, 25);
+            this.WindowWidthBox.TabIndex = 7;
+            this.WindowWidthBox.Text = "N/A";
+            this.WindowWidthBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // WindowYLabel
+            // 
+            this.WindowYLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.WindowYLabel.AutoSize = true;
+            this.WindowYLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WindowYLabel.ForeColor = System.Drawing.Color.White;
+            this.WindowYLabel.Location = new System.Drawing.Point(9, 35);
+            this.WindowYLabel.Name = "WindowYLabel";
+            this.WindowYLabel.Size = new System.Drawing.Size(18, 17);
+            this.WindowYLabel.TabIndex = 2;
+            this.WindowYLabel.Text = "Y:";
+            // 
+            // WindowHeightLabel
+            // 
+            this.WindowHeightLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.WindowHeightLabel.AutoSize = true;
+            this.WindowHeightLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WindowHeightLabel.ForeColor = System.Drawing.Color.White;
+            this.WindowHeightLabel.Location = new System.Drawing.Point(107, 35);
+            this.WindowHeightLabel.Name = "WindowHeightLabel";
+            this.WindowHeightLabel.Size = new System.Drawing.Size(49, 17);
+            this.WindowHeightLabel.TabIndex = 4;
+            this.WindowHeightLabel.Text = "Height:";
+            // 
+            // WindowYBox
+            // 
+            this.WindowYBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.WindowYBox.BackColor = System.Drawing.Color.Gray;
+            this.WindowYBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.WindowYBox.Cursor = System.Windows.Forms.Cursors.Default;
+            this.WindowYBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WindowYBox.Location = new System.Drawing.Point(35, 32);
+            this.WindowYBox.Name = "WindowYBox";
+            this.WindowYBox.ReadOnly = true;
+            this.WindowYBox.Size = new System.Drawing.Size(40, 25);
+            this.WindowYBox.TabIndex = 8;
+            this.WindowYBox.Text = "N/A";
+            this.WindowYBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // WindowInfoLabel
+            // 
+            this.WindowInfoLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.WindowInfoLabel.AutoSize = true;
+            this.WindowInfoLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WindowInfoLabel.ForeColor = System.Drawing.Color.White;
+            this.WindowInfoLabel.Location = new System.Drawing.Point(69, 23);
+            this.WindowInfoLabel.Name = "WindowInfoLabel";
+            this.WindowInfoLabel.Size = new System.Drawing.Size(122, 17);
+            this.WindowInfoLabel.TabIndex = 0;
+            this.WindowInfoLabel.Text = "Game Window Info:";
             // 
             // DebuggingTab
             // 
@@ -774,7 +944,7 @@ namespace RotMG_Scripts {
             this.DebuggingInfoPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.DebuggingInfoPanel1.Controls.Add(this.label3, 0, 0);
             this.DebuggingInfoPanel1.Controls.Add(this.label2, 0, 1);
-            this.DebuggingInfoPanel1.Location = new System.Drawing.Point(2, 31);
+            this.DebuggingInfoPanel1.Location = new System.Drawing.Point(2, 21);
             this.DebuggingInfoPanel1.Name = "DebuggingInfoPanel1";
             this.DebuggingInfoPanel1.RowCount = 2;
             this.DebuggingInfoPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -806,176 +976,33 @@ namespace RotMG_Scripts {
             this.label2.TabIndex = 14;
             this.label2.Text = "immediately change your RotMG password.";
             // 
-            // GameInfoPanel
+            // MinimizeButton
             // 
-            this.GameInfoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.GameInfoPanel.Controls.Add(this.GameInfoPanel1);
-            this.GameInfoPanel.Location = new System.Drawing.Point(0, 0);
-            this.GameInfoPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.GameInfoPanel.Name = "GameInfoPanel";
-            this.GameInfoPanel.Size = new System.Drawing.Size(522, 504);
-            this.GameInfoPanel.TabIndex = 27;
+            this.MinimizeButton.BackColor = System.Drawing.Color.Gray;
+            this.MinimizeButton.FlatAppearance.BorderSize = 0;
+            this.MinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinimizeButton.Font = new System.Drawing.Font("Marlett", 12F, System.Drawing.FontStyle.Bold);
+            this.MinimizeButton.ForeColor = System.Drawing.Color.White;
+            this.MinimizeButton.Location = new System.Drawing.Point(440, -2);
+            this.MinimizeButton.Name = "MinimizeButton";
+            this.MinimizeButton.Size = new System.Drawing.Size(55, 32);
+            this.MinimizeButton.TabIndex = 28;
+            this.MinimizeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.MinimizeButton.UseCompatibleTextRendering = true;
+            this.MinimizeButton.UseVisualStyleBackColor = false;
             // 
-            // GameInfoPanel1
+            // ExitButton
             // 
-            this.GameInfoPanel1.ColumnCount = 4;
-            this.GameInfoPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.GameInfoPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.GameInfoPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.GameInfoPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.GameInfoPanel1.Controls.Add(this.tableLayoutPanel4, 2, 0);
-            this.GameInfoPanel1.Controls.Add(this.WindowInfoLabel, 1, 0);
-            this.GameInfoPanel1.Location = new System.Drawing.Point(0, 8);
-            this.GameInfoPanel1.Name = "GameInfoPanel1";
-            this.GameInfoPanel1.RowCount = 1;
-            this.GameInfoPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.GameInfoPanel1.Size = new System.Drawing.Size(522, 64);
-            this.GameInfoPanel1.TabIndex = 27;
-            // 
-            // WindowInfoLabel
-            // 
-            this.WindowInfoLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.WindowInfoLabel.AutoSize = true;
-            this.WindowInfoLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowInfoLabel.ForeColor = System.Drawing.Color.White;
-            this.WindowInfoLabel.Location = new System.Drawing.Point(69, 23);
-            this.WindowInfoLabel.Name = "WindowInfoLabel";
-            this.WindowInfoLabel.Size = new System.Drawing.Size(122, 17);
-            this.WindowInfoLabel.TabIndex = 0;
-            this.WindowInfoLabel.Text = "Game Window Info:";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel4.ColumnCount = 5;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.WindowWidthLabel, 3, 0);
-            this.tableLayoutPanel4.Controls.Add(this.WindowHeightBox, 4, 1);
-            this.tableLayoutPanel4.Controls.Add(this.WindowXBox, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.WindowXLabel, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.WindowWidthBox, 4, 0);
-            this.tableLayoutPanel4.Controls.Add(this.WindowYLabel, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.WindowHeightLabel, 3, 1);
-            this.tableLayoutPanel4.Controls.Add(this.WindowYBox, 1, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(230, 3);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(209, 58);
-            this.tableLayoutPanel4.TabIndex = 28;
-            // 
-            // WindowYBox
-            // 
-            this.WindowYBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.WindowYBox.BackColor = System.Drawing.Color.Gray;
-            this.WindowYBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.WindowYBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.WindowYBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowYBox.Location = new System.Drawing.Point(35, 32);
-            this.WindowYBox.Name = "WindowYBox";
-            this.WindowYBox.ReadOnly = true;
-            this.WindowYBox.Size = new System.Drawing.Size(40, 25);
-            this.WindowYBox.TabIndex = 8;
-            this.WindowYBox.Text = "N/A";
-            this.WindowYBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // WindowHeightLabel
-            // 
-            this.WindowHeightLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.WindowHeightLabel.AutoSize = true;
-            this.WindowHeightLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowHeightLabel.ForeColor = System.Drawing.Color.White;
-            this.WindowHeightLabel.Location = new System.Drawing.Point(107, 35);
-            this.WindowHeightLabel.Name = "WindowHeightLabel";
-            this.WindowHeightLabel.Size = new System.Drawing.Size(49, 17);
-            this.WindowHeightLabel.TabIndex = 4;
-            this.WindowHeightLabel.Text = "Height:";
-            // 
-            // WindowYLabel
-            // 
-            this.WindowYLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.WindowYLabel.AutoSize = true;
-            this.WindowYLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowYLabel.ForeColor = System.Drawing.Color.White;
-            this.WindowYLabel.Location = new System.Drawing.Point(9, 35);
-            this.WindowYLabel.Name = "WindowYLabel";
-            this.WindowYLabel.Size = new System.Drawing.Size(18, 17);
-            this.WindowYLabel.TabIndex = 2;
-            this.WindowYLabel.Text = "Y:";
-            // 
-            // WindowWidthBox
-            // 
-            this.WindowWidthBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.WindowWidthBox.BackColor = System.Drawing.Color.Gray;
-            this.WindowWidthBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.WindowWidthBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.WindowWidthBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowWidthBox.Location = new System.Drawing.Point(164, 3);
-            this.WindowWidthBox.Name = "WindowWidthBox";
-            this.WindowWidthBox.ReadOnly = true;
-            this.WindowWidthBox.Size = new System.Drawing.Size(40, 25);
-            this.WindowWidthBox.TabIndex = 7;
-            this.WindowWidthBox.Text = "N/A";
-            this.WindowWidthBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // WindowXLabel
-            // 
-            this.WindowXLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.WindowXLabel.AutoSize = true;
-            this.WindowXLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowXLabel.ForeColor = System.Drawing.Color.White;
-            this.WindowXLabel.Location = new System.Drawing.Point(8, 6);
-            this.WindowXLabel.Name = "WindowXLabel";
-            this.WindowXLabel.Size = new System.Drawing.Size(19, 17);
-            this.WindowXLabel.TabIndex = 1;
-            this.WindowXLabel.Text = "X:";
-            // 
-            // WindowXBox
-            // 
-            this.WindowXBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.WindowXBox.BackColor = System.Drawing.Color.Gray;
-            this.WindowXBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.WindowXBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.WindowXBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowXBox.Location = new System.Drawing.Point(35, 3);
-            this.WindowXBox.Name = "WindowXBox";
-            this.WindowXBox.ReadOnly = true;
-            this.WindowXBox.Size = new System.Drawing.Size(40, 25);
-            this.WindowXBox.TabIndex = 5;
-            this.WindowXBox.Text = "N/A";
-            this.WindowXBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // WindowHeightBox
-            // 
-            this.WindowHeightBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.WindowHeightBox.BackColor = System.Drawing.Color.Gray;
-            this.WindowHeightBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.WindowHeightBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.WindowHeightBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowHeightBox.Location = new System.Drawing.Point(164, 32);
-            this.WindowHeightBox.Name = "WindowHeightBox";
-            this.WindowHeightBox.ReadOnly = true;
-            this.WindowHeightBox.Size = new System.Drawing.Size(40, 25);
-            this.WindowHeightBox.TabIndex = 6;
-            this.WindowHeightBox.Text = "N/A";
-            this.WindowHeightBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // WindowWidthLabel
-            // 
-            this.WindowWidthLabel.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.WindowWidthLabel.AutoSize = true;
-            this.WindowWidthLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.WindowWidthLabel.ForeColor = System.Drawing.Color.White;
-            this.WindowWidthLabel.Location = new System.Drawing.Point(111, 6);
-            this.WindowWidthLabel.Name = "WindowWidthLabel";
-            this.WindowWidthLabel.Size = new System.Drawing.Size(45, 17);
-            this.WindowWidthLabel.TabIndex = 3;
-            this.WindowWidthLabel.Text = "Width:";
+            this.ExitButton.BackColor = System.Drawing.Color.Red;
+            this.ExitButton.FlatAppearance.BorderSize = 0;
+            this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExitButton.Font = new System.Drawing.Font("Marlett", 12F);
+            this.ExitButton.ForeColor = System.Drawing.Color.White;
+            this.ExitButton.Location = new System.Drawing.Point(495, 0);
+            this.ExitButton.Name = "ExitButton";
+            this.ExitButton.Size = new System.Drawing.Size(55, 30);
+            this.ExitButton.TabIndex = 27;
+            this.ExitButton.UseVisualStyleBackColor = false;
             // 
             // MainForm
             // 
@@ -998,13 +1025,19 @@ namespace RotMG_Scripts {
             this.MainPanel2.ResumeLayout(false);
             this.MainPanel2.PerformLayout();
             this.AspectRatioGroup.ResumeLayout(false);
-            this.AspectRatioGroup.PerformLayout();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.MainPanel1.ResumeLayout(false);
             this.MainPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UpdateDelayInput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.SearchDelayInput)).EndInit();
             this.RushingTab.ResumeLayout(false);
             this.GameInfoTab.ResumeLayout(false);
+            this.GameInfoPanel.ResumeLayout(false);
+            this.GameInfoPanel1.ResumeLayout(false);
+            this.GameInfoPanel1.PerformLayout();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.DebuggingTab.ResumeLayout(false);
             this.DebugTabControl.ResumeLayout(false);
             this.ConsoleTab.ResumeLayout(false);
@@ -1016,11 +1049,6 @@ namespace RotMG_Scripts {
             this.DebuggingInfoPanel2.PerformLayout();
             this.DebuggingInfoPanel1.ResumeLayout(false);
             this.DebuggingInfoPanel1.PerformLayout();
-            this.GameInfoPanel.ResumeLayout(false);
-            this.GameInfoPanel1.ResumeLayout(false);
-            this.GameInfoPanel1.PerformLayout();
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1032,7 +1060,7 @@ namespace RotMG_Scripts {
         public System.Windows.Forms.Label ProcessNameLabel;
         public System.Windows.Forms.TextBox ProcessName;
         public System.Windows.Forms.TextBox RotMGProcess;
-        public System.Windows.Forms.Button HotkeyButton0;
+        public CustomButton HotkeyButton0;
         public System.Windows.Forms.TextBox HotkeyBox0;
         public System.Windows.Forms.Label OptionsLabel;
         public System.Windows.Forms.Label RotMGFound;
@@ -1057,7 +1085,7 @@ namespace RotMG_Scripts {
         public System.Windows.Forms.TabPage ProgramInfoTab;
         public System.Windows.Forms.Panel ConsolePanel;
         public System.Windows.Forms.RichTextBox RichConsoleText;
-        public System.Windows.Forms.Button ConsoleSendButton;
+        public RotMG_Scripts.CustomButton ConsoleSendButton;
         public System.Windows.Forms.TextBox ConsoleInput;
         public System.Windows.Forms.LinkLabel GitHubLink;
         public System.Windows.Forms.Label VersionLabel;
@@ -1086,5 +1114,6 @@ namespace RotMG_Scripts {
         public System.Windows.Forms.Label WindowHeightLabel;
         public System.Windows.Forms.TextBox WindowYBox;
         public System.Windows.Forms.Label WindowInfoLabel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

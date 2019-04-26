@@ -25,17 +25,17 @@
         private void InitializeComponent() {
             this.HotkeyAnyKeyLabel = new System.Windows.Forms.Label();
             this.HotkeyPanel = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.EditingHotkeyLabel = new System.Windows.Forms.Label();
+            this.OptionsWarningLabel = new System.Windows.Forms.Label();
             this.HotkeyTitleBar = new System.Windows.Forms.Panel();
             this.HotkeyExitButton = new RotMG_Scripts.TitleBarButton();
             this.HotkeyLabel = new System.Windows.Forms.Label();
             this.MinimizeButton = new RotMG_Scripts.TitleBarButton();
             this.ExitButton = new RotMG_Scripts.TitleBarButton();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.OptionsWarningLabel = new System.Windows.Forms.Label();
             this.HotkeyPanel.SuspendLayout();
-            this.HotkeyTitleBar.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.HotkeyTitleBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // HotkeyAnyKeyLabel
@@ -44,7 +44,7 @@
             this.HotkeyAnyKeyLabel.AutoSize = true;
             this.HotkeyAnyKeyLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.HotkeyAnyKeyLabel.ForeColor = System.Drawing.Color.White;
-            this.HotkeyAnyKeyLabel.Location = new System.Drawing.Point(41, 75);
+            this.HotkeyAnyKeyLabel.Location = new System.Drawing.Point(41, 84);
             this.HotkeyAnyKeyLabel.Name = "HotkeyAnyKeyLabel";
             this.HotkeyAnyKeyLabel.Size = new System.Drawing.Size(98, 17);
             this.HotkeyAnyKeyLabel.TabIndex = 0;
@@ -60,6 +60,24 @@
             this.HotkeyPanel.Size = new System.Drawing.Size(180, 110);
             this.HotkeyPanel.TabIndex = 1;
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.EditingHotkeyLabel, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.HotkeyAnyKeyLabel, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.OptionsWarningLabel, 0, 1);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(180, 110);
+            this.tableLayoutPanel1.TabIndex = 2;
+            // 
             // EditingHotkeyLabel
             // 
             this.EditingHotkeyLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -67,11 +85,22 @@
             this.EditingHotkeyLabel.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.EditingHotkeyLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.EditingHotkeyLabel.ForeColor = System.Drawing.Color.White;
-            this.EditingHotkeyLabel.Location = new System.Drawing.Point(49, 6);
+            this.EditingHotkeyLabel.Location = new System.Drawing.Point(49, 1);
             this.EditingHotkeyLabel.Name = "EditingHotkeyLabel";
             this.EditingHotkeyLabel.Size = new System.Drawing.Size(81, 17);
             this.EditingHotkeyLabel.TabIndex = 1;
             this.EditingHotkeyLabel.Text = "--Key Here--";
+            // 
+            // OptionsWarningLabel
+            // 
+            this.OptionsWarningLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.OptionsWarningLabel.AutoSize = true;
+            this.OptionsWarningLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OptionsWarningLabel.ForeColor = System.Drawing.Color.White;
+            this.OptionsWarningLabel.Location = new System.Drawing.Point(90, 21);
+            this.OptionsWarningLabel.Name = "OptionsWarningLabel";
+            this.OptionsWarningLabel.Size = new System.Drawing.Size(0, 17);
+            this.OptionsWarningLabel.TabIndex = 2;
             // 
             // HotkeyTitleBar
             // 
@@ -139,34 +168,6 @@
             this.ExitButton.TabIndex = 27;
             this.ExitButton.UseVisualStyleBackColor = false;
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.EditingHotkeyLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.HotkeyAnyKeyLabel, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.OptionsWarningLabel, 0, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28.18182F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 26.36364F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 46.36364F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(180, 110);
-            this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // OptionsWarningLabel
-            // 
-            this.OptionsWarningLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.OptionsWarningLabel.AutoSize = true;
-            this.OptionsWarningLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OptionsWarningLabel.ForeColor = System.Drawing.Color.White;
-            this.OptionsWarningLabel.Location = new System.Drawing.Point(90, 35);
-            this.OptionsWarningLabel.Name = "OptionsWarningLabel";
-            this.OptionsWarningLabel.Size = new System.Drawing.Size(0, 17);
-            this.OptionsWarningLabel.TabIndex = 2;
-            // 
             // PressAnyKeyBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,10 +179,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "PressAnyKeyBox";
             this.HotkeyPanel.ResumeLayout(false);
-            this.HotkeyTitleBar.ResumeLayout(false);
-            this.HotkeyTitleBar.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.HotkeyTitleBar.ResumeLayout(false);
+            this.HotkeyTitleBar.PerformLayout();
             this.ResumeLayout(false);
 
         }

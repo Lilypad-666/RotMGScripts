@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -43,14 +42,13 @@ namespace RotMG_Scripts {
 
             if (Name.Equals("ExitButton")) {
                 text = "r";
-                location = new Point(Width/2-10, Height/2+1);
+                location = new Point(Width / 2 - 10, Height / 2 + 1);
             }
 
             if (Name.Equals("MinimizeButton")) {
                 text = "0";
-                location = new Point(Width/2-9, Height/2-3);
+                location = new Point(Width / 2 - 9, Height / 2 - 3);
             }
-            
 
             TextRenderer.DrawText(g, text, Font, location, Color.White, TextFormatFlags.VerticalCenter);
         }

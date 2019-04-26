@@ -1,15 +1,14 @@
-﻿using System.ComponentModel;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace RotMG_Scripts {
+
     public class CustomGroupBox : GroupBox {
+        private readonly Color borderColor = Color.FromArgb(255, 200, 200);
 
-        readonly Color borderColor = Color.FromArgb(255, 200, 200);
-        
-        readonly int borderThickness = 2;
+        private readonly int borderThickness = 2;
 
-        readonly int textLocation = 10;
+        private readonly int textLocation = 10;
 
         protected override void OnPaint(PaintEventArgs e) {
             //get the text size in groupbox
@@ -22,11 +21,11 @@ namespace RotMG_Scripts {
             int heightOffset = 5;
             int x = borderThickness;
             int y = borderThickness + heightOffset;
-            int height = ClientRectangle.Height-borderThickness;
-            int width = ClientRectangle.Width-borderThickness;
+            int height = ClientRectangle.Height - borderThickness;
+            int width = ClientRectangle.Width - borderThickness;
 
             //Text
-            TextRenderer.DrawText(g, Text, Font, new Point(textLocation, heightOffset-8), Color.White);
+            TextRenderer.DrawText(g, Text, Font, new Point(textLocation, heightOffset - 8), Color.White);
 
             //Left
             g.DrawLine(p, x, y, x, height);
@@ -35,10 +34,10 @@ namespace RotMG_Scripts {
             g.DrawLine(p, width, y, width, height);
 
             //Bottom
-            g.DrawLine(p, x-borderThickness/2, height, width+borderThickness/2, height);
+            g.DrawLine(p, x - borderThickness / 2, height, width + borderThickness / 2, height);
 
             //Top Left
-            g.DrawLine(p, x-borderThickness/2, y, textLocation, y);
+            g.DrawLine(p, x - borderThickness / 2, y, textLocation, y);
 
             //Top Right
             g.DrawLine(p, x + textLocation + textSize, y, width + borderThickness / 2, y);

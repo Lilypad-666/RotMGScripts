@@ -73,9 +73,6 @@ namespace RotMG_Scripts {
                 }
             }
 
-            //Load data from the RotMG save
-            LoadRotMGData();
-
             //Load data from \Data\ folder
             LoadData();
         }
@@ -115,7 +112,7 @@ namespace RotMG_Scripts {
         /// <summary>
         /// Loads the data from the RotMG save
         /// </summary>
-        public static void LoadRotMGData() {
+        public static void LoadRotMGData(bool firstRun = false) {
             //RotMG Data
             if (File.Exists(saveLocation)) {
                 //Load the file into a byte array
@@ -179,11 +176,12 @@ namespace RotMG_Scripts {
             else {
                 //Save location isn't valid so reload everything
                 LoadAllData();
+                LoadRotMGData();
                 return;
             }
 
             //Put the newly aquired data to the screen
-            MainForm.RotMGDataToScreen();
+            MainForm.RotMGDataToScreen(firstRun);
         }
 
         /// <summary>
