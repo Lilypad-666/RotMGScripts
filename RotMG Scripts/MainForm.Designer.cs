@@ -25,6 +25,7 @@ namespace RotMG_Scripts {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.TitleBarPanel = new System.Windows.Forms.Panel();
             this.TitleLabel = new System.Windows.Forms.Label();
@@ -86,6 +87,7 @@ namespace RotMG_Scripts {
             this.DebuggingInfoPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.TitleBarPanel.SuspendLayout();
             this.MainTabControl.SuspendLayout();
             this.MainTab.SuspendLayout();
@@ -373,8 +375,8 @@ namespace RotMG_Scripts {
             this.MainPanel1.Controls.Add(this.RotMGFound, 1, 1);
             this.MainPanel1.Controls.Add(this.UpdateDelayInput, 2, 5);
             this.MainPanel1.Controls.Add(this.UpdateDelayLabel, 2, 4);
-            this.MainPanel1.Controls.Add(this.SearchDelayInput, 1, 5);
             this.MainPanel1.Controls.Add(this.SeachDelayLabel, 1, 4);
+            this.MainPanel1.Controls.Add(this.SearchDelayInput, 1, 5);
             this.MainPanel1.Location = new System.Drawing.Point(0, 8);
             this.MainPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.MainPanel1.Name = "MainPanel1";
@@ -484,6 +486,7 @@ namespace RotMG_Scripts {
             this.UpdateDelayLabel.Size = new System.Drawing.Size(119, 17);
             this.UpdateDelayLabel.TabIndex = 23;
             this.UpdateDelayLabel.Text = "Update Delay (ms):";
+            this.ToolTip.SetToolTip(this.UpdateDelayLabel, "Delay is milliseconds to update the game data when the game is found.");
             // 
             // SearchDelayInput
             // 
@@ -528,6 +531,7 @@ namespace RotMG_Scripts {
             this.SeachDelayLabel.Size = new System.Drawing.Size(115, 17);
             this.SeachDelayLabel.TabIndex = 21;
             this.SeachDelayLabel.Text = "Search Delay (ms):";
+            this.ToolTip.SetToolTip(this.SeachDelayLabel, "Delay in milliseconds to re-search for the program when it is not found.");
             // 
             // RushingTab
             // 
@@ -1112,5 +1116,6 @@ namespace RotMG_Scripts {
         public System.Windows.Forms.TextBox WindowYBox;
         public System.Windows.Forms.Label WindowInfoLabel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }
