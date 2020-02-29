@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RotMG Scripts", "RotMG Scripts\RotMG Scripts.csproj", "{32FB6CCF-8560-4329-843F-E70FCEA7DFD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RotMGScripts", "RotMGScripts\RotMGScripts.csproj", "{32FB6CCF-8560-4329-843F-E70FCEA7DFD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
